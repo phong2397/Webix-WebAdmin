@@ -1,5 +1,5 @@
 export const order2 = new webix.DataCollection({ data: [
-{
+{  
     "_id": "5f5b00b872e3aa5087c013a1",
     "orderMifosId": 1,
     "orderId": "",
@@ -255,7 +255,7 @@ export const order2 = new webix.DataCollection({ data: [
       "transactionMifos": "",
       "transactionPaymentGateway": ""
     },
-      "collection": {
+    "collection": {
         "paymentType": "cash",
         "status": "Closed",
         "amountCollection": 2000000,
@@ -280,7 +280,7 @@ export const order2 = new webix.DataCollection({ data: [
           "callEndTime": "2020-07-15T03:05:57Z",
           "callStartTimeNumber": 1594782353,
           "callEndTimeNumber": 1594782357,
-          "callDuration(s)": 4
+          "callDuration": 4
         }
       ]
     

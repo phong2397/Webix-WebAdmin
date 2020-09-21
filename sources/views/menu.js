@@ -15,7 +15,7 @@ export default class MenuView extends JetView {
                 { value: "Disburse", id: "disburse" ,icon:"mdi mdi-widgets"},
                 { value: "Collection", id: "collection",icon:"mdi mdi-currency-usd" },
                 { value: "Treetable", id: "treetableexam",icon:"wxi-pencil" },
-                { value: "ssss", id: "test",icon:"wxi-pencil" },
+               
             ]
         };
 

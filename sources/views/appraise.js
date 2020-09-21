@@ -8,7 +8,6 @@ export default class Appraise extends JetView {
         return {
             cols: [{
                 rows: [
-
                     {
                         select: true,
                         id: "dataAppraise",

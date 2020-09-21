@@ -5,10 +5,65 @@ import "webix/photo";
 
 export default class Appraise extends JetView {
     config() {
+        function provideMap(el){
+            var obj = {};
+            obj.value = [el[0]];  
+            for ( var i = 1; i < el.length; i++ ){
+              var key = el[i];
+              obj[key] = [key];
+            };
+            return obj
+          };
+          function gby(){
+            // get grouping tags  
+            var elements = ["_id",];
+              elements.reverse();
+            var count = elements.length;
+            // apply several levels of grouping 
+              for (var i = 0; i < count; i++){
+              var map = provideMap(elements);
+              $$("dataTree").group({    
+                by:function(obj){          
+                  var group_tag = ""; 
+                  elements.forEach(function(el){
+                                      console.log(obj[el])
+                    group_tag += obj[el] || "";
+                    group_tag += "-"
+                  });
+                  return group_tag; 
+                },  
+                map:map    
+              }, 0);// only top level of data
+              // remove used tag before grouping the next level
+                    elements.shift();
+            };}     
+            function gby1(){
+                // get grouping tags  
+                var elements = ["#customerInfo.accountName#"];
+                  elements.reverse();
+                var count = elements.length;
+                // apply several levels of grouping 
+                  for (var i = 0; i < count; i++){
+                  var map = provideMap(elements);
+                  $$("dataTree1").group({    
+                    by:function(obj){          
+                      var group_tag = ""; 
+                      elements.forEach(function(el){
+                                          console.log(obj[el])
+                        group_tag += obj[el] || "";
+                        group_tag += "-"
+                      });
+                      return group_tag; 
+                    },  
+                    map:map    
+                  }, 0);// only top level of data
+                  // remove used tag before grouping the next level
+                        elements.shift();
+                };}
         return {
             cols: [{
                 rows: [
-
+                    { view:"button", value:"Group", click:function(){ gby(); }},
                     {
                         view: "treetable",
                         select: true,
@@ -18,13 +73,7 @@ export default class Appraise extends JetView {
                         css: "webix_shadow_medium",
                         editable: true,
                         data: order2,
-                        ready: function () {
-
-                            this.group({
-                                by: "_id",
-                                row: "_id"
-                            });
-                        },
+                       
                         on: {
                             onItemClick: function (_id) {
                                 this.setCursor(_id);
@@ -36,11 +85,14 @@ export default class Appraise extends JetView {
                             }
                         },
                         columns: [
+                            
                             {
                                 id: "_id", header: ["ID"], width: 200,
-                                template: function (obj, common) {
-                                    if (obj.$group) return common.treetable(obj, common) + obj.value;
-                                    return "";
+                                template:function(obj,common){
+                                
+                                    return common.treetable(obj,common) + (obj.value || obj._id);
+                                     
+                                
                                 }
 
                             },
@@ -56,15 +108,17 @@ export default class Appraise extends JetView {
                             {
                                 id: "applyAmount", header: "Apply Amount", width: 150
                             },
+                            {
+                                id: "accountName", header: "accountName", width: 150 ,template:"#customerInfo.accountName#"
+                            },
 
                             {
                                 id: "product", header: "Product", width: 150
                             },
-                            {
-                                id: "productType", header: "Product Type", width: 150
-
+                           
+  {
+                                id: "applyAmount", header: "Apply Amount", width: 150
                             },
-
                             {
                                 id: "repayment", header: "Repayment", width: 150
                             },
@@ -90,6 +144,7 @@ export default class Appraise extends JetView {
                     {
 
                         rows: [
+                            { view:"button", value:"Group", click:function(){ gby1(); }},
                             {
                                 view: "treetable",
                                 select: true,
