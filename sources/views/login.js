@@ -30,7 +30,7 @@ export default class LoginView extends JetView{
 										if (this.$$("form").validate()){
 											const up = this.$$("form").getValues();
 											if (up.user === this._loginData.user && up.password === this._loginData.password)
-												this.show("/top/start/data");
+												this.show("/top/list-view");
 											else
 												webix.message("Wrong login or password","error");
 										}

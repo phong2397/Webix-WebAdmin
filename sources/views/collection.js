@@ -189,7 +189,6 @@ export default class Collection extends JetView {
                     {
                         select: true,
                         id: "dataCollection",
-                        datatype: "jsarray",
                         view: "datatable",
                         pager: "pagerA",
                         css: "webix_shadow_medium",
@@ -262,7 +261,7 @@ export default class Collection extends JetView {
             {
                 width: 700,
                 rows: [
-                    {
+                        {
                         view: "accordion",
                         multi: true,
                         type: "wide",

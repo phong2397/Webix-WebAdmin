@@ -189,7 +189,6 @@ export default class Disburse extends JetView {
                     {
                         select: true,
                         id: "data2",
-                        datatype:"jsarray",
                         view: "datatable",
                         pager: "pagerA",
                       localId:"data2",
