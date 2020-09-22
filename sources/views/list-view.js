@@ -628,7 +628,7 @@ export default class DataList extends JetView {
                             }, ]
                         },
                         {
-                            view: "timeline",
+                            view: "treetable",
                             height: 650,
                             data: formatTreeview(data),
                             columns: [
