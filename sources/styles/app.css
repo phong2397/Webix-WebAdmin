@@ -323,5 +323,37 @@ path {
 
 .webix_dtable {
     text-transform: capitalize;
-    font-weight: bold;
+}
+
+
+/*data loading status*/
+
+.status_good,
+.status_error,
+.status_saving {
+    color: #eee;
+}
+
+.status_error {
+    color: #FFCDCD;
+}
+
+.status_area {
+    background: transparent;
+}
+
+.status_area .webix_icon {
+    width: 16px;
+}
+
+
+/*login form*/
+
+.invalid_login .webix_header>div {
+    background: #FC3636;
+    transition: background 1s;
+}
+
+.invalid_login {
+    -webkit-animation: formshake .5s linear;
 }

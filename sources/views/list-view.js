@@ -1,182 +1,8 @@
 import { JetView } from "webix-jet";
 import "webix/photo";
 
-let rules = [{
-        "id": "1",
-        "text": "khách vay lần đầu- chống gian lận khách xin vay có số lượng số điện thoại trong danh bạ điện thoại. ",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "2",
-        "text": "khách vay lần đầu-chống gian lận khách có số ngày quá hạn dài nhất lịch sử toàn hệ thống.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "3",
-        "text": " khách vay lại- chống gian lận khách có số ngày quá hạn dài nhất trong toàn hệ thống.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "4",
-        "text": "khách vay lần đầu- chống gian lận hạn chế độ tuổi.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "5",
-        "text": "khách vay lần đầu- trong vòng 3 tháng thiết bị liên quan số lượt xin vay quá 5 lần.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "6",
-        "text": "chống gian lận khách trong vòng 3 tháng số CMND xin vay tại các app.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "7",
-        "text": "khách vay lần đầu- chống gian lận các số CMND liên quan cùng một thiết bị. ",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "8",
-        "text": "chống gian lận khách trong vòng 3 tháng số CMND xin vay tại các app.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "9",
-        "text": "khách vay lại- khách hàng gần đây có đơn vay có số ngày quá hạn. ",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "10",
-        "text": "khách vay lần đầu-danh sách đen GeeRong- quá hạn quá 7 ngày.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "11",
-        "text": "khách vay lần đầu- chống gian lận khách trong danh bạ điện thoại có bằng hoặc quá 5 người xin vay.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "12",
-        "text": "khách vay lại- số lượng CMND liên quan cùng một thiết bị. ",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "13",
-        "text": "khách vay lần đầu-số CMND có phải nằm trong đơn hàng chưa kết thúc.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "14",
-        "text": "khách vay lần đầu- chống gian lận khách có số người liên hệ khẩn cấp có ghi nhận đơn quá hạn.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "15",
-        "text": "khách vay lần đầu- chống gian lận khách có đơn xin vay quá hạn gần đây.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "16",
-        "text": "khách vay lần đầu- chống gian lận khách trong danh bạ có xuất hiện khách quá hạn  của công ty.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "17",
-        "text": "khách vay lần đầu-chống gian lận số người liên hệ khẩn cấp của khách có lịch sử xin vay. ",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "18",
-        "text": "khách vay lại- danh sách xám GeeRong.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "19",
-        "text": "khách vay lần đầu-danh sách xám GeeRong.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "20",
-        "text": "khách vay lần đầu-số điện thoại có phải nằm trong đơn hàng chưa kết thúc.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    }, {
-        "id": "21",
-        "text": "khách vay lại- số CMND có phải nằm trong đơn hàng chưa kết thúc.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    }, {
-        "id": "22",
-        "text": "khách vay lại- số điện thoại có phải nằm trong đơn hàng chưa kết thúc.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    }, {
-        "id": "23",
-        "text": "khách vay lần đầu-số điện thoại  trúng trong whitelist.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "24",
-        "text": "khách vay lại- có phải số điện thoại trúng trong whitelist.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "25",
-        "text": "khách vay lại- số CMND trúng trong whitelist.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "26",
-        "text": "cung1CMNDcolienhevoihon1sodienthoaituchoi.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "27",
-        "text": "số CMND trong danh sách đen.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-    {
-        "id": "28",
-        "text": "số điện thoại đăng kí trong danh sách đen.",
-        "isDisable": true,
-        "lastUpdate": "2020-09-15"
-    },
-]
 
-let getRule = function(listRules) {
-    let text = '';
-    for (let i = 0; i < listRules.length; i++) {
-        let e = listRules[i]
-        text += e.id + '.' + e.text + '<br>';
-    }
-    return text;
-}
-var data = {
+let data = {
 
     "_id": "5f5b00b872e3aa5087c013a1",
     "orderMifosId": 1,
@@ -461,13 +287,11 @@ var data = {
 
 
 };
-var store = new webix.DataCollection({
+let store = new webix.DataCollection({
     url: function(params) {
         return webix.ajax("//staff.t-max.online/orders");
     },
 });
-
-
 
 export default class DataList extends JetView {
     config() {
@@ -495,27 +319,20 @@ export default class DataList extends JetView {
             cols: [{
                     rows: [{
                             select: true,
-
                             view: "datatable",
                             pager: "pagerA",
                             id: "data",
                             css: "webix_shadow_medium",
                             data: store,
-                            on: {
-                                onItemClick: function(_id) {
-                                    this.setCursor(_id);
-                                }
-                            },
+
                             onClick: {
-                                webixtype_base: function(ev, html) {
-                                    this.$scope.win.show();
+                                "editBtn": function(ev) {
+                                    $$("editwin").show();
                                 }
                             },
                             columns: [{
-                                    header: "",
-                                    template: function(obj) {
-                                        return "<div class='webix_el_button'><button class='webixtype_base'> Click</button></div>";
-                                    }
+                                    template: "<input class='editBtn' type='button' value='Click'>",
+                                    width: 100,
                                 },
                                 {
                                     id: "orderStage",
@@ -567,8 +384,8 @@ export default class DataList extends JetView {
                                     })
                                 },
 
-                            ]
 
+                            ]
                         },
                         {
                             template: "{common.prev()} {common.pages()} {common.next()}",
@@ -582,7 +399,7 @@ export default class DataList extends JetView {
 
                         },
                     ],
-                    height: 750
+                    height: 900
                 },
                 {
                     width: 700,
@@ -606,25 +423,20 @@ export default class DataList extends JetView {
                                     },
                                     elements: [{
                                             cols: [
-                                                { view: "label", label: "OrderID:", width: 100 },
-                                                { view: "text", name: "orderId", disabled: true },
-                                            ]
-                                        },
-                                        {
-                                            cols: [
-                                                { view: "label", label: "Order Stage:", width: 100 },
+                                                { view: "label", label: "Order Stage:", width: 140 },
                                                 { view: "text", name: "orderStage", disabled: true },
                                             ]
                                         },
                                         {
                                             cols: [
-                                                { view: "label", label: "Order Status:", width: 100 },
+                                                { view: "label", label: "Order Status:", width: 140 },
                                                 { view: "text", name: "orderStatus", disabled: true },
                                             ]
                                         },
+
                                     ]
                                 },
-                                height: 200
+                                height: 150
                             }, ]
                         },
                         {
@@ -648,39 +460,179 @@ export default class DataList extends JetView {
     }
     init() {
 
-        const window = {
+        webix.ui({
             view: 'window',
-            id: "detailWindow",
+            id: "editwin",
             head: 'Quy Tắc Thẩm Định',
             modal: true,
             close: true,
             position: "center",
             body: {
-                width: 700,
+                width: 800,
                 view: 'form',
+                id: "editform",
                 elements: [{
                         cols: [{
-                                view: "checkbox",
-                                label: "Pass",
-                                value: true,
-                                uncheckValue: "off",
-                                checkValue: "pass",
-                                width: 50
+                                view: "form",
+                                scroll: true,
+                                rows: [{
+                                        cols: [{ view: 'label', label: "1.", width: 22 },
+                                            { view: 'label', id: "text1" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "2.", width: 22 },
+                                            { view: 'label', id: "text2" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "3.", width: 22 },
+                                            { view: 'label', id: "text3" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "4.", width: 22 },
+                                            { view: 'label', id: "text4" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "5.", width: 22 },
+                                            { view: 'label', id: "text5" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "6.", width: 22 },
+                                            { view: 'label', id: "text6" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "7.", width: 22 },
+                                            { view: 'label', id: "text7" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "8.", width: 22 },
+                                            { view: 'label', id: "text8" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "9.", width: 22 },
+                                            { view: 'label', id: "text9" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "10.", width: 22 },
+                                            { view: 'label', id: "text10" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "11.", width: 22 },
+                                            { view: 'label', id: "text11" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "12.", width: 22 },
+                                            { view: 'label', id: "text12" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "13.", width: 22 },
+                                            { view: 'label', id: "text13" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "14.", width: 22 },
+                                            { view: 'label', id: "text14" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "15.", width: 22 },
+                                            { view: 'label', id: "text15" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "16.", width: 22 },
+                                            { view: 'label', id: "text16" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "17.", width: 22 },
+                                            { view: 'label', id: "text17" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "18.", width: 22 },
+                                            { view: 'label', id: "text18" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "19.", width: 22 },
+                                            { view: 'label', id: "text19" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "22.", width: 22 },
+                                            { view: 'label', id: "text20" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "21.", width: 22 },
+                                            { view: 'label', id: "text21" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "22.", width: 22 },
+                                            { view: 'label', css: "line", id: "text22" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "23.", width: 22 },
+                                            { view: 'label', id: "text23" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "24.", width: 22 },
+                                            { view: 'label', id: "text24" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "25.", width: 22 },
+                                            { view: 'label', id: "text25" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "26.", width: 22 },
+                                            { view: 'label', id: "text26" },
+                                        ]
+                                    },
+                                    {
+                                        cols: [{ view: 'label', label: "27.", width: 22 },
+                                            { view: 'label', id: "text27" },
+                                        ]
+                                    },
+                                ],
+
+                                height: 450,
                             },
-                            {
-                                view: "checkbox",
-                                label: "Fail",
-                                value: true,
-                                uncheckValue: "off",
-                                checkValue: "fail",
-                                width: 50
-                            },
-                            { view: 'label', height: 700, css: "lines", label: getRule(rules) },
+
+
+
                         ]
+                    },
+                    {
+                        cols: [{
+                                view: "checkbox",
+                                labelRight: "Đáp ứng đầy đủ các điều khoản trên",
+
+                            },
+
+                        ]
+
                     },
 
 
                     { view: 'textarea', label: 'Note', id: 'notes', height: 150 },
+
                     {
                         cols: [{
                                 view: "button",
@@ -693,16 +645,6 @@ export default class DataList extends JetView {
                             },
                             {
                                 view: "button",
-                                type: "form",
-                                value: "Accept",
-                                css: "webix_primary",
-                                click: function() {
-                                    this.getr.save();
-
-                                }
-                            },
-                            {
-                                view: "button",
                                 value: "Reject",
                                 css: "webix_danger",
                                 click: function() {
@@ -710,16 +652,104 @@ export default class DataList extends JetView {
                                 }
                             },
                         ]
-                    }
+                    },
+
+
                 ]
             },
 
-        }
+        });
 
+
+        $$("data").attachEvent("onItemClick", function(_id) {
+            let notes = this.getItem(_id).appraisal.notes;
+            $$("notes").setValue(notes);
+
+            let text1 = this.getItem(_id).appraisal.listRule[0].text;
+            $$("text1").setValue(text1);
+
+            let text2 = this.getItem(_id).appraisal.listRule[1].text;
+            $$("text2").setValue(text2);
+
+            let text3 = this.getItem(_id).appraisal.listRule[2].text;
+            $$("text3").setValue(text3);
+
+            let text4 = this.getItem(_id).appraisal.listRule[3].text;
+            $$("text4").setValue(text4);
+
+            let text5 = this.getItem(_id).appraisal.listRule[4].text;
+            $$("text5").setValue(text5);
+
+            let text6 = this.getItem(_id).appraisal.listRule[5].text;
+            $$("text6").setValue(text6);
+
+            let text7 = this.getItem(_id).appraisal.listRule[6].text;
+            $$("text7").setValue(text7);
+
+            let text8 = this.getItem(_id).appraisal.listRule[7].text;
+            $$("text8").setValue(text8);
+
+            let text9 = this.getItem(_id).appraisal.listRule[8].text;
+            $$("text9").setValue(text9);
+
+            let text10 = this.getItem(_id).appraisal.listRule[9].text;
+            $$("text10").setValue(text10);
+
+            let text11 = this.getItem(_id).appraisal.listRule[10].text;
+            $$("text11").setValue(text11);
+
+            let text12 = this.getItem(_id).appraisal.listRule[11].text;
+            $$("text12").setValue(text12);
+
+            let text13 = this.getItem(_id).appraisal.listRule[12].text;
+            $$("text13").setValue(text13);
+
+            let text14 = this.getItem(_id).appraisal.listRule[13].text;
+            $$("text14").setValue(text14);
+
+            let text15 = this.getItem(_id).appraisal.listRule[14].text;
+            $$("text15").setValue(text15);
+
+            let text16 = this.getItem(_id).appraisal.listRule[15].text;
+            $$("text16").setValue(text16);
+
+            let text17 = this.getItem(_id).appraisal.listRule[16].text;
+            $$("text17").setValue(text17);
+
+            let text18 = this.getItem(_id).appraisal.listRule[17].text;
+            $$("text18").setValue(text18);
+
+            let text19 = this.getItem(_id).appraisal.listRule[18].text;
+            $$("text19").setValue(text19);
+
+            let text20 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text20").setValue(text20);
+
+            let text21 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text21").setValue(text21);
+
+            let text22 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text22").setValue(text22);
+
+            let text23 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text23").setValue(text23);
+
+            let text24 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text24").setValue(text24);
+
+            let text25 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text25").setValue(text25);
+
+            let text26 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text26").setValue(text26);
+
+            let text27 = this.getItem(_id).appraisal.listRule[19].text;
+            $$("text27").setValue(text27);
+
+        });
 
         $$("form").bind("data");
-        this.win = this.ui(window);
-
+        $$("editform").bind($$("data"));
     }
 
 
