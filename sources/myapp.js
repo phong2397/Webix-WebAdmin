@@ -9,11 +9,11 @@ export default class MyApp extends JetApp {
             version: VERSION,
             router: HashRouter,
             debug: !PRODUCTION,
-            start: "/login",
+            start: "/top/list-view"
 
         };
         super({...defaults, ...config });
-
+        this.use(plugins.User, { model: session });
     }
 }
 

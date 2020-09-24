@@ -1,111 +1,55 @@
 import { JetView } from "webix-jet";
-import { getLoginData } from "models/session";
 
 export default class LoginView extends JetView {
     config() {
-        const logo = {
-            rows: [{
-                    cols: [
-                        {}, { css: "logo", width: 100, height: 50 }, {}
-                    ]
-                },
-
-            ]
-        };
-
-        const buttons = {
-            margin: 20,
+        const login_form = {
+            view: "form",
+            localId: "login:form",
+            width: 400,
+            borderless: false,
+            margin: 10,
             rows: [
-
-                {
-                    cols: [
-                        {},
-                        {
-                            margin: 20,
-                            width: 140,
-                            rows: [{
-                                    view: "button",
-                                    type: "form",
-                                    value: "Log in",
-                                    hotkey: "enter",
-                                    click: () => {
-                                        if (this.$$("form").validate()) {
-                                            const up = this.$$("form").getValues();
-                                            if (up.user === this._loginData.user && up.password === this._loginData.password) {
-
-                                                this.show("/top/list-view");
-                                            } else
-                                                webix.message("Wrong login or password", "error");
-                                        }
-                                    }
-                                },
-
-                            ]
-                        },
-                        {}
-                    ]
-                }
-            ]
+                { view: "text", name: "login", label: "User Name", labelPosition: "top", invalidMessage: "Please enter username!" },
+                { view: "text", type: "password", name: "pass", label: "Password", labelPosition: "top", invalidMessage: "Please enter password!" },
+                { view: "button", value: "Login", click: () => this.do_login(), hotkey: "enter" }
+            ],
+            rules: {
+                login: webix.rules.isNotEmpty,
+                pass: webix.rules.isNotEmpty
+            }
         };
 
         return {
-            type: "space",
-            rows: [
-                {},
-                {
-                    cols: [
-                        {},
-                        {
-                            view: "form",
-                            localId: "form",
-                            margin: 20,
-                            padding: 30,
-                            height: 440,
-                            width: 360,
-                            elements: [
-                                logo,
-                                {
-                                    view: "text",
-                                    name: "user",
-                                    localId: "name",
-                                    label: "<span class=\"webix_icon mdi mdi-account\"></span>",
-                                    labelWidth: 30,
-                                    placeholder: "Username"
-                                },
-                                {
-                                    view: "search",
-                                    type: "password",
-                                    localId: "pswd",
-                                    name: "password",
-                                    icon: "wxi-eye",
-                                    label: "<div class=\"webix_icon mdi mdi-lock\"></div>",
-                                    labelWidth: 30,
-                                    placeholder: "Password",
-
-                                },
-                                buttons
-                            ],
-                            rules: {
-                                $all: webix.rules.isNotEmpty
-                            }
-                        },
-                        {}
-                    ]
-                },
-                {}
-            ]
+            cols: [{}, {
+                localId: "login:top",
+                rows: [
+                    {},
+                    { type: "header", template: this.app.config.name, css: "webix_dark" },
+                    login_form,
+                    {}
+                ]
+            }, {}]
         };
     }
-    init() {
-        this.$$("name").focus();
 
-        // for demo only
-        this._loginData = getLoginData();
-
-        this.$$("name").setValue(this._loginData.user);
-        this.$$("pswd").setValue(this._loginData.password);
+    init(view) {
+        view.$view.querySelector("input").focus();
     }
-    destroy() {
-        webix.eventRemove(this._tipEvent);
+
+    do_login() {
+        const user = this.app.getService("user");
+        const form = this.$$("login:form");
+        const ui = this.$$("login:top");
+
+        if (form.validate()) {
+            const data = form.getValues();
+            user.login(data.login, data.pass).catch(function() {
+                webix.html.removeCss(ui.$view, "invalid_login");
+                form.elements.pass.focus();
+                webix.delay(function() {
+                    webix.html.addCss(ui.$view, "invalid_login");
+                });
+            });
+        }
     }
 }

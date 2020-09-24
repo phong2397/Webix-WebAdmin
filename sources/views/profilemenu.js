@@ -17,7 +17,7 @@ export default class ProfileMenuView extends JetView {
                 on: {
                     onItemClick: id => {
                         if (id === "logout")
-                            this.show("/login");
+                            this.show("/logout");
                     }
                 }
             }

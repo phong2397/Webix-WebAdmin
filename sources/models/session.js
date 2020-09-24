@@ -1,11 +1,22 @@
-let login = {
-    user: "phong",
-    password: "123"
-};
-export function getLoginData() {
-    try {
-        const saved = webix.storage.session.get("demo_login_data");
-        if (saved) login = saved;
-    } catch (err) { /* for blocked cookies */ }
-    return login;
+function status() {
+    return webix.ajax().post("server/login/status")
+        .then(a => a.json());
+}
+
+function login(user, pass) {
+    return webix.ajax().post("server/login", {
+        user,
+        pass
+    }).then(a => a.json());
+}
+
+function logout() {
+    return webix.ajax().post("server/logout")
+        .then(a => a.json());
+}
+
+export default {
+    status,
+    login,
+    logout
 }

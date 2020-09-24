@@ -3,7 +3,6 @@ import "webix/photo";
 
 
 let data = {
-
     "_id": "5f5b00b872e3aa5087c013a1",
     "orderMifosId": 1,
     "orderId": 1,
@@ -610,6 +609,11 @@ export default class DataList extends JetView {
                                             { view: 'label', id: "text27" },
                                         ]
                                     },
+                                    {
+                                        cols: [{ view: 'label', label: "28.", width: 22 },
+                                            { view: 'label', id: "text28" },
+                                        ]
+                                    },
                                 ],
 
                                 height: 450,
@@ -725,28 +729,31 @@ export default class DataList extends JetView {
             let text20 = this.getItem(_id).appraisal.listRule[19].text;
             $$("text20").setValue(text20);
 
-            let text21 = this.getItem(_id).appraisal.listRule[19].text;
+            let text21 = this.getItem(_id).appraisal.listRule[20].text;
             $$("text21").setValue(text21);
 
-            let text22 = this.getItem(_id).appraisal.listRule[19].text;
+            let text22 = this.getItem(_id).appraisal.listRule[21].text;
             $$("text22").setValue(text22);
 
-            let text23 = this.getItem(_id).appraisal.listRule[19].text;
+            let text23 = this.getItem(_id).appraisal.listRule[22].text;
             $$("text23").setValue(text23);
 
-            let text24 = this.getItem(_id).appraisal.listRule[19].text;
+            let text24 = this.getItem(_id).appraisal.listRule[23].text;
             $$("text24").setValue(text24);
 
-            let text25 = this.getItem(_id).appraisal.listRule[19].text;
+            let text25 = this.getItem(_id).appraisal.listRule[24].text;
             $$("text25").setValue(text25);
 
-            let text26 = this.getItem(_id).appraisal.listRule[19].text;
+            let text26 = this.getItem(_id).appraisal.listRule[25].text;
             $$("text26").setValue(text26);
 
-            let text27 = this.getItem(_id).appraisal.listRule[19].text;
+            let text27 = this.getItem(_id).appraisal.listRule[26].text;
             $$("text27").setValue(text27);
 
+            let text28 = this.getItem(_id).appraisal.listRule[27].text;
+            $$("text28").setValue(text28);;
         });
+
 
         $$("form").bind("dataCollection");
         $$("editform").bind($$("dataCollection"));
