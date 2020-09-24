@@ -12,25 +12,6 @@
 }
 
 
-/*login form*/
-
-.invalid_login .webix_header>div {
-    background: #FC3636;
-    transition: background 1s;
-}
-
-.app_layout.webix_layout_clean {
-    background: #EBEDF0;
-}
-
-.app_start .webix_template {
-    padding: 12px 12px;
-}
-
-.app_menu .webix_icon {
-    font-size: 20px;
-    vertical-align: middle;
-}
 
 
 /* dataview with qa cards */
