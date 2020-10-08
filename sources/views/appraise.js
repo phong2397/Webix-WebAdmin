@@ -478,7 +478,7 @@ export default class DataList extends JetView {
                             id: "dataApp",
                             css: "webix_shadow_medium",
                             data: store,
-
+                            scroll: true,
                             onClick: {
                                 "editBtn": function(ev) {
                                     $$("editwin").show();
@@ -537,8 +537,13 @@ export default class DataList extends JetView {
                                         decimalSize: 0
                                     })
                                 },
+                                {
+                                    id: "customerInfo.mid",
+                                    header: ["Notes", { content: "multiSelectFilter" }],
+                                    width: 350,
+                                    template: "#appraisal.notes#"
 
-
+                                },
                             ]
                         },
                         {
@@ -578,7 +583,7 @@ export default class DataList extends JetView {
                                     elements: [{
                                             cols: [
                                                 { view: "label", label: "Order Stage:", width: 140 },
-                                                { view: "text", name: "orderStage", disabled: true },
+                                                { view: "combo", name: "orderStage" },
                                             ]
                                         },
                                         {
@@ -625,6 +630,12 @@ export default class DataList extends JetView {
                 width: 800,
                 view: 'form',
                 id: "editform",
+                complexData: true,
+                rules: {
+                    "orderStatus": webix.rules.isNotEmpty,
+                    "appraisal.notes": webix.rules.isNotEmpty,
+                    "accept": webix.rules.isChecked
+                },
                 elements: [{
                         cols: [{
                                 view: "form",
@@ -780,34 +791,49 @@ export default class DataList extends JetView {
                     },
                     {
                         cols: [{
-                                view: "checkbox",
-                                labelRight: "Đáp ứng đầy đủ các điều khoản trên",
-
-                            },
-
-                        ]
+                            view: "checkbox",
+                            labelRight: "Đáp ứng đầy đủ các điều khoản trên",
+                            invalidMessage: "Must be checked",
+                            name: "accept"
+                        }]
 
                     },
 
 
-                    { view: 'textarea', label: 'Note', id: 'notes', height: 150 },
-
+                    { view: 'textarea', label: 'Note', name: 'appraisal.notes', height: 150 },
+                    {
+                        view: "combo",
+                        id: "orderStatus",
+                        name: 'orderStatus',
+                        label: "Status",
+                        options: [
+                            { id: "Accepted", value: "Accepted", type: "string" },
+                            { id: "Rejected", value: "Rejected", type: "string" },
+                        ],
+                    },
                     {
                         cols: [{
                                 view: "button",
-                                type: "form",
                                 value: "Save",
+                                css: "webix_primary",
                                 click: function() {
+                                    var form = this.getFormView();
                                     this.getFormView().save();
+
+                                    if (form.validate()) {
+
+                                        webix.alert("Update Completed!")
+                                    }
 
                                 }
                             },
                             {
                                 view: "button",
-                                value: "Reject",
-                                css: "webix_danger",
+                                value: "Cancel",
+                                css: "webix_default",
                                 click: function() {
-                                    this.getTopParentView().hide();
+                                    this.getFormView().hide();
+
                                 }
                             },
                         ]
@@ -819,10 +845,18 @@ export default class DataList extends JetView {
 
         });
 
-
+        function update() {
+            var list = $$("dataApp");
+            var sel = list.getSelectedId(true);
+            if (!sel) return;
+            var value = $$("orderStatus").getValue();
+            for (var i = 0; i < sel.length; i++) {
+                var item = list.getItem(sel[i]);
+                item.title = value;
+                list.updateItem(sel[i], item);
+            }
+        }
         $$("dataApp").attachEvent("onItemClick", function(_id) {
-            let notes = this.getItem(_id).appraisal.notes;
-            $$("notes").setValue(notes);
 
             let text1 = this.getItem(_id).appraisal.listRule[0].text;
             $$("text1").setValue(text1);

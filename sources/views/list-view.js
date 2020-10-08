@@ -441,12 +441,6 @@ let data = {
     }
 }
 
-let store = new webix.DataCollection({
-    url: function(params) {
-        return webix.ajax("//staff.t-max.online/orders");
-    },
-});
-
 export default class DataList extends JetView {
     config() {
 
@@ -477,8 +471,7 @@ export default class DataList extends JetView {
                             pager: "pagerA",
                             id: "data",
                             css: "webix_shadow_medium",
-                            data: store,
-
+                            url: "//staff.t-max.online/orders",
                             onClick: {
                                 "editBtn": function(ev) {
                                     $$("editwin").show();
@@ -579,20 +572,24 @@ export default class DataList extends JetView {
                                             cols: [
                                                 { view: "label", label: "Order Stage:", width: 140 },
                                                 { view: "text", name: "orderStage", disabled: true },
+
+                                            ]
+                                        },
+                                        {
+                                            cols: [
                                                 { view: "label", label: "Order Status:", width: 140 },
                                                 { view: "text", name: "orderStatus", disabled: true },
                                             ]
                                         },
-
                                     ]
                                 },
-                                height: 150
+                                height: 200
                             }, ]
                         },
                         {
                             view: "treetable",
-                            height: 750,
-                            data: formatTreeview(data),
+                            height: 680,
+                            url: "//staff.t-max.online/orders",
                             columns: [
 
                                 { id: "value", header: "Key", template: "{common.treetable()} #value#", width: 350 },
