@@ -11,7 +11,6 @@
         "standalone": "webpack --env.production true --env.module true --env.standalone true",
         "start": "webpack-dev-server --open --host 0.0.0.0",
         "server": "node server/index.js"
-
     },
     "keywords": [
         "webix",

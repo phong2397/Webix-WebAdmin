@@ -2,445 +2,6 @@ import { JetView } from "webix-jet";
 import "webix/photo";
 
 
-let data = {
-    "orders": [{
-        "orderId": "123123",
-        "orderStage": "repayment",
-        "orderStatus": "overdue",
-        "applyAmount": 2000000,
-        "applyPeriod": 7,
-        "applyTime": 1600404538,
-        "repayment": 4,
-        "customerInfo": {
-            "mid": "1040160008365938",
-            "custId": "1040160008366096",
-            "firstName": "SGF Test Account",
-            "accountName": "Sandy Sinh",
-            "birthDate": "2020-05-06T08:00:46.877Z",
-            "sex": 1,
-            "idAddress": "Bà Rịa - Vũng Tàu Huyện Châu Đức",
-            "identity": "295790072",
-            "bankId": "55",
-            "cardName": "Ngân hàng TMCP Việt Nam Thương Tín(Vietbank)",
-            "cardNo": 123456789,
-            "education": "SENIOR HIGH SCHOOL",
-            "career": "accounting/finance",
-            "certIdentity": 1,
-            "companyName": "Văn LLC",
-            "companyAddress": "Thủy PathKhachester",
-            "companyLocation": "Thủy PathKhachester",
-            "companyPhone": "0252 5510 0160",
-            "degree": 2,
-            "doubleLoan": 0,
-            "emergentContacts": [{
-                    "contactName": "Tami Tô Jr.",
-                    "contactPhone": "029 6946 8834",
-                    "relation": "0",
-                    "relationValue": "parents"
-                },
-                {
-                    "contactName": "Raul Tô",
-                    "contactPhone": "028 6870 9242",
-                    "relation": "0",
-                    "relationValue": "parents"
-                }
-            ],
-            "faceBookId": "",
-            "zaloId": "1231231231232121",
-            "whatsAppId": "",
-            "income": 0,
-            "industry": 0,
-            "identityImg": {
-                "photoPathList": {
-                    "WORK": [
-                        "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/5//workProof0/workProof_0.jpg'",
-                        "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/7//workProof1/workProof_1.jpg'"
-                    ]
-                },
-                "photoPaths": {
-                    "BACK": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/2/1599200962543.jpg'",
-                    "FRONT": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/1/1599200959291.jpg'",
-                    "HAND_HELD": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/3/1599200966436.jpg'"
-                },
-                "serverPathList": {
-                    "WORK": [
-                        "'OSS75a90dbc-decc-4fe3-9a4d-a6e986de5874.jpg'",
-                        "'OSS9cea76e2-779a-4a81-bb68-05fb5ba7bcd5.jpg'"
-                    ]
-                },
-                "serverPaths": {
-                    "BACK": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                    "FRONT": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                    "HAND_HELD": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'"
-                }
-            },
-            "jobImg": {
-                "photoPathList": {
-                    "WORK": [
-                        "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/5//workProof0/workProof_0.jpg'",
-                        "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/7//workProof1/workProof_1.jpg'"
-                    ]
-                },
-                "photoPaths": {
-                    "BACK": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/2/1599200962543.jpg'",
-                    "FRONT": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/1/1599200959291.jpg'",
-                    "HAND_HELD": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/3/1599200966436.jpg'"
-                },
-                "serverPathList": {
-                    "WORK": [
-                        "'OSS75a90dbc-decc-4fe3-9a4d-a6e986de5874.jpg'",
-                        "'OSS9cea76e2-779a-4a81-bb68-05fb5ba7bcd5.jpg'"
-                    ]
-                },
-                "serverPaths": {
-                    "BACK": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                    "FRONT": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                    "HAND_HELD": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'"
-                }
-            },
-            "lastOrderstate": 1,
-            "mbEmail": "Trnh45@yahoo.com",
-            "mbPhone": "0248 2479 6910",
-            "nowAddress": "846 Đinh VistaNorth Trần",
-            "nowAddressLocation": "846 Đinh VistaNorth Trần",
-            "realName": "Krystal Trung III",
-            "region": "VN",
-            "riskLevel": "A",
-            "workType": "0"
-        },
-        "productMifos": "",
-        "appraisalStage": {
-            "status": "passed",
-            "timeAppraise": 1600404538,
-            "listRule": [{
-                    "id": "1",
-                    "text": "khách vay lần đầu- chống gian lận khách xin vay có số lượng số điện thoại trong danh bạ điện thoại ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "2",
-                    "text": "khách vay lần đầu-chống gian lận khách có số ngày quá hạn dài nhất lịch sử toàn hệ thống ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "3",
-                    "text": " khách vay lại- chống gian lận khách có số ngày quá hạn dài nhất trong toàn hệ thống",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "4",
-                    "text": "khách vay lần đầu- chống gian lận hạn chế độ tuổi",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "5",
-                    "text": "khách vay lần đầu- trong vòng 3 tháng thiết bị liên quan số lượt xin vay quá 5 lần",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "6",
-                    "text": "chống gian lận khách trong vòng 3 tháng số CMND xin vay tại các app",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "7",
-                    "text": "khách vay lại- khách hàng gần đây có đơn vay có số ngày quá hạn  ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "8",
-                    "text": "chống gian lận khách trong vòng 3 tháng số CMND xin vay tại các app",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "9",
-                    "text": "khách vay lại- khách hàng gần đây có đơn vay có số ngày quá hạn ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "10",
-                    "text": "khách vay lần đầu-danh sách đen GeeRong- quá hạn quá 7 ngày",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "11",
-                    "text": "khách vay lần đầu- chống gian lận khách trong danh bạ điện thoại có bằng hoặc quá 5 người xin vay",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "12",
-                    "text": "khách vay lại- số lượng CMND liên quan cùng một thiết bị ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "13",
-                    "text": "khách vay lần đầu-số CMND có phải nằm trong đơn hàng chưa kết thúc",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "14",
-                    "text": "khách vay lần đầu- chống gian lận khách có số người liên hệ khẩn cấp có ghi nhận đơn quá hạn",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "15",
-                    "text": "khách vay lần đầu- chống gian lận khách có đơn xin vay quá hạn gần đây",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "16",
-                    "text": "khách vay lần đầu- chống gian lận khách trong danh bạ có xuất hiện khách quá hạn  của công ty",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "17",
-                    "text": "khách vay lần đầu-chống gian lận số người liên hệ khẩn cấp của khách có lịch sử xin vay ",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "18",
-                    "text": "khách vay lại- danh sách xám GeeRong",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "19",
-                    "text": "khách vay lần đầu-danh sách xám GeeRong",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "20",
-                    "text": "khách vay lần đầu-số điện thoại có phải nằm trong đơn hàng chưa kết thúc",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "21",
-                    "text": "khách vay lại- số CMND có phải nằm trong đơn hàng chưa kết thúc",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "22",
-                    "text": "khách vay lại- số điện thoại có phải nằm trong đơn hàng chưa kết thúc",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "23",
-                    "text": "khách vay lần đầu-số điện thoại  trúng trong whitelist",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "24",
-                    "text": "khách vay lại- có phải số điện thoại trúng trong whitelist",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "25",
-                    "text": "khách vay lại- số CMND trúng trong whitelist",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "26",
-                    "text": "cung1CMNDcolienhevoihon1sodienthoaituchoi",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "27",
-                    "text": "số CMND trong danh sách đen",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                },
-                {
-                    "id": "28",
-                    "text": "số điện thoại đăng kí trong danh sách đen",
-                    "isDisable": false,
-                    "lastUpdate": 1600323815
-                }
-            ],
-            "notes": "Đơn này không hợp lệ nhưng vẫn cho pass",
-            "lastAppraiser": "Mrs. Florence Hải",
-            "lastTimeAppraise": 1600404538,
-            "isMachineCheck": true,
-            "noteMachineCheck": "pass"
-        },
-        "disbursementStage": {
-            "paymentGatewayName": "momo",
-            "status": "success",
-            "cardName": "Ngân hàng TMCP Việt Nam Thương Tín(Vietbank)",
-            "cardNo": 123456789,
-            "amount": 2000000,
-            "time": 1600323815,
-            "paymentGateway": "",
-            "transaction": [{
-                "transId": 1,
-                "amount": 50000,
-                "time": 1600323815
-            }]
-        },
-        "repaymentStage": {
-            "status": "overdue",
-            "amount": 2000000,
-            "amountRemain": 1600000,
-            "amountRepay": 50000,
-            "transaction": [{
-                "transId": 1,
-                "amount": 50000,
-                "source": "",
-                "time": 1600323815
-            }]
-        },
-        "loanMifos": "",
-        "callLog": [{
-                "stage": "appraisal",
-                "date": "44027",
-                "senderName": "Ngan Ta",
-                "senderNumber": "1609",
-                "receiverNumber": "0248 2479 6910",
-                "callType": "Outbound",
-                "callStartTime": "2020-07-15T03:05:53Z",
-                "callEndTime": "2020-07-15T03:05:57Z",
-                "callStartTimeNumber": 1594782353,
-                "callEndTimeNumber": 1594782357,
-                "callDuration": 4
-            },
-            {
-                "stage": "collection",
-                "date": "44027",
-                "senderName": "Ngan Ta",
-                "senderNumber": "1609",
-                "receiverNumber": "0248 2479 6910",
-                "callType": "Outbound",
-                "callStartTime": "2020-07-15T03:05:53Z",
-                "callEndTime": "2020-07-15T03:05:57Z",
-                "callStartTimeNumber": 1594782353,
-                "callEndTimeNumber": 1594782357,
-                "callDuration": 4
-            }
-        ]
-    }],
-    "memberInfos": {
-        "mid": "1040160008365938",
-        "custId": "1040160008366096",
-        "firstName": "SGF Test Account",
-        "accountName": "Sandy Sinh",
-        "birthDate": "2020-05-06T08:00:46.877Z",
-        "sex": "1",
-        "idAddress": "Bà Rịa - Vũng Tàu Huyện Châu Đức",
-        "identity": "295790072",
-        "bankId": "55",
-        "cardName": "Ngân hàng TMCP Việt Nam Thương Tín(Vietbank)",
-        "cardNo": "123456789",
-        "education": "SENIOR HIGH SCHOOL",
-        "career": "accounting/finance",
-        "certIdentity": 1,
-        "companyName": "Văn LLC",
-        "companyAddress": "Thủy PathKhachester",
-        "companyLocation": "Thủy PathKhachester",
-        "companyPhone": "0252 5510 0160",
-        "degree": 2,
-        "doubleLoan": 0,
-        "emergentContacts": [{
-                "contactName": "Tami Tô Jr.",
-                "contactPhone": "029 6946 8834",
-                "relation": "0",
-                "relationValue": "parents"
-            },
-            {
-                "contactName": "Raul Tô",
-                "contactPhone": "028 6870 9242",
-                "relation": "0",
-                "relationValue": "parents"
-            }
-        ],
-        "faceBookId": "",
-        "zaloId": "1231231231232121",
-        "whatsAppId": "",
-        "income": 0,
-        "industry": 0,
-        "identityImg": {
-            "photoPathList": {
-                "WORK": [
-                    "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/5//workProof0/workProof_0.jpg'",
-                    "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/7//workProof1/workProof_1.jpg'"
-                ]
-            },
-            "photoPaths": {
-                "BACK": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/2/1599200962543.jpg'",
-                "FRONT": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/1/1599200959291.jpg'",
-                "HAND_HELD": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/3/1599200966436.jpg'"
-            },
-            "serverPathList": {
-                "WORK": [
-                    "'OSS75a90dbc-decc-4fe3-9a4d-a6e986de5874.jpg'",
-                    "'OSS9cea76e2-779a-4a81-bb68-05fb5ba7bcd5.jpg'"
-                ]
-            },
-            "serverPaths": {
-                "BACK": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                "FRONT": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'"
-            },
-            "HAND_HELD": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'"
-        },
-        "jobImg": {
-            "photoPathList": {
-                "WORK": [
-                    "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/5//workProof0/workProof_0.jpg'",
-                    "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/935049ee-11bf-4cc5-ad2f-97decc38b458/photos/7//workProof1/workProof_1.jpg'"
-                ]
-            },
-            "photoPaths": {
-                "BACK": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/2/1599200962543.jpg'",
-                "FRONT": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/1/1599200959291.jpg'",
-                "HAND_HELD": "'/storage/emulated/0/Android/data/com.vay360.vvn/cache/8bc2f27d-fe76-47a9-a4d5-a091cd43b7c3/photos/3/1599200966436.jpg'"
-            },
-            "serverPathList": {
-                "WORK": [
-                    "'OSS75a90dbc-decc-4fe3-9a4d-a6e986de5874.jpg'",
-                    "'OSS9cea76e2-779a-4a81-bb68-05fb5ba7bcd5.jpg'"
-                ]
-            },
-            "serverPaths": {
-                "BACK": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                "FRONT": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'",
-                "HAND_HELD": "'OSSc132b22b-2cdc-4dc4-afb5-4882e3c5b5ae.jpg'"
-            }
-        },
-        "lastOrderstate": 1,
-        "mbEmail": "Trnh45@yahoo.com",
-        "mbPhone": "0248 2479 6910",
-        "nowAddress": "846 Đinh VistaNorth Trần",
-        "nowAddressLocation": "846 Đinh VistaNorth Trần",
-        "realName": "Krystal Trung III",
-        "region": "VN",
-        "riskLevel": "A",
-        "workType": "0"
-    }
-}
-
 let store = new webix.DataCollection({
     url: function(params) {
         return webix.ajax("//staff.t-max.online/collections");
@@ -450,24 +11,6 @@ let store = new webix.DataCollection({
 export default class DataList extends JetView {
     config() {
 
-        function formatTreeview(data, arr = []) {
-            for (var key in data) {
-                if (Array.isArray(data[key]) || data[key].toString() === "[object Object]") {
-                    var nodes = [];
-                    var completedNodes = formatTreeview(data[key], nodes);
-                    arr.push({
-                        value: key,
-                        data: completedNodes
-                    });
-                } else {
-                    arr.push({
-                        value: key,
-                        valueData: data[key]
-                    });
-                }
-            }
-            return arr;
-        }
 
         return {
             cols: [{
@@ -478,56 +21,38 @@ export default class DataList extends JetView {
                             id: "dataCollection",
                             css: "webix_shadow_medium",
                             data: store,
-
                             onClick: {
-                                "editBtn": function(ev) {
-                                    $$("editwin").show();
-                                }
+                                "btn-success": function(ev) {
+                                    $$("editCollection").show();
+                                },
+
+
                             },
                             columns: [{
-                                    template: "<input class='editBtn' type='button' value='Click'>",
-                                    width: 100,
-                                },
-                                {
-                                    id: "orderStage",
-                                    header: ["Stage", { content: "multiSelectFilter" }],
+                                    id: "_id",
+                                    header: ["Id"],
                                     fillspace: 4,
-                                    minWidth: 100,
-
-                                },
-
-                                {
-                                    id: "orderStatus",
-                                    header: ["orderStatus", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
+                                    minWidth: 150,
 
                                 },
                                 {
-                                    id: "applyPeriod",
-                                    header: ["Apply Period", { content: "multiSelectFilter" }],
+                                    id: "customerInfo.accountName",
+                                    header: ["Customer Name"],
                                     fillspace: 4,
                                     minWidth: 100,
+                                    template: "#customerInfo.accountName#"
 
                                 },
                                 {
-                                    id: "product",
-                                    header: ["Product", { content: "multiSelectFilter" }],
+                                    id: "applyTime",
+                                    header: ["Time"],
                                     fillspace: 4,
                                     minWidth: 100,
-
-                                },
-                                {
-                                    id: "customerInfo.mid",
-                                    header: ["mID", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-                                    template: "#customerInfo.mid#"
 
                                 },
                                 {
                                     id: "applyAmount",
-                                    header: ["Apply Amount", { content: "numberFilter" }],
+                                    header: ["Apply Amount"],
                                     sort: "string",
                                     width: 150,
                                     format: webix.Number.numToStr({
@@ -537,7 +62,11 @@ export default class DataList extends JetView {
                                         decimalSize: 0
                                     })
                                 },
-
+                                {
+                                    header: "Action",
+                                    template: "<input class='btn-success' type='button' value='Collection'>",
+                                    width: 100,
+                                },
 
                             ]
                         },
@@ -569,7 +98,6 @@ export default class DataList extends JetView {
                                 body: {
                                     view: "form",
                                     complexData: true,
-                                    scroll: true,
                                     id: "form",
                                     elementsConfig: {
                                         labelWidth: 130,
@@ -578,31 +106,119 @@ export default class DataList extends JetView {
                                     elements: [{
                                             cols: [
                                                 { view: "label", label: "Order Stage:", width: 140 },
-                                                { view: "text", name: "orderStage", disabled: true },
+                                                { view: "text", name: "orderStage", disabled: true, css: "no_border" },
                                             ]
                                         },
                                         {
                                             cols: [
                                                 { view: "label", label: "Order Status:", width: 140 },
-                                                { view: "text", name: "orderStatus", disabled: true },
+                                                { view: "text", name: "orderStatus", disabled: true, css: "no_border" },
+                                            ]
+                                        },
+                                        {
+                                            cols: [
+                                                { view: "label", label: "Staff:", width: 140 },
+                                                { view: "text", name: "staff.staffName", disabled: true, css: "no_border" },
+                                            ]
+                                        },
+                                        {
+                                            rows: [
+                                                { view: "label", label: "Detail", width: 140 },
+                                                {
+                                                    view: "form",
+                                                    id: "form1",
+                                                    complexData: true,
+                                                    rows: [{
+                                                            cols: [{ view: 'label', label: "Payment GatewayName", width: 200 },
+                                                                { view: 'text', name: "disbursement.paymentGatewayName", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                        {
+                                                            cols: [{ view: 'label', label: "Apply Period", width: 200 },
+                                                                { view: 'text', name: "applyPeriod", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                        {
+                                                            cols: [{ view: 'label', label: "Apply Time", width: 200 },
+                                                                { view: 'text', name: "applyTime", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Time Approve", width: 200 },
+                                                                { view: 'text', name: "appraisal.lastTimeAppraise", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Time Disburse", width: 200 },
+                                                                { view: 'text', name: "disbursement.timeDisburse", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                    ],
+                                                },
+
+
+                                            ]
+                                        },
+                                        {
+                                            rows: [
+                                                { view: "label", label: "Customer Information", width: 300 },
+                                                {
+                                                    view: "form",
+                                                    id: "form2",
+                                                    complexData: true,
+                                                    height: 350,
+                                                    scroll: true,
+                                                    rows: [{
+                                                            cols: [{ view: 'label', label: "Account Name", width: 140 },
+                                                                { view: 'text', name: "customerInfo.accountName", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Age", width: 140 },
+                                                                { view: 'text', name: "customerInfo.age", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Identity", width: 140 },
+                                                                { view: 'text', name: "customerInfo.identity", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                        {
+                                                            cols: [{ view: 'label', label: "Bank Name", width: 140 },
+                                                                { view: 'text', name: "customerInfo.cardName", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Card No", width: 140 },
+                                                                { view: 'text', name: "customerInfo.cardNo", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Career", width: 140 },
+                                                                { view: 'text', name: "customerInfo.career", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "CertIdentity", width: 140 },
+                                                                { view: 'text', name: "customerInfo.certIdentity", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                    ],
+                                                },
+
                                             ]
                                         },
 
                                     ]
                                 },
-                                height: 150
                             }, ]
                         },
-                        {
-                            view: "treetable",
-                            height: 650,
-                            data: formatTreeview(data),
-                            columns: [
 
-                                { id: "value", header: "Key", template: "{common.treetable()} #value#", width: 350 },
-                                { id: "valueData", header: "Value", width: 350 },
-                            ]
-                        }
 
                     ]
                 }
@@ -613,304 +229,409 @@ export default class DataList extends JetView {
 
     }
     init() {
+
         webix.ui({
             view: 'window',
-            id: "editwin",
-            head: 'Quy Tắc Thẩm Định',
+            id: "editCollection",
+            head: 'Repayment',
             modal: true,
             close: true,
             position: "center",
             body: {
-                width: 800,
+                width: 1700,
+                height: 920,
                 view: 'form',
-                id: "editform",
-                elements: [{
-                        cols: [{
-                                view: "form",
-                                scroll: true,
-                                rows: [{
-                                        cols: [{ view: 'label', label: "1.", width: 22 },
-                                            { view: 'label', id: "text1" },
-                                        ]
-                                    },
+                id: "editformCollection",
+                complexData: true,
+                cols: [{
+                        width: 1000,
+                        rows: [{
+                                rows: [
+                                    { view: "label", label: "Customer Info" },
                                     {
-                                        cols: [{ view: 'label', label: "2.", width: 22 },
-                                            { view: 'label', id: "text2" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "3.", width: 22 },
-                                            { view: 'label', id: "text3" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "4.", width: 22 },
-                                            { view: 'label', id: "text4" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "5.", width: 22 },
-                                            { view: 'label', id: "text5" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "6.", width: 22 },
-                                            { view: 'label', id: "text6" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "7.", width: 22 },
-                                            { view: 'label', id: "text7" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "8.", width: 22 },
-                                            { view: 'label', id: "text8" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "9.", width: 22 },
-                                            { view: 'label', id: "text9" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "10.", width: 22 },
-                                            { view: 'label', id: "text10" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "11.", width: 22 },
-                                            { view: 'label', id: "text11" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "12.", width: 22 },
-                                            { view: 'label', id: "text12" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "13.", width: 22 },
-                                            { view: 'label', id: "text13" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "14.", width: 22 },
-                                            { view: 'label', id: "text14" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "15.", width: 22 },
-                                            { view: 'label', id: "text15" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "16.", width: 22 },
-                                            { view: 'label', id: "text16" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "17.", width: 22 },
-                                            { view: 'label', id: "text17" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "18.", width: 22 },
-                                            { view: 'label', id: "text18" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "19.", width: 22 },
-                                            { view: 'label', id: "text19" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "22.", width: 22 },
-                                            { view: 'label', id: "text20" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "21.", width: 22 },
-                                            { view: 'label', id: "text21" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "22.", width: 22 },
-                                            { view: 'label', css: "line", id: "text22" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "23.", width: 22 },
-                                            { view: 'label', id: "text23" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "24.", width: 22 },
-                                            { view: 'label', id: "text24" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "25.", width: 22 },
-                                            { view: 'label', id: "text25" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "26.", width: 22 },
-                                            { view: 'label', id: "text26" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "27.", width: 22 },
-                                            { view: 'label', id: "text27" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "28.", width: 22 },
-                                            { view: 'label', id: "text28" },
+                                        view: "form",
+
+                                        scroll: true,
+                                        rows: [{
+                                                view: "accordion",
+                                                multi: true,
+                                                type: "wide",
+
+                                                rows: [{
+                                                    css: "header",
+                                                    header: "Basic Info",
+                                                    id: "item",
+                                                    body: {
+                                                        view: "form",
+                                                        complexData: true,
+
+                                                        id: "formBasic",
+                                                        height: 390,
+                                                        elements: [{
+                                                                height: 390,
+                                                                complexData: true,
+                                                                cols: [{
+                                                                        rows: [
+                                                                            { view: 'label', label: "First Name" },
+                                                                            { view: 'text', name: "customerInfo.firstName", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Gender" },
+                                                                            { view: 'text', name: "customerInfo.sex", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Age" },
+                                                                            { view: 'text', name: "customerInfo.age", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "mID" },
+                                                                            { view: 'text', name: "customerInfo.mid", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Phone Number" },
+                                                                            { view: 'text', name: "customerInfo.mbPhone", disabled: true, css: "no_border" },
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        rows: [
+                                                                            { view: 'label', label: "Real Name" },
+                                                                            { view: 'text', name: "customerInfo.realName", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Facebook" },
+                                                                            { view: 'text', name: "customerInfo.faceBookId", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Zalo" },
+                                                                            { view: 'text', name: "customerInfo.zaloId", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "whatsApp " },
+                                                                            { view: 'text', name: "customerInfo.whatsAppId", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Last Orderstate" },
+                                                                            { view: 'text', name: "customerInfo.lastOrderstate", disabled: true, css: "no_border" },
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        rows: [
+                                                                            { view: 'label', label: "CustId" },
+                                                                            { view: 'text', name: "customerInfo.custId", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Religion" },
+                                                                            { view: 'text', name: "customerInfo.region", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Industry " },
+                                                                            { view: 'text', name: "customerInfo.industry", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Income " },
+                                                                            { view: 'text', name: "customerInfo.income", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Risk Level " },
+                                                                            { view: 'text', name: "customerInfo.riskLevel", disabled: true, css: "no_border" },
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        rows: [
+                                                                            { view: 'label', label: "Address " },
+                                                                            { view: 'text', name: "customerInfo.idAddress", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Degree " },
+                                                                            { view: 'text', name: "customerInfo.degree", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Email " },
+                                                                            { view: 'text', name: "customerInfo.mbEmail", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Now Address " },
+                                                                            { view: 'text', name: "customerInfo.nowAddress", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Work Type " },
+                                                                            { view: 'text', name: "customerInfo.workType", disabled: true, css: "no_border" },
+                                                                        ]
+                                                                    },
+                                                                ],
+                                                            },
+
+                                                        ]
+                                                    },
+
+                                                }, ]
+                                            },
+
+                                            {
+                                                view: "accordion",
+                                                multi: true,
+                                                type: "wide",
+
+                                                rows: [{
+                                                    css: "header",
+                                                    header: "Emergency Contact",
+                                                    id: "item",
+                                                    body: {
+                                                        view: "form",
+                                                        complexData: true,
+                                                        scroll: true,
+                                                        id: "formContact",
+                                                        elementsConfig: {
+                                                            labelWidth: 130,
+
+                                                        },
+                                                        elements: [{
+                                                            cols: [{
+                                                                    rows: [{ view: 'label', label: "Contact Name" },
+                                                                        { view: 'text', id: "contactName", disabled: true, css: "no_border" },
+                                                                        { view: 'text', id: "contactName1", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Contact Phone" },
+                                                                        { view: 'text', id: "contactPhone", disabled: true, css: "no_border" },
+                                                                        { view: 'text', id: "contactPhone1", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Relation" },
+                                                                        { view: 'text', id: "relation", disabled: true, css: "no_border" },
+                                                                        { view: 'text', id: "relation1", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Relation Value" },
+                                                                        { view: 'text', id: "relationValue", disabled: true, css: "no_border" },
+                                                                        { view: 'text', id: "relationValue1", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                            ]
+                                                        }, ]
+                                                    },
+                                                    height: 180
+                                                }, ]
+                                            },
+                                            {
+                                                view: "accordion",
+                                                multi: true,
+                                                type: "wide",
+
+                                                rows: [{
+                                                    css: "header",
+                                                    header: "Transaction",
+                                                    id: "item",
+                                                    body: {
+                                                        view: "form",
+                                                        complexData: true,
+                                                        scroll: true,
+                                                        id: "formTransaction",
+                                                        elementsConfig: {
+                                                            labelWidth: 130,
+
+                                                        },
+                                                        elements: [{
+                                                            cols: [{
+                                                                    rows: [{ view: 'label', label: "Transaction ID" },
+                                                                        { view: 'text', name: "collection.transId", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Transaction Date" },
+                                                                        { view: 'text', name: "disbursement.timeDisburse", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Transaction Stage" },
+                                                                        { view: 'text', name: "orderStage", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Amount Principal" },
+                                                                        { view: 'text', name: "collection.amountCollection", disabled: true, css: "no_border" },
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    rows: [{ view: 'label', label: "Amount Repay" },
+                                                                        { view: 'text', name: "collection.amountRepay", disabled: true, css: "no_border" }
+                                                                    ]
+                                                                },
+                                                            ]
+                                                        }, ]
+                                                    },
+                                                    height: 180
+                                                }, ]
+                                            },
+
+
                                         ]
                                     },
                                 ],
-
-                                height: 450,
                             },
-
 
 
                         ]
                     },
-                    {
-                        cols: [{
-                                view: "checkbox",
-                                labelRight: "Đáp ứng đầy đủ các điều khoản trên",
 
-                            },
-
-                        ]
-
-                    },
-
-
-                    { view: 'textarea', label: 'Note', id: 'notes', height: 150 },
 
                     {
-                        cols: [{
-                                view: "button",
-                                type: "form",
-                                value: "Save",
-                                click: function() {
-                                    this.getFormView().save();
+                        width: 700,
+                        rows: [
 
-                                }
-                            },
                             {
-                                view: "button",
-                                value: "Reject",
-                                css: "webix_danger",
-                                click: function() {
-                                    this.getTopParentView().hide();
-                                }
+                                rows: [
+                                    { view: "label", label: "Loan Detail" },
+                                    {
+                                        view: "form",
+                                        id: "formLoan",
+                                        complexData: true,
+                                        scroll: true,
+                                        rows: [{
+                                                cols: [{ view: 'label', label: "Apply Period:", width: 140 },
+                                                    { view: 'text', name: "applyPeriod", disabled: true, css: "no_border" },
+                                                ]
+                                            },
+                                            {
+                                                cols: [{ view: 'label', label: "Apply Time:", width: 140 },
+                                                    { view: 'text', name: "applyTime", disabled: true, css: "no_border" },
+                                                ]
+                                            },
+                                            {
+                                                cols: [{ view: 'label', label: "Apply Amount:", width: 140 },
+                                                    {
+                                                        view: 'text',
+                                                        name: "applyAmount",
+                                                        disabled: true,
+                                                        css: "no_border"
+
+                                                    },
+                                                ]
+                                            },
+
+                                            {
+                                                cols: [{ view: 'label', label: "Collection Amount:", width: 140 },
+                                                    {
+                                                        view: 'text',
+                                                        name: "collection.amountCollection",
+                                                        disabled: true,
+                                                        css: "no_border"
+
+                                                    },
+                                                ]
+                                            },
+                                            {
+                                                cols: [{ view: 'label', label: "Amount Reality:", width: 140 },
+                                                    {
+                                                        view: 'text',
+                                                        name: "collection.amountReality",
+                                                        disabled: true,
+                                                        css: "no_border"
+
+                                                    },
+                                                ]
+                                            },
+                                            { view: 'label', label: "Detail Collection:" },
+                                            {
+                                                view: "form",
+                                                id: "formHistory",
+                                                scroll: true,
+                                                complexData: true,
+                                                rows: [{
+                                                        cols: [{ view: 'label', label: "Payment Type:", width: 140 },
+                                                            { view: 'text', name: "collection.paymentType", disabled: true, css: "no_border" },
+                                                        ]
+                                                    },
+                                                    {
+                                                        cols: [{ view: 'label', label: "Source:", width: 140 },
+                                                            { view: 'text', name: "collection.source", disabled: true, css: "no_border" },
+                                                        ]
+                                                    },
+                                                    {
+                                                        cols: [
+                                                            { view: 'label', label: "Status:", width: 140 },
+                                                            { view: 'text', name: "collection.status", disabled: true, css: "no_border" },
+                                                        ]
+                                                    },
+
+
+                                                ],
+                                                height: 180,
+                                            },
+
+                                            { view: "label", label: "Note:" },
+                                            {
+                                                view: "textarea",
+                                                height: 180
+                                            },
+                                            {
+                                                cols: [{
+                                                        view: "button",
+                                                        value: "Written off",
+                                                        css: "webix_primary",
+                                                        click: function() {
+                                                            var form = this.getFormView();
+                                                            this.getFormView().save();
+
+                                                            if (form.validate()) {
+                                                                webix.confirm({
+                                                                    title: "Confirm",
+
+                                                                    cancel: "No",
+                                                                    ok: "Yes",
+                                                                    type: "confirm-error",
+                                                                    text: "Are you sure you want to written off?",
+
+                                                                });
+                                                            }
+
+                                                        }
+                                                    },
+                                                    {
+                                                        view: "button",
+                                                        value: "Closed",
+                                                        css: "webix_danger",
+                                                        click: function() {
+                                                            var form = this.getFormView();
+                                                            this.getFormView().save();
+
+                                                            if (form.validate()) {
+                                                                webix.confirm({
+                                                                    title: "Confirm",
+                                                                    ok: "Yes",
+                                                                    cancel: "No",
+                                                                    type: "confirm-error",
+                                                                    text: "Are you sure you want to closed?",
+
+                                                                });
+                                                            }
+
+                                                        }
+                                                    },
+
+                                                ],
+                                            },
+                                        ],
+
+                                    },
+                                ],
                             },
+
                         ]
                     },
-
-
                 ]
             },
 
         });
 
-
         $$("dataCollection").attachEvent("onItemClick", function(_id) {
-            let notes = this.getItem(_id).appraisal.notes;
-            $$("notes").setValue(notes);
 
-            let text1 = this.getItem(_id).appraisal.listRule[0].text;
-            $$("text1").setValue(text1);
+            let contactName = this.getItem(_id).customerInfo.emergentContacts[0].contactName;
+            $$("contactName").setValue(contactName);
 
-            let text2 = this.getItem(_id).appraisal.listRule[1].text;
-            $$("text2").setValue(text2);
+            let contactPhone = this.getItem(_id).customerInfo.emergentContacts[0].contactPhone;
+            $$("contactPhone").setValue(contactPhone);
 
-            let text3 = this.getItem(_id).appraisal.listRule[2].text;
-            $$("text3").setValue(text3);
+            let relation = this.getItem(_id).customerInfo.emergentContacts[0].relation;
+            $$("relation").setValue(relation);
 
-            let text4 = this.getItem(_id).appraisal.listRule[3].text;
-            $$("text4").setValue(text4);
+            let relationValue = this.getItem(_id).customerInfo.emergentContacts[0].relationValue;
+            $$("relationValue").setValue(relationValue);
 
-            let text5 = this.getItem(_id).appraisal.listRule[4].text;
-            $$("text5").setValue(text5);
+            let contactName1 = this.getItem(_id).customerInfo.emergentContacts[1].contactName;
+            $$("contactName1").setValue(contactName1);
 
-            let text6 = this.getItem(_id).appraisal.listRule[5].text;
-            $$("text6").setValue(text6);
+            let contactPhone1 = this.getItem(_id).customerInfo.emergentContacts[1].contactPhone;
+            $$("contactPhone1").setValue(contactPhone1);
 
-            let text7 = this.getItem(_id).appraisal.listRule[6].text;
-            $$("text7").setValue(text7);
+            let relation1 = this.getItem(_id).customerInfo.emergentContacts[1].relation;
+            $$("relation1").setValue(relation1);
 
-            let text8 = this.getItem(_id).appraisal.listRule[7].text;
-            $$("text8").setValue(text8);
-
-            let text9 = this.getItem(_id).appraisal.listRule[8].text;
-            $$("text9").setValue(text9);
-
-            let text10 = this.getItem(_id).appraisal.listRule[9].text;
-            $$("text10").setValue(text10);
-
-            let text11 = this.getItem(_id).appraisal.listRule[10].text;
-            $$("text11").setValue(text11);
-
-            let text12 = this.getItem(_id).appraisal.listRule[11].text;
-            $$("text12").setValue(text12);
-
-            let text13 = this.getItem(_id).appraisal.listRule[12].text;
-            $$("text13").setValue(text13);
-
-            let text14 = this.getItem(_id).appraisal.listRule[13].text;
-            $$("text14").setValue(text14);
-
-            let text15 = this.getItem(_id).appraisal.listRule[14].text;
-            $$("text15").setValue(text15);
-
-            let text16 = this.getItem(_id).appraisal.listRule[15].text;
-            $$("text16").setValue(text16);
-
-            let text17 = this.getItem(_id).appraisal.listRule[16].text;
-            $$("text17").setValue(text17);
-
-            let text18 = this.getItem(_id).appraisal.listRule[17].text;
-            $$("text18").setValue(text18);
-
-            let text19 = this.getItem(_id).appraisal.listRule[18].text;
-            $$("text19").setValue(text19);
-
-            let text20 = this.getItem(_id).appraisal.listRule[19].text;
-            $$("text20").setValue(text20);
-
-            let text21 = this.getItem(_id).appraisal.listRule[20].text;
-            $$("text21").setValue(text21);
-
-            let text22 = this.getItem(_id).appraisal.listRule[21].text;
-            $$("text22").setValue(text22);
-
-            let text23 = this.getItem(_id).appraisal.listRule[22].text;
-            $$("text23").setValue(text23);
-
-            let text24 = this.getItem(_id).appraisal.listRule[23].text;
-            $$("text24").setValue(text24);
-
-            let text25 = this.getItem(_id).appraisal.listRule[24].text;
-            $$("text25").setValue(text25);
-
-            let text26 = this.getItem(_id).appraisal.listRule[25].text;
-            $$("text26").setValue(text26);
-
-            let text27 = this.getItem(_id).appraisal.listRule[26].text;
-            $$("text27").setValue(text27);
-
-            let text28 = this.getItem(_id).appraisal.listRule[27].text;
-            $$("text28").setValue(text28);;
+            let relationValue1 = this.getItem(_id).customerInfo.emergentContacts[1].relationValue;
+            $$("relationValue1").setValue(relationValue1);
         });
-
-
+        $$("formHistory").bind("dataCollection");
+        $$("formBasic").bind("dataCollection");
+        $$("formContact").bind("dataCollection");
+        $$("formLoan").bind("dataCollection");
+        $$("editformCollection").bind("dataCollection");
+        $$("form2").bind("dataCollection");
+        $$("form1").bind("dataCollection");
         $$("form").bind("dataCollection");
-        $$("editform").bind($$("dataCollection"));
+        $$("formTransaction").bind("dataCollection");
+
     }
 
 

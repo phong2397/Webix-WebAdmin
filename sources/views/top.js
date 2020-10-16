@@ -19,7 +19,7 @@ export default class TopView extends JetView {
                                     { css: "logo" },
 
                                     {
-                                        template: "<image class=\"mainphoto\" src=\"data/photos/dr_arienette_1.jpg\" webix_tooltip=\"Open your profile\">",
+                                        template: "<image class=\"mainphoto\" src=\"/photo/dr_arienette_1.jpg\" webix_tooltip=\"Open your profile\">",
                                         width: 40,
                                         borderless: true,
                                         css: "toolbar_photo",

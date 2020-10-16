@@ -11,7 +11,29 @@
     background: url(webix-logo.svg) 2px 2px no-repeat;
 }
 
+.btn-primary {
+    width: 80px;
+}
 
+.lines div {
+    line-height: 35px !important;
+}
+
+.btn-success {
+    width: 80px;
+}
+
+.no_border.webix_el_text input,
+.no_border.webix_el_text input:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.webix_view.webix_control .webix_disabled_box input,
+.webix_disabled_box textarea {
+    color: #372f2f;
+    margin-left: 0
+}
 
 
 /* dataview with qa cards */
@@ -20,7 +42,7 @@
     padding: 11px;
     line-height: 20px;
     font-size: 14px;
-    color: #475466;
+    color: #372f2f;
 }
 
 .userphoto,
@@ -333,24 +355,6 @@ path {
 
 .invalid_login {
     -webkit-animation: formshake .5s linear;
-}
-
-
-/*data loading status*/
-
-.status_good,
-.status_error,
-.status_saving {
-    text-align: center;
-    margin-left: -12px;
-}
-
-.status_error {
-    color: red;
-}
-
-.status_good {
-    color: green;
 }
 
 

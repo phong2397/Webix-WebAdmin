@@ -13,7 +13,7 @@ export default class MenuView extends JetView {
 
             data: [
 
-                { value: "List Order", id: "list-view", icon: "mdi mdi-monitor-dashboard" },
+
                 { value: "Appraise", id: "appraise", icon: "mdi mdi-school" },
                 { value: "Disburse", id: "disburse", icon: "mdi mdi-widgets" },
                 { value: "Repayment", id: "collection", icon: "mdi mdi-currency-usd" },
