@@ -15,10 +15,6 @@
     width: 80px;
 }
 
-.lines div {
-    line-height: 35px !important;
-}
-
 .btn-success {
     width: 80px;
 }
@@ -32,7 +28,8 @@
 .webix_view.webix_control .webix_disabled_box input,
 .webix_disabled_box textarea {
     color: #372f2f;
-    margin-left: 0
+    margin-left: 0;
+    width: 100%
 }
 
 

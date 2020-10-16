@@ -171,6 +171,13 @@ export default class DataList extends JetView {
                                                             ]
                                                         },
                                                         {
+                                                            cols: [{ view: 'label', label: "Address ", width: 140 },
+                                                                { view: 'text', name: "customerInfo.idAddress", disabled: true, css: "no_border" },
+
+                                                            ]
+                                                        },
+
+                                                        {
                                                             cols: [
                                                                 { view: 'label', label: "Identity:", width: 140 },
                                                                 { view: 'text', name: "customerInfo.identity", disabled: true, css: "no_border" },
@@ -302,15 +309,15 @@ export default class DataList extends JetView {
             position: "center",
             body: {
                 css: "",
-                width: 1700,
-                height: 920,
+                width: 1550,
+                height: 800,
                 view: 'form',
                 id: "editform1",
                 complexData: true,
 
                 cols: [{
 
-
+                        width: 1080,
                         rows: [
 
                             {
@@ -335,12 +342,13 @@ export default class DataList extends JetView {
                                                         complexData: true,
 
                                                         id: "formBasic",
-                                                        height: 390,
+                                                        height: 400,
                                                         elements: [{
-                                                                height: 390,
+                                                                height: 400,
                                                                 complexData: true,
                                                                 cols: [{
                                                                         rows: [
+
                                                                             { view: 'label', label: "First Name" },
                                                                             { view: 'text', name: "customerInfo.firstName", disabled: true, css: "no_border" },
                                                                             { view: 'label', label: "Gender" },
@@ -364,8 +372,9 @@ export default class DataList extends JetView {
                                                                             { view: 'text', name: "customerInfo.zaloId", disabled: true, css: "no_border" },
                                                                             { view: 'label', label: "whatsApp " },
                                                                             { view: 'text', name: "customerInfo.whatsAppId", disabled: true, css: "no_border" },
-                                                                            { view: 'label', label: "Last Orderstate" },
-                                                                            { view: 'text', name: "customerInfo.lastOrderstate", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Address " },
+                                                                            { view: 'text', name: "customerInfo.idAddress", disabled: true, css: "no_border" },
+
                                                                         ]
                                                                     },
                                                                     {
@@ -384,8 +393,8 @@ export default class DataList extends JetView {
                                                                     },
                                                                     {
                                                                         rows: [
-                                                                            { view: 'label', label: "Address " },
-                                                                            { view: 'text', name: "customerInfo.idAddress", disabled: true, css: "no_border" },
+                                                                            { view: 'label', label: "Last Orderstate" },
+                                                                            { view: 'text', name: "customerInfo.lastOrderstate", disabled: true, css: "no_border" },
                                                                             { view: 'label', label: "Degree " },
                                                                             { view: 'text', name: "customerInfo.degree", disabled: true, css: "no_border" },
                                                                             { view: 'label', label: "Email " },
@@ -544,7 +553,7 @@ export default class DataList extends JetView {
                                                                         { view: 'text', name: "productType", disabled: true, css: "no_border" },
                                                                     ]
                                                                 },
-                                                                { view: 'label', label: "Bank Info" },
+                                                                { view: 'label', label: "Bank Info:" },
                                                                 {
                                                                     view: "form",
                                                                     id: "form5",
@@ -612,6 +621,7 @@ export default class DataList extends JetView {
                                     "appraisal.notes": webix.rules.isNotEmpty,
                                 },
                                 rows: [{
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -619,19 +629,18 @@ export default class DataList extends JetView {
                                                 invalidMessage: "Must be choose",
                                                 required: true,
                                                 name: "radio",
-                                                css: "lines",
+
                                             },
                                             {
                                                 view: 'label',
                                                 id: "text1",
-
-                                                rowHeight: 705,
-
+                                                css: "lines"
                                             },
                                         ]
                                     },
 
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -639,12 +648,12 @@ export default class DataList extends JetView {
                                                 invalidMessage: "Must be choose",
                                                 required: true,
                                                 name: "radio1",
-                                                css: "lines",
                                             },
                                             { view: 'label', id: "text2", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -654,10 +663,11 @@ export default class DataList extends JetView {
                                                 name: "radio2",
                                                 css: "lines",
                                             },
-                                            { view: 'label', id: "text3" },
+                                            { view: 'label', id: "text3", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -665,12 +675,12 @@ export default class DataList extends JetView {
                                                 invalidMessage: "Must be choose",
                                                 required: true,
                                                 name: "radio3",
-                                                css: "lines",
                                             },
-                                            { view: 'label', id: "text4" },
+                                            { view: 'label', id: "text4", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -679,10 +689,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio4"
                                             },
-                                            { view: 'label', id: "text5" },
+                                            { view: 'label', id: "text5", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -691,10 +702,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio5"
                                             },
-                                            { view: 'label', id: "text6" },
+                                            { view: 'label', id: "text6", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -703,10 +715,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio6"
                                             },
-                                            { view: 'label', id: "text7" },
+                                            { view: 'label', id: "text7", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -715,10 +728,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio7"
                                             },
-                                            { view: 'label', id: "text8" },
+                                            { view: 'label', id: "text8", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -727,10 +741,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio8"
                                             },
-                                            { view: 'label', id: "text9" },
+                                            { view: 'label', id: "text9", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -739,10 +754,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio9"
                                             },
-                                            { view: 'label', id: "text10" },
+                                            { view: 'label', id: "text10", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -751,10 +767,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio10"
                                             },
-                                            { view: 'label', id: "text11" },
+                                            { view: 'label', id: "text11", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -763,10 +780,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio11"
                                             },
-                                            { view: 'label', id: "text12" },
+                                            { view: 'label', id: "text12", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -775,10 +793,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio12"
                                             },
-                                            { view: 'label', id: "text13" },
+                                            { view: 'label', id: "text13", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -787,10 +806,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio13"
                                             },
-                                            { view: 'label', id: "text14" },
+                                            { view: 'label', id: "text14", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -799,10 +819,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio14"
                                             },
-                                            { view: 'label', id: "text15" },
+                                            { view: 'label', id: "text15", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -811,10 +832,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio15"
                                             },
-                                            { view: 'label', id: "text16" },
+                                            { view: 'label', id: "text16", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -823,10 +845,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio16"
                                             },
-                                            { view: 'label', id: "text17" },
+                                            { view: 'label', id: "text17", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -835,10 +858,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio17"
                                             },
-                                            { view: 'label', id: "text18" },
+                                            { view: 'label', id: "text18", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -847,10 +871,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio18"
                                             },
-                                            { view: 'label', id: "text19" },
+                                            { view: 'label', id: "text19", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -859,10 +884,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio19"
                                             },
-                                            { view: 'label', id: "text20" },
+                                            { view: 'label', id: "text20", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -871,10 +897,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio20"
                                             },
-                                            { view: 'label', id: "text21" },
+                                            { view: 'label', id: "text21", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -883,10 +910,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio21"
                                             },
-                                            { view: 'label', css: "line", id: "text22" },
+                                            { view: 'label', css: "lines", id: "text22" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -895,10 +923,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio22"
                                             },
-                                            { view: 'label', id: "text23" },
+                                            { view: 'label', id: "text23", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -907,10 +936,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio23"
                                             },
-                                            { view: 'label', id: "text24" },
+                                            { view: 'label', id: "text24", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -919,10 +949,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio24"
                                             },
-                                            { view: 'label', id: "text25" },
+                                            { view: 'label', id: "text25", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -931,10 +962,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio25"
                                             },
-                                            { view: 'label', id: "text26" },
+                                            { view: 'label', id: "text26", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -943,10 +975,11 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio26"
                                             },
-                                            { view: 'label', id: "text27" },
+                                            { view: 'label', id: "text27", css: "lines" },
                                         ]
                                     },
                                     {
+                                        height: 62,
                                         cols: [{
                                                 view: "radio",
                                                 options: ["OK", "Fail"],
@@ -955,7 +988,7 @@ export default class DataList extends JetView {
                                                 required: true,
                                                 name: "radio27"
                                             },
-                                            { view: 'label', id: "text28" },
+                                            { view: 'label', id: "text28", css: "lines" },
                                         ]
                                     },
                                     { view: 'textarea', label: 'Note:', name: 'appraisal.notes', height: 150 },
