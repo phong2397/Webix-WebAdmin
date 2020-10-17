@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import "webix/photo";
+import "webix/photo1";
 
 
 let data = {
@@ -443,162 +443,64 @@ let data = {
 
 export default class DataList extends JetView {
     config() {
+        var photo1 = {
+            view: "photo",
+            name: "photo",
+            css: "form_photo",
+            id: "form_photo",
 
-        function formatTreeview(data, arr = []) {
-            for (var key in data) {
-                if (Array.isArray(data[key]) || data[key].toString() === "[object Object]") {
-                    var nodes = [];
-                    var completedNodes = formatTreeview(data[key], nodes);
-                    arr.push({
-                        value: key,
-                        data: completedNodes
-                    });
-                } else {
-                    arr.push({
-                        value: key,
-                        valueData: data[key]
-                    });
-                }
-            }
-            return arr;
-        }
-
+            //borderless:false,
+            width: 500,
+            height: 500
+        };
         return {
+            view: "form",
+            id: "form_input",
+            type: "line",
+            complexData: true,
             cols: [{
                     rows: [{
-                            select: true,
-                            view: "datatable",
-                            pager: "pagerA",
-                            id: "data",
-                            css: "webix_shadow_medium",
-                            url: "//staff.t-max.online/orders",
-                            onClick: {
-                                "editBtn": function(ev) {
-                                    $$("editwin").show();
+                            view: "uploader",
+                            value: "Upload Employee Image",
+                            accept: "image/jpeg, image/png, image/jpg",
+                            autosend: false,
+                            multiple: false,
+                            width: 200,
+                            upload: "./public",
+                            on: {
+                                onAfterFileAdd: function(upload) {
+                                    var file = upload.file;
+                                    var reader = new FileReader();
+
+                                    reader.onload = function(event) {
+                                        $$("form_photo").setValue(event.target.result);
+                                    };
+                                    reader.readAsDataURL(file)
+                                    return false;
                                 }
-                            },
-                            columns: [{
-                                    template: "<input class='editBtn' type='button' value='Click'>",
-                                    width: 100,
-                                },
-                                {
-                                    id: "orderStage",
-                                    header: ["Stage", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-
-                                },
-
-                                {
-                                    id: "orderStatus",
-                                    header: ["orderStatus", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-
-                                },
-                                {
-                                    id: "applyPeriod",
-                                    header: ["Apply Period", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-
-                                },
-                                {
-                                    id: "product",
-                                    header: ["Product", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-
-                                },
-                                {
-                                    id: "customerInfo.mid",
-                                    header: ["mID", { content: "multiSelectFilter" }],
-                                    fillspace: 4,
-                                    minWidth: 100,
-                                    template: "#customerInfo.mid#"
-
-                                },
-                                {
-                                    id: "applyAmount",
-                                    header: ["Apply Amount", { content: "numberFilter" }],
-                                    sort: "string",
-                                    width: 150,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-
-
-                            ]
+                            }
                         },
-                        {
-                            template: "{common.prev()} {common.pages()} {common.next()}",
-                            padding: {
-                                left: 100
-                            },
-                            view: "pager",
-                            id: "pagerA",
-                            size: 40,
-                            group: 2,
-
-                        },
-                    ],
-                    height: 900
-                },
-                {
-                    width: 700,
-                    rows: [{
-                            view: "accordion",
-                            multi: true,
-                            type: "wide",
-
-                            rows: [{
-                                css: "header",
-                                header: "Order Detail",
-                                id: "item",
-                                body: {
-                                    view: "form",
-                                    complexData: true,
-                                    scroll: true,
-                                    id: "form",
-                                    elementsConfig: {
-                                        labelWidth: 130,
-
-                                    },
-                                    elements: [{
-                                            cols: [
-                                                { view: "label", label: "Order Stage:", width: 140 },
-                                                { view: "text", name: "orderStage", disabled: true },
-
-                                            ]
-                                        },
-                                        {
-                                            cols: [
-                                                { view: "label", label: "Order Status:", width: 140 },
-                                                { view: "text", name: "orderStatus", disabled: true },
-                                            ]
-                                        },
-                                    ]
-                                },
-                                height: 200
-                            }, ]
-                        },
-                        {
-                            view: "treetable",
-                            height: 680,
-                            url: "//staff.t-max.online/orders",
-                            columns: [
-
-                                { id: "value", header: "Key", template: "{common.treetable()} #value#", width: 350 },
-                                { id: "valueData", header: "Value", width: 350 },
-                            ]
-                        }
+                        photo1
 
                     ]
+                },
+                {
+                    rows: [
+
+                        {
+                            view: "button",
+                            label: "Save",
+                            align: "center",
+                            width: 200,
+                            click: function() {
+
+                                var data = $$("form_input").getValues();
+                                webix.message(JSON.stringify(data, null, "\t"));
+                            }
+                        },
+                    ]
                 }
+
             ]
 
         };
@@ -606,303 +508,9 @@ export default class DataList extends JetView {
 
     }
     init() {
-        webix.ui({
-            view: 'window',
-            id: "editwin",
-            head: 'Quy Tắc Thẩm Định',
-            modal: true,
-            close: true,
-            position: "center",
-            body: {
-                width: 800,
-                view: 'form',
-                id: "editform",
-                elements: [{
-                        cols: [{
-                                view: "form",
-                                scroll: true,
-                                rows: [{
-                                        cols: [{ view: 'label', label: "1.", width: 22 },
-                                            { view: 'label', id: "text1" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "2.", width: 22 },
-                                            { view: 'label', id: "text2" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "3.", width: 22 },
-                                            { view: 'label', id: "text3" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "4.", width: 22 },
-                                            { view: 'label', id: "text4" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "5.", width: 22 },
-                                            { view: 'label', id: "text5" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "6.", width: 22 },
-                                            { view: 'label', id: "text6" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "7.", width: 22 },
-                                            { view: 'label', id: "text7" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "8.", width: 22 },
-                                            { view: 'label', id: "text8" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "9.", width: 22 },
-                                            { view: 'label', id: "text9" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "10.", width: 22 },
-                                            { view: 'label', id: "text10" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "11.", width: 22 },
-                                            { view: 'label', id: "text11" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "12.", width: 22 },
-                                            { view: 'label', id: "text12" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "13.", width: 22 },
-                                            { view: 'label', id: "text13" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "14.", width: 22 },
-                                            { view: 'label', id: "text14" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "15.", width: 22 },
-                                            { view: 'label', id: "text15" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "16.", width: 22 },
-                                            { view: 'label', id: "text16" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "17.", width: 22 },
-                                            { view: 'label', id: "text17" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "18.", width: 22 },
-                                            { view: 'label', id: "text18" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "19.", width: 22 },
-                                            { view: 'label', id: "text19" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "22.", width: 22 },
-                                            { view: 'label', id: "text20" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "21.", width: 22 },
-                                            { view: 'label', id: "text21" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "22.", width: 22 },
-                                            { view: 'label', css: "line", id: "text22" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "23.", width: 22 },
-                                            { view: 'label', id: "text23" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "24.", width: 22 },
-                                            { view: 'label', id: "text24" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "25.", width: 22 },
-                                            { view: 'label', id: "text25" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "26.", width: 22 },
-                                            { view: 'label', id: "text26" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "27.", width: 22 },
-                                            { view: 'label', id: "text27" },
-                                        ]
-                                    },
-                                    {
-                                        cols: [{ view: 'label', label: "28.", width: 22 },
-                                            { view: 'label', id: "text28" },
-                                        ]
-                                    },
-                                ],
-
-                                height: 450,
-                            },
 
 
 
-                        ]
-                    },
-                    {
-                        cols: [{
-                                view: "checkbox",
-                                labelRight: "Đáp ứng đầy đủ các điều khoản trên",
-
-                            },
-
-                        ]
-
-                    },
-
-
-                    { view: 'textarea', label: 'Note', id: 'notes', height: 150 },
-
-                    {
-                        cols: [{
-                                view: "button",
-                                type: "form",
-                                value: "Save",
-                                click: function() {
-                                    this.getFormView().save();
-
-                                }
-                            },
-                            {
-                                view: "button",
-                                value: "Reject",
-                                css: "webix_danger",
-                                click: function() {
-                                    this.getTopParentView().hide();
-                                }
-                            },
-                        ]
-                    },
-
-
-                ]
-            },
-
-        });
-
-
-        $$("data").attachEvent("onItemClick", function(_id) {
-            let notes = this.getItem(_id).appraisal.notes;
-            $$("notes").setValue(notes);
-
-            let text1 = this.getItem(_id).appraisal.listRule[0].text;
-            $$("text1").setValue(text1);
-
-            let text2 = this.getItem(_id).appraisal.listRule[1].text;
-            $$("text2").setValue(text2);
-
-            let text3 = this.getItem(_id).appraisal.listRule[2].text;
-            $$("text3").setValue(text3);
-
-            let text4 = this.getItem(_id).appraisal.listRule[3].text;
-            $$("text4").setValue(text4);
-
-            let text5 = this.getItem(_id).appraisal.listRule[4].text;
-            $$("text5").setValue(text5);
-
-            let text6 = this.getItem(_id).appraisal.listRule[5].text;
-            $$("text6").setValue(text6);
-
-            let text7 = this.getItem(_id).appraisal.listRule[6].text;
-            $$("text7").setValue(text7);
-
-            let text8 = this.getItem(_id).appraisal.listRule[7].text;
-            $$("text8").setValue(text8);
-
-            let text9 = this.getItem(_id).appraisal.listRule[8].text;
-            $$("text9").setValue(text9);
-
-            let text10 = this.getItem(_id).appraisal.listRule[9].text;
-            $$("text10").setValue(text10);
-
-            let text11 = this.getItem(_id).appraisal.listRule[10].text;
-            $$("text11").setValue(text11);
-
-            let text12 = this.getItem(_id).appraisal.listRule[11].text;
-            $$("text12").setValue(text12);
-
-            let text13 = this.getItem(_id).appraisal.listRule[12].text;
-            $$("text13").setValue(text13);
-
-            let text14 = this.getItem(_id).appraisal.listRule[13].text;
-            $$("text14").setValue(text14);
-
-            let text15 = this.getItem(_id).appraisal.listRule[14].text;
-            $$("text15").setValue(text15);
-
-            let text16 = this.getItem(_id).appraisal.listRule[15].text;
-            $$("text16").setValue(text16);
-
-            let text17 = this.getItem(_id).appraisal.listRule[16].text;
-            $$("text17").setValue(text17);
-
-            let text18 = this.getItem(_id).appraisal.listRule[17].text;
-            $$("text18").setValue(text18);
-
-            let text19 = this.getItem(_id).appraisal.listRule[18].text;
-            $$("text19").setValue(text19);
-
-            let text20 = this.getItem(_id).appraisal.listRule[19].text;
-            $$("text20").setValue(text20);
-
-            let text21 = this.getItem(_id).appraisal.listRule[20].text;
-            $$("text21").setValue(text21);
-
-            let text22 = this.getItem(_id).appraisal.listRule[21].text;
-            $$("text22").setValue(text22);
-
-            let text23 = this.getItem(_id).appraisal.listRule[22].text;
-            $$("text23").setValue(text23);
-
-            let text24 = this.getItem(_id).appraisal.listRule[23].text;
-            $$("text24").setValue(text24);
-
-            let text25 = this.getItem(_id).appraisal.listRule[24].text;
-            $$("text25").setValue(text25);
-
-            let text26 = this.getItem(_id).appraisal.listRule[25].text;
-            $$("text26").setValue(text26);
-
-            let text27 = this.getItem(_id).appraisal.listRule[26].text;
-            $$("text27").setValue(text27);
-
-            let text28 = this.getItem(_id).appraisal.listRule[27].text;
-            $$("text28").setValue(text28);;
-        });
-
-        $$("form").bind("data");
-        $$("editform").bind($$("data"));
     }
 
 

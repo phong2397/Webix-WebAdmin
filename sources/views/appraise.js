@@ -308,16 +308,17 @@ export default class DataList extends JetView {
             close: true,
             position: "center",
             body: {
-                css: "",
-                width: 1550,
+                responsive: true,
+
+
+                minWidth: 1550,
                 height: 800,
                 view: 'form',
                 id: "editform1",
                 complexData: true,
 
                 cols: [{
-
-                        width: 1080,
+                        minWidth: 1080,
                         rows: [
 
                             {

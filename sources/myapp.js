@@ -1,5 +1,4 @@
 import "./styles/app.css";
-
 import { JetApp, EmptyRouter, HashRouter, plugins } from "webix-jet";
 import session from "models/session";
 

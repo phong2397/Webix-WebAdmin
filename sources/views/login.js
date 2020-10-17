@@ -1,5 +1,4 @@
 import { JetView } from "webix-jet";
-
 export default class LoginView extends JetView {
     config() {
         const login_form = {
@@ -33,6 +32,7 @@ export default class LoginView extends JetView {
     }
 
     init(view) {
+
         view.$view.querySelector("input").focus();
     }
 
