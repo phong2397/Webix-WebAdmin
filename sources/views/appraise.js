@@ -18,6 +18,7 @@ export default class DataList extends JetView {
                             select: true,
                             view: "datatable",
                             pager: "pagerA",
+                            responsive: true,
                             id: "dataApp",
                             css: "webix_shadow_medium",
                             data: data,
@@ -26,10 +27,7 @@ export default class DataList extends JetView {
                                 "btn-success": function(ev) {
                                     $$("editwin1").show();
                                 },
-
-
                             },
-
                             columns: [{
                                     id: "_id",
                                     header: ["Id"],
@@ -92,7 +90,7 @@ export default class DataList extends JetView {
                             view: "accordion",
                             multi: true,
                             type: "wide",
-
+                            responsive: true,
                             rows: [{
                                 css: "header",
                                 header: "Order Detail",
@@ -308,17 +306,14 @@ export default class DataList extends JetView {
             close: true,
             position: "center",
             body: {
-                responsive: true,
-
-
-                minWidth: 1550,
+                width: 1550,
                 height: 800,
                 view: 'form',
                 id: "editform1",
                 complexData: true,
-
+                responsive: true,
                 cols: [{
-                        minWidth: 1080,
+                        minwidth: 1080,
                         rows: [
 
                             {
@@ -326,7 +321,7 @@ export default class DataList extends JetView {
                                     { view: "label", label: "Customer Info" },
                                     {
                                         view: "form",
-
+                                        responsive: true,
                                         scroll: true,
                                         complexData: true,
                                         rows: [{
@@ -607,441 +602,444 @@ export default class DataList extends JetView {
                         ]
                     },
 
-
-
                     {
+                        rows: [{
 
-                        rows: [
-                            { view: "label", label: "Rules" }, {
-                                view: "form",
-                                scroll: true,
-                                id: "editform",
-                                complexData: true,
-                                rules: {
-                                    "orderStatus": webix.rules.isNotEmpty,
-                                    "appraisal.notes": webix.rules.isNotEmpty,
+                            rows: [
+                                { view: "label", label: "Rules" }, {
+                                    view: "form",
+                                    scroll: true,
+                                    responsive: true,
+                                    id: "editform",
+                                    complexData: true,
+                                    rules: {
+                                        "orderStatus": webix.rules.isNotEmpty,
+                                        "appraisal.notes": webix.rules.isNotEmpty,
+                                    },
+                                    rows: [{
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio",
+
+                                                },
+                                                {
+                                                    view: 'label',
+                                                    id: "text1",
+                                                    css: "lines"
+                                                },
+                                            ]
+                                        },
+
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio1",
+                                                },
+                                                { view: 'label', id: "text2", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio2",
+                                                    css: "lines",
+                                                },
+                                                { view: 'label', id: "text3", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio3",
+                                                },
+                                                { view: 'label', id: "text4", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio4"
+                                                },
+                                                { view: 'label', id: "text5", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio5"
+                                                },
+                                                { view: 'label', id: "text6", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio6"
+                                                },
+                                                { view: 'label', id: "text7", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio7"
+                                                },
+                                                { view: 'label', id: "text8", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio8"
+                                                },
+                                                { view: 'label', id: "text9", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio9"
+                                                },
+                                                { view: 'label', id: "text10", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio10"
+                                                },
+                                                { view: 'label', id: "text11", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio11"
+                                                },
+                                                { view: 'label', id: "text12", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio12"
+                                                },
+                                                { view: 'label', id: "text13", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio13"
+                                                },
+                                                { view: 'label', id: "text14", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio14"
+                                                },
+                                                { view: 'label', id: "text15", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio15"
+                                                },
+                                                { view: 'label', id: "text16", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio16"
+                                                },
+                                                { view: 'label', id: "text17", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio17"
+                                                },
+                                                { view: 'label', id: "text18", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio18"
+                                                },
+                                                { view: 'label', id: "text19", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio19"
+                                                },
+                                                { view: 'label', id: "text20", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio20"
+                                                },
+                                                { view: 'label', id: "text21", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio21"
+                                                },
+                                                { view: 'label', css: "lines", id: "text22" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio22"
+                                                },
+                                                { view: 'label', id: "text23", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio23"
+                                                },
+                                                { view: 'label', id: "text24", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio24"
+                                                },
+                                                { view: 'label', id: "text25", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio25"
+                                                },
+                                                { view: 'label', id: "text26", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio26"
+                                                },
+                                                { view: 'label', id: "text27", css: "lines" },
+                                            ]
+                                        },
+                                        {
+                                            height: 62,
+                                            cols: [{
+                                                    view: "radio",
+                                                    options: ["OK", "Fail"],
+                                                    width: 150,
+                                                    invalidMessage: "Must be choose",
+                                                    required: true,
+                                                    name: "radio27"
+                                                },
+                                                { view: 'label', id: "text28", css: "lines" },
+                                            ]
+                                        },
+                                        { view: 'textarea', label: 'Note:', name: 'appraisal.notes', height: 150 },
+                                        { view: 'text', name: 'orderStatus', id: "status", hidden: true },
+                                        {
+                                            cols: [{
+                                                    view: "button",
+                                                    value: "Accept",
+                                                    css: "webix_primary",
+                                                    click: function() {
+                                                        var form = this.getFormView();
+                                                        this.getFormView().save($$("status").setValue("Accept"));
+                                                        if (form.validate()) {
+                                                            webix.alert("Update Completed!")
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    view: "button",
+                                                    value: "Reject",
+                                                    css: "webix_danger",
+                                                    click: function() {
+                                                        var form = this.getFormView();
+                                                        this.getFormView().save($$("status").setValue("Reject"));
+                                                        if (form.validate()) {
+                                                            webix.alert("Update Completed!")
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    view: "button",
+                                                    value: "Revoke",
+                                                    css: "webix_default",
+                                                    click: function() {
+                                                        var form = this.getFormView();
+                                                        this.getFormView().save($$("status").setValue("Cancel"));
+                                                        if (form.validate()) {
+                                                            webix.alert("Update Completed!")
+                                                        }
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ],
+
+
                                 },
-                                rows: [{
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio",
-
-                                            },
-                                            {
-                                                view: 'label',
-                                                id: "text1",
-                                                css: "lines"
-                                            },
-                                        ]
-                                    },
-
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio1",
-                                            },
-                                            { view: 'label', id: "text2", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio2",
-                                                css: "lines",
-                                            },
-                                            { view: 'label', id: "text3", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio3",
-                                            },
-                                            { view: 'label', id: "text4", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio4"
-                                            },
-                                            { view: 'label', id: "text5", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio5"
-                                            },
-                                            { view: 'label', id: "text6", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio6"
-                                            },
-                                            { view: 'label', id: "text7", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio7"
-                                            },
-                                            { view: 'label', id: "text8", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio8"
-                                            },
-                                            { view: 'label', id: "text9", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio9"
-                                            },
-                                            { view: 'label', id: "text10", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio10"
-                                            },
-                                            { view: 'label', id: "text11", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio11"
-                                            },
-                                            { view: 'label', id: "text12", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio12"
-                                            },
-                                            { view: 'label', id: "text13", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio13"
-                                            },
-                                            { view: 'label', id: "text14", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio14"
-                                            },
-                                            { view: 'label', id: "text15", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio15"
-                                            },
-                                            { view: 'label', id: "text16", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio16"
-                                            },
-                                            { view: 'label', id: "text17", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio17"
-                                            },
-                                            { view: 'label', id: "text18", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio18"
-                                            },
-                                            { view: 'label', id: "text19", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio19"
-                                            },
-                                            { view: 'label', id: "text20", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio20"
-                                            },
-                                            { view: 'label', id: "text21", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio21"
-                                            },
-                                            { view: 'label', css: "lines", id: "text22" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio22"
-                                            },
-                                            { view: 'label', id: "text23", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio23"
-                                            },
-                                            { view: 'label', id: "text24", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio24"
-                                            },
-                                            { view: 'label', id: "text25", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio25"
-                                            },
-                                            { view: 'label', id: "text26", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio26"
-                                            },
-                                            { view: 'label', id: "text27", css: "lines" },
-                                        ]
-                                    },
-                                    {
-                                        height: 62,
-                                        cols: [{
-                                                view: "radio",
-                                                options: ["OK", "Fail"],
-                                                width: 150,
-                                                invalidMessage: "Must be choose",
-                                                required: true,
-                                                name: "radio27"
-                                            },
-                                            { view: 'label', id: "text28", css: "lines" },
-                                        ]
-                                    },
-                                    { view: 'textarea', label: 'Note:', name: 'appraisal.notes', height: 150 },
-                                    { view: 'text', name: 'orderStatus', id: "status", hidden: true },
-                                    {
-                                        cols: [{
-                                                view: "button",
-                                                value: "Accept",
-                                                css: "webix_primary",
-                                                click: function() {
-                                                    var form = this.getFormView();
-                                                    this.getFormView().save($$("status").setValue("Accept"));
-                                                    if (form.validate()) {
-                                                        webix.alert("Update Completed!")
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                view: "button",
-                                                value: "Reject",
-                                                css: "webix_danger",
-                                                click: function() {
-                                                    var form = this.getFormView();
-                                                    this.getFormView().save($$("status").setValue("Reject"));
-                                                    if (form.validate()) {
-                                                        webix.alert("Update Completed!")
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                view: "button",
-                                                value: "Revoke",
-                                                css: "webix_default",
-                                                click: function() {
-                                                    var form = this.getFormView();
-                                                    this.getFormView().save($$("status").setValue("Cancel"));
-                                                    if (form.validate()) {
-                                                        webix.alert("Update Completed!")
-                                                    }
-                                                }
-                                            },
-                                        ]
-                                    },
-                                ],
-
-
-                            },
 
 
 
-                        ]
-                    },
+                            ]
+                        }, ]
+                    }
+
+
 
 
 

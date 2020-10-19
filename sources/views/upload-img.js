@@ -450,8 +450,8 @@ export default class DataList extends JetView {
             id: "form_photo",
 
             //borderless:false,
-            width: 500,
-            height: 500
+            width: 800,
+            height: 800
         };
         return {
             view: "form",
@@ -466,7 +466,7 @@ export default class DataList extends JetView {
                             autosend: false,
                             multiple: false,
                             width: 200,
-                            upload: "./public",
+                            upload: "http://localhost:8080/photo/",
                             on: {
                                 onAfterFileAdd: function(upload) {
                                     var file = upload.file;

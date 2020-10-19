@@ -238,20 +238,23 @@ export default class DataList extends JetView {
             close: true,
             position: "center",
             body: {
-                width: 1700,
-                height: 920,
+                width: 1550,
+                height: 800,
                 view: 'form',
                 id: "editformCollection",
                 complexData: true,
+                responsive: true,
                 cols: [{
-                        width: 1000,
+                        minwidth: 1080,
                         rows: [{
                                 rows: [
                                     { view: "label", label: "Customer Info" },
                                     {
                                         view: "form",
-
+                                        responsive: true,
                                         scroll: true,
+                                        responsive: true,
+
                                         rows: [{
                                                 view: "accordion",
                                                 multi: true,
@@ -448,7 +451,6 @@ export default class DataList extends JetView {
 
 
                     {
-                        width: 700,
                         rows: [
 
                             {
@@ -458,6 +460,7 @@ export default class DataList extends JetView {
                                         view: "form",
                                         id: "formLoan",
                                         complexData: true,
+                                        responsive: true,
                                         scroll: true,
                                         rows: [{
                                                 cols: [{ view: 'label', label: "Apply Period:", width: 140 },
