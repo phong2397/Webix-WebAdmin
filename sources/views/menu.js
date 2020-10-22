@@ -12,10 +12,9 @@ export default class MenuView extends JetView {
             select: true,
 
             data: [
-                { value: "Appraise", id: "appraise", icon: "mdi mdi-school" },
-                { value: "Disburse", id: "disburse", icon: "mdi mdi-widgets" },
-                { value: "Repayment", id: "collection", icon: "mdi mdi-currency-usd" },
-                { value: "Upload", id: "upload-img", icon: "mdi mdi-widgets" },
+                { value: "Danh sách yêu cầu", id: "list-order", icon: "mdi mdi-widgets" },
+                { value: "Danh sách giao dịch", id: "list-transaction", icon: "mdi mdi-pencil" },
+                { value: "Danh sách hạn mức", id: "list-customer", icon: "wxi-clock" },
 
             ]
         };

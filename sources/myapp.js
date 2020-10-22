@@ -9,9 +9,10 @@ export default class MyApp extends JetApp {
             version: VERSION,
             router: HashRouter,
             debug: !PRODUCTION,
-            start: "/top/appraise"
+            start: "/top/list-customer"
 
         };
+
         super({...defaults, ...config });
         this.use(plugins.User, { model: session });
     }
