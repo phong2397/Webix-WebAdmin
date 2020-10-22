@@ -7,29 +7,62 @@ let orders = new webix.DataCollection({
         return webix.ajax("//150.95.110.211:3000/backend/orders");
     },
 });
+const Status = Object.freeze({
+    disbursed: "Đã giải ngân",
+    processing: "Đang xử lý",
+    repay: "Thanh toán",
+});
+
 
 export default class orderList extends JetView {
     config() {
+        function convert(status) {
+            switch (status) {
+                case "disbursed":
+                    return Status.disbursed;
+                case "processing":
+                    return Status.processing;
+                case "repay":
+                    return Status.repay;
+            }
+        }
+
+
+
         return {
             height: 900,
 
 
             cols: [{
                     rows: [{
-                            select: true,
+                            select: "row",
                             view: "datatable",
                             pager: "pagerA",
-                            responsive: true,
                             id: "dataOrder",
                             css: "webix_shadow_medium",
                             data: orders,
                             scroll: true,
+                            css: "rows",
                             css: "my_style",
+                            resizeColumn: true,
+                            scheme: {
+                                $init: function(obj) {
+                                    obj.orderStatus = convert(obj.orderStatus);
+                                },
+                            },
+
+
                             columns: [{
+                                    id: "requestTime",
+                                    header: ["Thời gian yêu cầu"],
+                                    minWidth: 170,
+                                    sort: "string"
+
+                                },
+                                {
                                     id: "requestId",
                                     header: ["Mã số đơn hàng"],
-                                    fillspace: 1,
-                                    minWidth: 100,
+                                    minWidth: 280,
                                 },
                                 {
                                     id: "orderStatus",
@@ -48,13 +81,21 @@ export default class orderList extends JetView {
                                 {
                                     id: "customerId",
                                     header: ["Mã số khách hàng"],
-                                    minWidth: 180,
+                                    minWidth: 140,
+
                                 },
+                                {
+                                    id: "customerName",
+                                    header: ["Tên khách hàng"],
+                                    minWidth: 170,
+
+                                },
+
                                 {
                                     id: "requestAmount",
                                     header: ["Yêu cầu số tiền"],
-                                    fillspace: 1,
-                                    minWidth: 100,
+                                    minWidth: 140,
+
                                     format: webix.Number.numToStr({
                                         groupDelimiter: ",",
                                         groupSize: 3,
@@ -62,6 +103,54 @@ export default class orderList extends JetView {
                                         decimalSize: 0
                                     })
                                 },
+                                {
+                                    id: "amountAvailable",
+                                    header: ["Số tiền có thể rút"],
+                                    minWidth: 140,
+                                    format: webix.Number.numToStr({
+                                        groupDelimiter: ",",
+                                        groupSize: 3,
+                                        decimalDelimiter: ".",
+                                        decimalSize: 0
+                                    })
+                                },
+                                {
+                                    id: "companyId",
+                                    header: ["Mã số công ty"],
+                                    minWidth: 140,
+
+                                },
+                                {
+                                    id: "companyName",
+                                    header: ["Tên công ty"],
+                                    minWidth: 300,
+
+                                },
+                                {
+                                    id: "companyShortName",
+                                    header: ["Tên công ty rút gọn"],
+                                    minWidth: 140,
+
+                                },
+                                {
+                                    id: "bankNo",
+                                    header: ["Mã số ngân hàng"],
+                                    minWidth: 140,
+
+                                },
+                                {
+                                    id: "bankName",
+                                    header: ["Tên ngân hàng"],
+                                    minWidth: 310,
+
+                                },
+                                {
+                                    id: "accountNo",
+                                    header: ["Số tài khoản"],
+                                    minWidth: 150,
+
+                                },
+
                             ]
                         },
                         {
@@ -94,22 +183,41 @@ export default class orderList extends JetView {
                                     id: "form",
                                     scroll: true,
                                     elements: [{
-                                            rows: [{
-                                                    cols: [{ view: 'label', label: "Thời gian yêu cầu:", width: 140 },
-                                                        { view: 'text', name: "requestTime", disabled: true, css: "no_border" },
-                                                    ]
-                                                },
+                                            rows: [
+                                                { view: "label", label: "Chi tiết khách hàng" },
                                                 {
-                                                    cols: [{ view: 'label', label: "Số tiền có thể rút:", width: 140 },
-                                                        { view: 'text', name: "amountAvailable", disabled: true, css: "no_border", format: "1.111", width: 97.5 },
-                                                        { view: 'label', label: "đ" },
+                                                    view: "form",
+                                                    id: "formCustomer",
+                                                    complexData: true,
+                                                    rows: [{
+                                                            cols: [{ view: 'label', label: "Số tiền yêu cầu:", width: 140 },
+                                                                { view: 'text', name: "requestAmount", disabled: true, css: "no_border", format: "1.111", width: 97.5 },
+                                                                { view: 'label', label: "đ" },
 
-                                                    ]
-                                                },
-                                                {
-                                                    cols: [{ view: 'label', label: "Tên khách hàng:", width: 140 },
-                                                        { view: 'text', name: "customerName", disabled: true, css: "no_border" },
-                                                    ]
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Số tiền có thể rút:", width: 140 },
+                                                                { view: 'text', name: "amountAvailable", disabled: true, css: "no_border", format: "1.111", width: 97.5 },
+                                                                { view: 'label', label: "đ" },
+
+                                                            ]
+                                                        },
+
+                                                        {
+                                                            cols: [{ view: 'label', label: "Mã số khách hàng:", width: 140 },
+                                                                { view: 'text', name: "customerId", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                        {
+                                                            cols: [{ view: 'label', label: "Tên khách hàng:", width: 140 },
+                                                                { view: 'text', name: "customerName", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+
+                                                    ],
+                                                    height: 200,
                                                 },
                                             ]
                                         },
@@ -171,58 +279,29 @@ export default class orderList extends JetView {
                                             ]
                                         },
                                         {
-                                            rows: [
-                                                { view: "label", label: "Lịch sử  đơn vay" },
-                                                {
-                                                    view: "form",
-                                                    id: "formHistory",
-                                                    complexData: true,
-                                                    rows: [{
-                                                            cols: [{ view: 'label', label: "Mã số ngân hàng:", width: 140 },
-                                                                { view: 'text', name: "bankNo", disabled: true, css: "no_border" },
-                                                            ]
-                                                        },
-                                                        {
-                                                            cols: [{ view: 'label', label: "Tên ngân hàng:", width: 140 },
-                                                                { view: 'text', name: "bankName", disabled: true, css: "no_border" },
-                                                            ]
-                                                        },
-                                                        {
-                                                            cols: [{ view: 'label', label: "Số tài khoản:", width: 140 },
-                                                                { view: 'text', name: "accountNo", disabled: true, css: "no_border" },
-                                                            ]
-                                                        },
+                                            hegiht: 200,
+                                            cols: [{
+                                                view: "button",
+                                                value: "Chấp nhận",
+                                                css: "webix_primary",
+                                                click: function() {
+                                                    var form = this.getFormView();
+                                                    this.getFormView().save();
 
-                                                    ],
-                                                    height: 180,
-                                                },
-                                                {
-                                                    hegiht: 200,
-                                                    cols: [{
-                                                        view: "button",
-                                                        value: "Chấp nhận",
-                                                        css: "webix_primary",
-                                                        click: function() {
-                                                            var form = this.getFormView();
-                                                            this.getFormView().save();
+                                                    if (form.validate()) {
+                                                        webix.confirm({
+                                                            title: "Confirm",
 
-                                                            if (form.validate()) {
-                                                                webix.confirm({
-                                                                    title: "Confirm",
+                                                            cancel: "Không",
+                                                            ok: "Có",
+                                                            type: "confirm-error",
+                                                            text: "Bạn có chắc muốn chấp nhận ?",
 
-                                                                    cancel: "Không",
-                                                                    ok: "Có",
-                                                                    type: "confirm-error",
-                                                                    text: "Bạn có chắc muốn chấp nhận ?",
+                                                        });
+                                                    }
 
-                                                                });
-                                                            }
-
-                                                        }
-                                                    }, ],
-                                                },
-
-                                            ]
+                                                }
+                                            }, ],
                                         },
 
                                     ]
@@ -243,10 +322,8 @@ export default class orderList extends JetView {
     }
     init() {
         $$("formBank").bind("dataOrder");
-        $$("form").bind("dataOrder");
+        $$("formCustomer").bind("dataOrder");
         $$("formCompany").bind("dataOrder");
-        $$("formHistory").bind("dataOrder");
-
     }
 
 

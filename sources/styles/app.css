@@ -5,6 +5,7 @@
 .webixapp {
     transition: opacity 500ms;
     opacity: 1;
+    color: #F5F5F5
 }
 
 .logo {
@@ -15,12 +16,17 @@
     width: 80px;
 }
 
+.webix_cell:nth-child(2n) {
+    background-color: #eff;
+}
+
 .btn-success {
     width: 80px;
 }
 
 .my_style .webix_ss_header .webix_hcell {
     border-right: 1px solid white;
+    background: #D2E3EF
 }
 
 .my_style .webix_ss_header .webix_hcell.webix_last_row {
