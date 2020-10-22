@@ -34,8 +34,16 @@ export default class orderList extends JetView {
                                 {
                                     id: "orderStatus",
                                     header: ["Trạng thái đơn vay"],
-                                    minWidth: 150,
-                                    tagMode: true
+                                    minWidth: 140,
+                                    template: obj => {
+                                        let color = "";
+                                        if (obj.orderStatus === "disbursed")
+                                            color = `<span class="status_markerd">${obj.orderStatus}</span>`;
+                                        else if (obj.orderStatus === "processing")
+                                            color = `<span class="status_markerp">${obj.orderStatus}</span>`;
+
+                                        return color;
+                                    }
                                 },
                                 {
                                     id: "customerId",
@@ -64,7 +72,7 @@ export default class orderList extends JetView {
                             view: "pager",
                             id: "pagerA",
                             size: 40,
-                            group: 8,
+                            group: 10,
                         },
                     ],
                 },

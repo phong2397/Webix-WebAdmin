@@ -16,7 +16,7 @@ export default class TopView extends JetView {
                                 cols: [
                                     { width: 50 },
 
-                                    { view: "label", label: "FINTECH" },
+                                    { view: "label", label: "SG FINTECH" },
 
                                     {
                                         template: "<image class=\"mainphoto\" src=\"/photo/dr_arienette_1.jpg\" webix_tooltip=\"Open your profile\">",

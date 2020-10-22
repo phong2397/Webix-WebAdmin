@@ -79,71 +79,27 @@
     color: #313131;
 }
 
-.qaname {
+
+/* status markers for table (desktop) */
+
+.status_markerd {
+    font-size: 15px;
     font-weight: 500;
-    display: block;
-    color: #313131;
+    color: #008B8B;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #E0FFFF;
+    margin-left: 12%;
 }
 
-.stars {
-    display: block;
-    width: 90px;
-    margin-left: 80px;
-}
-
-.star {
-    margin-right: -3px !important;
-    cursor: pointer;
-    font-size: 16px !important;
-}
-
-.stars .star.gold {
-    color: #FDBF4C;
-}
-
-.stars .star.grey,
-.stars .star:hover~.star {
-    color: #94A1B3;
-}
-
-.stars .star:hover,
-.stars:hover .star {
-    color: #FFD700;
-}
-
-
-/* geochart */
-
-path {
-    stroke: #D9D8D7;
-}
-
-.star {
-    color: #FC3636;
-    padding-right: 2%;
-}
-
-.SUCCESS {
-    color: #55CD97;
-}
-
-.PENDING {
-    color: rgb(20, 53, 160);
-    font-weight: bold;
-    ;
-}
-
-.REFUSED,
-.danger {
-    color: #FF5C4C;
-}
-
-.incoming {
-    color: #41ad7c;
-}
-
-.payment {
-    color: #FF5C4C;
+.status_markerp {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(59, 97, 10);
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #90EE90;
+    margin-left: 12%;
 }
 
 
