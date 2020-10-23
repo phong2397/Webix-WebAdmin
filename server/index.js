@@ -9,7 +9,7 @@ app.use(session({
     secret: "replace this string... k12jh40918e4019u3",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60 * 60 * 1000 }
+    cookie: { maxAge: 100 * 100 * 1000 }
 }));
 
 const backend = express.Router();

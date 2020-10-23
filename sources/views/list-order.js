@@ -44,24 +44,25 @@ export default class orderList extends JetView {
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
-                            /*  ready: function() {
-                                 // apply sorting
-                                 this.sort([{ by: "requestTime", dir: "desc" }]);
-                                 this.markSorting("requestTime", "desc");
-                             }, */
+                            scheme: {
+                                $init: function(obj) {
+
+                                    obj.requestTime = convertDateString(obj.requestTime);
+                                    // console.log("obj.transTime");
+                                },
+                            },
+                            ready: function() {
+                                // apply sorting
+                                this.sort([{ by: "requestTime", dir: "desc" }]);
+                                this.markSorting("requestTime", "desc");
+                            },
                             columns: [{
                                     id: "requestTime",
                                     header: ["Thời gian yêu cầu"],
                                     minWidth: 160,
                                     sort: "date",
-                                    template: obj => {
-                                        let time = "";
 
-                                        time = `<span >${convertDateString(obj.requestTime)}</span>`;
-
-                                        return time;
-                                    },
-                                    format: webix.Date.dateToStr("%d-%m-%Y")
+                                    format: webix.Date.dateToStr("%d-%m-%Y"),
                                 },
                                 {
                                     id: "requestId",

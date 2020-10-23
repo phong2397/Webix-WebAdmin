@@ -57,7 +57,7 @@ export default class trasactionList extends JetView {
                                     minWidth: 160,
                                     fillspace: 1,
                                     sort: "date",
-
+                                    format: webix.Date.dateToStr("%d-%m-%Y"),
                                 },
                                 {
                                     id: "transId",
