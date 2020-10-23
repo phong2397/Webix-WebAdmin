@@ -11,13 +11,23 @@ let transaction = new webix.DataCollection({
         return webix.ajax("//150.95.110.211:3000/backend/transactions");
     },
 });
+const Status = Object.freeze({
+    disburse: "Giải ngân",
+    processing: "Đang xử lý",
+    repay: "Thanh toán",
+});
 
-const ruLocale = {
-    "Chi tiết giao dịch": "Моя полка",
-}
 export default class trasactionList extends JetView {
     config() {
+        function convert(status) {
+            switch (status) {
+                case "disburse":
+                    return Status.disburse;
 
+                case "repay":
+                    return Status.repay;
+            }
+        }
         return {
             height: 900,
             cols: [{
@@ -33,87 +43,50 @@ export default class trasactionList extends JetView {
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
-                            locale: { lang: "ru" },
+
                             columns: [{
                                     id: "transTime",
                                     header: ["Thời gian giao dịch"],
                                     minWidth: 160,
-                                    sort: "string"
-
+                                    fillspace: 1,
+                                    sort: "date",
                                 },
                                 {
                                     id: "transId",
                                     header: ["Mã số giao dịch"],
                                     minWidth: 150,
+
                                 },
                                 {
                                     id: "requestId",
                                     header: ["Mã số đơn hàng"],
                                     minWidth: 280,
+                                    fillspace: 1,
+
                                 },
                                 {
                                     id: "customerId",
                                     header: ["Mã số khách hàng"],
                                     minWidth: 180,
+                                    fillspace: 1,
+
 
                                 },
                                 {
                                     id: "transType",
                                     header: ["Loại giao dịch"],
+                                    fillspace: 1,
+
                                     minWidth: 150,
+                                    template: obj => {
+                                        let color = "";
+                                        if (obj.transType === "disburse")
+                                            color = `<span class="status_markerd" >${convert(obj.transType)}</span>`;
+                                        else if (obj.transType === "repay")
+                                            color = `<span class="status_markerp">${convert(obj.transType)}</span>`;
 
-                                },
-                                {
-                                    id: "customerName",
-                                    header: ["Tên khách hàng"],
-                                    minWidth: 160,
-
-                                },
-
-
-                                {
-                                    id: "transAmount",
-                                    header: ["Số tiền giao dịch"],
-                                    minWidth: 100,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "companyId",
-                                    header: ["Mã số công ty"],
-                                    minWidth: 160,
-                                },
-                                {
-                                    id: "companyName",
-                                    header: ["Tên công ty"],
-                                    minWidth: 330,
-                                },
-                                {
-                                    id: "companyShortName",
-                                    header: ["Tên công ty rút gọn"],
-                                    minWidth: 160,
-                                },
-                                {
-                                    id: "bankNo",
-                                    header: ["Mã số ngân hàng"],
-                                    minWidth: 160,
-
-                                },
-                                {
-                                    id: "bankName",
-                                    header: ["Tên ngân hàng"],
-                                    minWidth: 450,
-
-                                },
-                                {
-                                    id: "accountNo",
-                                    header: ["Số tài khoản"],
-                                    minWidth: 150,
-
+                                        return color;
+                                    },
                                 },
 
                             ]
@@ -135,7 +108,7 @@ export default class trasactionList extends JetView {
                 { view: "resizer" },
 
                 {
-                    minwidth: 500,
+                    width: 500,
 
                     rows: [
 
@@ -162,11 +135,15 @@ export default class trasactionList extends JetView {
                                                     id: "formCustomer",
                                                     complexData: true,
                                                     rows: [{
+                                                            cols: [{ view: 'label', label: "Mã số đơn hàng:", width: 140 },
+                                                                { view: 'text', name: "requestId", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
                                                             cols: [{ view: 'label', label: "Mã số khách hàng:", width: 140 },
                                                                 { view: 'text', name: "customerId", disabled: true, css: "no_border" },
                                                             ]
                                                         },
-
                                                         {
                                                             cols: [{ view: 'label', label: "Tên khách hàng:", width: 140 },
                                                                 { view: 'text', name: "customerName", disabled: true, css: "no_border" },
@@ -174,7 +151,7 @@ export default class trasactionList extends JetView {
                                                         },
 
                                                     ],
-                                                    height: 120,
+                                                    height: 140,
                                                 },
                                             ]
                                         },
@@ -203,7 +180,7 @@ export default class trasactionList extends JetView {
 
 
                                                     ],
-                                                    height: 180,
+                                                    height: 160,
                                                 },
                                             ]
                                         },
@@ -238,33 +215,37 @@ export default class trasactionList extends JetView {
                                         },
                                         {
                                             rows: [
-                                                { view: "label", label: "Lịch sử đơn vay" },
-                                                {
+                                                { view: "label", label: "Lịch sử đơn vay" }, {
                                                     view: "form",
                                                     id: "formHistory",
                                                     complexData: true,
                                                     rows: [{
                                                             cols: [{ view: 'label', label: "Mã số giao dịch", width: 160 },
-                                                                { view: 'label', label: "Loại giao dịch", width: 160 },
-                                                                { view: 'label', label: "Thời gian giao dịch", width: 160 },
-                                                                { view: 'label', label: "Số tiền giao dịch", width: 160 },
-
+                                                                { view: 'text', name: "transId", width: 160, disabled: true, css: "no_border" },
                                                             ]
                                                         },
                                                         {
-                                                            cols: [{ view: 'text', name: "transId", width: 160, disabled: true, css: "no_border" },
+                                                            cols: [{ view: 'label', label: "Loại giao dịch", width: 160 },
                                                                 { view: 'text', name: "transType", width: 160, disabled: true, css: "no_border" },
-                                                                { view: 'text', name: "transTime", width: 160, disabled: true, css: "no_border" },
-                                                                { view: 'text', name: "transAmount", width: 160, format: "1.111", disabled: true, css: "no_border" },
                                                             ]
                                                         },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Thời gian giao dịch", width: 160 },
+                                                                { view: 'text', name: "transTime", width: 160, disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Số tiền giao dịch", width: 160 },
+                                                                { view: 'text', name: "transAmount", width: 160, format: "1.111", disabled: true, css: "no_border" },
+                                                            ]
+                                                        }
 
                                                     ],
-                                                    height: 180,
+                                                    height: 190,
                                                 },
-
                                             ]
                                         },
+
                                     ]
                                 },
                             }, ]
@@ -282,9 +263,7 @@ export default class trasactionList extends JetView {
 
     }
     init() {
-        webix.i18n.setLocale("ru-RU");
 
-        datatable.locales.ru = ruLocale;
         $$("formCompany").bind("dataTransaction");
         $$("formBank").bind("dataTransaction");
         $$("formCustomer").bind("dataTransaction");

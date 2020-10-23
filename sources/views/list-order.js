@@ -10,7 +10,6 @@ let orders = new webix.DataCollection({
 const Status = Object.freeze({
     disbursed: "Đã giải ngân",
     processing: "Đang xử lý",
-    repay: "Thanh toán",
 });
 
 
@@ -22,13 +21,9 @@ export default class orderList extends JetView {
                     return Status.disbursed;
                 case "processing":
                     return Status.processing;
-                case "repay":
-                    return Status.repay;
+
             }
         }
-
-
-
         return {
             height: 900,
 
@@ -45,17 +40,11 @@ export default class orderList extends JetView {
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
-                            scheme: {
-                                $init: function(obj) {
-                                    obj.orderStatus = convert(obj.orderStatus);
-                                },
-                            },
-
 
                             columns: [{
                                     id: "requestTime",
                                     header: ["Thời gian yêu cầu"],
-                                    minWidth: 170,
+                                    minWidth: 160,
                                     sort: "string"
 
                                 },
@@ -68,26 +57,24 @@ export default class orderList extends JetView {
                                     id: "orderStatus",
                                     header: ["Trạng thái đơn vay"],
                                     minWidth: 140,
+                                    fillspace: 1,
+
                                     template: obj => {
                                         let color = "";
                                         if (obj.orderStatus === "disbursed")
-                                            color = `<span class="status_markerd">${obj.orderStatus}</span>`;
+                                            color = `<span class="status_markerd">${convert(obj.orderStatus)}</span>`;
                                         else if (obj.orderStatus === "processing")
-                                            color = `<span class="status_markerp">${obj.orderStatus}</span>`;
+                                            color = `<span class="status_markerp">${convert(obj.orderStatus)}</span>`;
 
                                         return color;
                                     }
                                 },
-                                {
-                                    id: "customerId",
-                                    header: ["Mã số khách hàng"],
-                                    minWidth: 140,
 
-                                },
                                 {
                                     id: "customerName",
                                     header: ["Tên khách hàng"],
                                     minWidth: 170,
+                                    fillspace: 1,
 
                                 },
 
@@ -95,60 +82,13 @@ export default class orderList extends JetView {
                                     id: "requestAmount",
                                     header: ["Yêu cầu số tiền"],
                                     minWidth: 140,
-
+                                    fillspace: 1,
                                     format: webix.Number.numToStr({
                                         groupDelimiter: ",",
                                         groupSize: 3,
                                         decimalDelimiter: ".",
                                         decimalSize: 0
                                     })
-                                },
-                                {
-                                    id: "amountAvailable",
-                                    header: ["Số tiền có thể rút"],
-                                    minWidth: 140,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "companyId",
-                                    header: ["Mã số công ty"],
-                                    minWidth: 140,
-
-                                },
-                                {
-                                    id: "companyName",
-                                    header: ["Tên công ty"],
-                                    minWidth: 300,
-
-                                },
-                                {
-                                    id: "companyShortName",
-                                    header: ["Tên công ty rút gọn"],
-                                    minWidth: 140,
-
-                                },
-                                {
-                                    id: "bankNo",
-                                    header: ["Mã số ngân hàng"],
-                                    minWidth: 140,
-
-                                },
-                                {
-                                    id: "bankName",
-                                    header: ["Tên ngân hàng"],
-                                    minWidth: 310,
-
-                                },
-                                {
-                                    id: "accountNo",
-                                    header: ["Số tài khoản"],
-                                    minWidth: 150,
-
                                 },
 
                             ]
@@ -175,7 +115,7 @@ export default class orderList extends JetView {
                             responsive: true,
                             rows: [{
                                 css: "header",
-                                header: "Chi tiết đơn hàng",
+                                header: "Chi tiết yêu cầu",
                                 body: {
                                     view: "form",
                                     complexData: true,
@@ -184,12 +124,17 @@ export default class orderList extends JetView {
                                     scroll: true,
                                     elements: [{
                                             rows: [
-                                                { view: "label", label: "Chi tiết khách hàng" },
+                                                { view: "label", label: "Chi tiết đơn hàng" },
                                                 {
                                                     view: "form",
-                                                    id: "formCustomer",
+                                                    id: "formOrder",
                                                     complexData: true,
                                                     rows: [{
+                                                            cols: [{ view: 'label', label: "Mã số đơn hàng:", width: 140 },
+                                                                { view: 'text', name: "requestId", disabled: true, css: "no_border" },
+                                                            ]
+                                                        },
+                                                        {
                                                             cols: [{ view: 'label', label: "Số tiền yêu cầu:", width: 140 },
                                                                 { view: 'text', name: "requestAmount", disabled: true, css: "no_border", format: "1.111", width: 97.5 },
                                                                 { view: 'label', label: "đ" },
@@ -205,6 +150,31 @@ export default class orderList extends JetView {
                                                         },
 
                                                         {
+                                                            cols: [{ view: 'label', label: "Thời gian yêu cầu:", width: 140 },
+                                                                { view: 'text', name: "requestTime", disabled: true, css: "no_border" },
+
+                                                            ]
+                                                        },
+                                                        {
+                                                            cols: [{ view: 'label', label: "Trạng thái đơn:", width: 140 },
+                                                                { view: 'text', name: "orderStatus", disabled: true, css: "no_border" },
+
+                                                            ]
+                                                        },
+
+                                                    ],
+                                                    height: 240,
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            rows: [
+                                                { view: "label", label: "Chi tiết khách hàng" },
+                                                {
+                                                    view: "form",
+                                                    id: "formCustomer",
+                                                    complexData: true,
+                                                    rows: [{
                                                             cols: [{ view: 'label', label: "Mã số khách hàng:", width: 140 },
                                                                 { view: 'text', name: "customerId", disabled: true, css: "no_border" },
                                                             ]
@@ -217,7 +187,7 @@ export default class orderList extends JetView {
                                                         },
 
                                                     ],
-                                                    height: 200,
+                                                    height: 110,
                                                 },
                                             ]
                                         },
@@ -246,7 +216,7 @@ export default class orderList extends JetView {
 
 
                                                     ],
-                                                    height: 180,
+                                                    height: 160,
                                                 },
                                             ]
                                         },
@@ -274,7 +244,7 @@ export default class orderList extends JetView {
                                                         },
 
                                                     ],
-                                                    height: 180,
+                                                    height: 160,
                                                 },
                                             ]
                                         },
@@ -324,6 +294,8 @@ export default class orderList extends JetView {
         $$("formBank").bind("dataOrder");
         $$("formCustomer").bind("dataOrder");
         $$("formCompany").bind("dataOrder");
+        $$("formOrder").bind("dataOrder");
+
     }
 
 

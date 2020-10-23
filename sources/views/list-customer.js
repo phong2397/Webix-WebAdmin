@@ -34,113 +34,40 @@ export default class customerList extends JetView {
                                     id: "companyId",
                                     header: ["Mã số công ty"],
                                     minWidth: 150,
+                                    fillspace: 1,
+
                                 },
-                                {
-                                    id: "id",
-                                    header: ["Mã khách hàng"],
-                                    minWidth: 150,
-                                },
+
                                 {
                                     id: "customerId",
                                     header: ["Mã số khách hàng"],
                                     minWidth: 150,
+                                    fillspace: 1,
+
                                 },
 
                                 {
                                     id: "customerName",
                                     header: ["Tên khách hàng"],
                                     minWidth: 150,
+                                    fillspace: 1,
+
                                 },
                                 {
                                     id: "dob",
                                     header: ["Ngày sinh"],
                                     minWidth: 150,
+                                    fillspace: 1,
+
                                 },
                                 {
                                     id: "phone",
                                     header: ["Số  điện thoại khách hàng"],
                                     minWidth: 200,
-                                },
-                                {
-                                    id: "address",
-                                    header: ["Địa chỉ "],
                                     fillspace: 1,
-                                    minWidth: 460,
 
                                 },
-                                {
-                                    id: "credit",
-                                    header: ["Tín dụng"],
-                                    minWidth: 130,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "grossSalary",
-                                    header: ["Tổng lương"],
-                                    minWidth: 130,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "tax",
-                                    header: ["Thuế"],
-                                    minWidth: 130,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "insurance",
-                                    header: ["Bảo hiểm"],
-                                    minWidth: 130,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "netSalary",
-                                    header: ["Lương thực nhận"],
-                                    minWidth: 130,
-                                    format: webix.Number.numToStr({
-                                        groupDelimiter: ",",
-                                        groupSize: 3,
-                                        decimalDelimiter: ".",
-                                        decimalSize: 0
-                                    })
-                                },
-                                {
-                                    id: "bankNo",
-                                    header: ["Mã số ngân hàng"],
-                                    minWidth: 140,
 
-                                },
-                                {
-                                    id: "bankName",
-                                    header: ["Tên ngân hàng"],
-                                    minWidth: 450,
-
-                                },
-                                {
-                                    id: "accountNo",
-                                    header: ["Số tài khoản"],
-                                    minWidth: 150,
-
-                                },
 
                             ]
                         },
@@ -212,9 +139,14 @@ export default class customerList extends JetView {
                                                         cols: [{ view: 'label', label: "Địa chỉ:", width: 140 },
                                                             { view: 'text', name: "address", disabled: true, css: "no_border" },
                                                         ]
+                                                    },
+                                                    {
+                                                        cols: [{ view: 'label', label: "Mã số công ty:", width: 140 },
+                                                            { view: 'text', name: "companyId", disabled: true, css: "no_border" },
+                                                        ]
                                                     }
                                                 ],
-                                                height: 290,
+                                                height: 330,
                                             },
                                         ]
                                     },
