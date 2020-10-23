@@ -51,6 +51,11 @@ export default class trasactionList extends JetView {
                                     console.log("obj.transTime");
                                 },
                             },
+                            ready: function() {
+                                // apply sorting
+                                this.data.sort([{ by: "transTime", dir: "desc", as: "date" }]);
+                                this.markSorting("transTime", "desc");
+                            },
                             columns: [{
                                     id: "transTime",
                                     header: ["Thời gian giao dịch"],

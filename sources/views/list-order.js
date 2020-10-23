@@ -53,7 +53,7 @@ export default class orderList extends JetView {
                             },
                             ready: function() {
                                 // apply sorting
-                                this.sort([{ by: "requestTime", dir: "desc" }]);
+                                this.data.sort([{ by: "requestTime", dir: "desc", as: "date" }]);
                                 this.markSorting("requestTime", "desc");
                             },
                             columns: [{
