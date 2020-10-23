@@ -1,31 +1,27 @@
 import { JetView } from "webix-jet";
 import "webix/photo";
-/* import { level } from "models/level";
- */
+
 let level = new webix.DataCollection({
     url: function(params) {
         return webix.ajax("//150.95.110.211:3000/backend/customers");
     },
 });
 
+console.log(level)
 export default class customerList extends JetView {
     config() {
         return {
             height: 900,
-
-
             cols: [{
                     minwidth: 700,
 
                     rows: [{
-
                             select: "row",
                             view: "datatable",
                             pager: "pagerA",
                             responsive: true,
                             id: "dataCompany",
                             css: "webix_shadow_medium",
-                            data: level,
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
@@ -50,6 +46,7 @@ export default class customerList extends JetView {
                                     id: "customerName",
                                     header: ["Tên khách hàng"],
                                     minWidth: 150,
+                                    level,
                                     fillspace: 1,
 
                                 },
@@ -86,7 +83,6 @@ export default class customerList extends JetView {
 
                 },
                 { view: "resizer" },
-
                 {
                     width: 600,
                     rows: [{
@@ -229,11 +225,22 @@ export default class customerList extends JetView {
         };
     }
     init() {
+        // console.log("Test");
         $$("formBank").bind("dataCompany");
         $$("formSalary").bind("dataCompany");
         $$("formCustomer").bind("dataCompany");
-
+        getCredit().then(data => {
+            $$("dataCompany").define("data", data);
+            $$("dataCompany").refresh();
+        })
     }
 
 
+}
+
+function getCredit() {
+    return webix
+        .ajax()
+        .get("//150.95.110.211:3000/backend/customers")
+        .then(a => a.json());
 }

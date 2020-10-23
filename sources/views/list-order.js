@@ -1,18 +1,23 @@
 import { JetView } from "webix-jet";
 import "webix/photo";
-/* import { orders } from "models/order";
- */
-let orders = new webix.DataCollection({
-    url: function(params) {
-        return webix.ajax("//150.95.110.211:3000/backend/orders");
-    },
-});
+
+
 const Status = Object.freeze({
     disbursed: "Đã giải ngân",
     processing: "Đang xử lý",
 });
 
+function getOrder() {
+    return webix
+        .ajax()
+        .get("//150.95.110.211:3000/backend/orders")
+        .then(a => a.json());
+}
 
+function convertDateString(value) {
+    var date = value.split("-");
+    return new Date(date[2], date[1] - 1, date[0]);
+}
 export default class orderList extends JetView {
     config() {
         function convert(status) {
@@ -35,18 +40,28 @@ export default class orderList extends JetView {
                             pager: "pagerA",
                             id: "dataOrder",
                             css: "webix_shadow_medium",
-                            data: orders,
                             scroll: true,
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
-
+                            /*  ready: function() {
+                                 // apply sorting
+                                 this.sort([{ by: "requestTime", dir: "desc" }]);
+                                 this.markSorting("requestTime", "desc");
+                             }, */
                             columns: [{
                                     id: "requestTime",
                                     header: ["Thời gian yêu cầu"],
                                     minWidth: 160,
-                                    sort: "string"
+                                    sort: "date",
+                                    template: obj => {
+                                        let time = "";
 
+                                        time = `<span >${convertDateString(obj.requestTime)}</span>`;
+
+                                        return time;
+                                    },
+                                    format: webix.Date.dateToStr("%d-%m-%Y")
                                 },
                                 {
                                     id: "requestId",
@@ -295,7 +310,10 @@ export default class orderList extends JetView {
         $$("formCustomer").bind("dataOrder");
         $$("formCompany").bind("dataOrder");
         $$("formOrder").bind("dataOrder");
-
+        getOrder().then(data => {
+            $$("dataOrder").define("data", data);
+            $$("dataOrder").refresh();
+        })
     }
 
 

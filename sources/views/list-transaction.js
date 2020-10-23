@@ -1,22 +1,24 @@
 import { JetView } from "webix-jet";
 import "webix/photo";
-/* import { transaction } from "models/transaction";
- */
-const vnLocale = {
-    "disburse": "giải ngân",
-    "repay": "trả tiền",
-}
-let transaction = new webix.DataCollection({
-    url: function(params) {
-        return webix.ajax("//150.95.110.211:3000/backend/transactions");
-    },
-});
+
+
 const Status = Object.freeze({
     disburse: "Giải ngân",
     processing: "Đang xử lý",
     repay: "Thanh toán",
 });
 
+function convertDateString(value) {
+    var date = value.split("-");
+    return new Date(date[2], date[1] - 1, date[0]);
+}
+
+function getTransaction() {
+    return webix
+        .ajax()
+        .get("//150.95.110.211:3000/backend/transactions")
+        .then(a => a.json());
+}
 export default class trasactionList extends JetView {
     config() {
         function convert(status) {
@@ -38,18 +40,24 @@ export default class trasactionList extends JetView {
                             responsive: true,
                             id: "dataTransaction",
                             css: "webix_shadow_medium",
-                            data: transaction,
                             scroll: true,
                             css: "rows",
                             css: "my_style",
                             resizeColumn: true,
+                            scheme: {
+                                $init: function(obj) {
 
+                                    obj.transTime = convertDateString(obj.transTime);
+                                    console.log("obj.transTime");
+                                },
+                            },
                             columns: [{
                                     id: "transTime",
                                     header: ["Thời gian giao dịch"],
                                     minWidth: 160,
                                     fillspace: 1,
                                     sort: "date",
+
                                 },
                                 {
                                     id: "transId",
@@ -268,6 +276,10 @@ export default class trasactionList extends JetView {
         $$("formBank").bind("dataTransaction");
         $$("formCustomer").bind("dataTransaction");
         $$("formHistory").bind("dataTransaction");
+        getTransaction().then(data => {
+            $$("dataTransaction").define("data", data);
+            $$("dataTransaction").refresh();
+        })
     }
 
 
