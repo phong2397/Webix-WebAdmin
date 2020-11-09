@@ -64,7 +64,7 @@ export function createUIObject() {
                             {
                                 view: "button",
                                 tooltip: "Delete",
-                                label: "<span class='webix_icon wxi-plus'></span><span class='text'>Add List Customer </span>",
+                                label: "<span class='webix_icon wxi-plus'></span><span class='text'>Thêm nhân viên</span>",
                                 click: () => {
                                     $$("btn2").show()
                                 }
