@@ -111,7 +111,7 @@ export function createUIObject() {
                                 view: "button",
                                 tooltip: "Delete",
                                 value: "Thêm công ty",
-                                label: "<span class='webix_icon wxi-plus'></span><span class='text'>Add List Transaction </span>",
+                                label: "<span class='webix_icon wxi-plus'></span><span class='text'>Thêm giao dịch </span>",
                                 click: () => {
                                     $$("btn2").show()
                                 }
