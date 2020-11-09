@@ -2,6 +2,7 @@ import { JetView } from "webix-jet";
 import MenuView from "views/menu";
 import ProfileMenuView from "views/profilemenu";
 
+
 export default class TopView extends JetView {
     config() {
         const theme = this.app.config.theme;
@@ -19,7 +20,7 @@ export default class TopView extends JetView {
                                     { view: "label", label: "SG FINTECH" },
 
                                     {
-                                        template: "<image class=\"mainphoto\" src=\"/photo/dr_arienette_1.jpg\" webix_tooltip=\"Open your profile\">",
+                                        template: "<image class=\"mainphoto\" src=\"public/photo/dr_arienette_1.jpg\" webix_tooltip=\"Open your profile\">",
                                         width: 40,
                                         borderless: true,
                                         css: "toolbar_photo",

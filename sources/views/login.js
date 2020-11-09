@@ -1,4 +1,6 @@
 import { JetView } from "webix-jet";
+
+
 export default class LoginView extends JetView {
     config() {
         const login_form = {
@@ -7,10 +9,18 @@ export default class LoginView extends JetView {
             width: 400,
             borderless: false,
             margin: 10,
-            rows: [
-                { view: "text", name: "login", label: "User Name", labelPosition: "top", invalidMessage: "Please enter username!" },
-                { view: "text", type: "password", name: "pass", label: "Password", labelPosition: "top", invalidMessage: "Please enter password!" },
-                { view: "button", value: "Login", click: () => this.do_login(), hotkey: "enter" }
+            elements: [
+                { view: "text", name: "username", label: "User Name", labelPosition: "top", id: "username", invalidMessage: "Please enter username!" },
+                { view: "text", type: "password", name: "password", label: "Password", id: "password", labelPosition: "top", invalidMessage: "Please enter password!" },
+                {
+                    view: "button",
+                    value: "Login",
+                    click: () => {
+                        this.do_login();
+                    },
+                    hotkey: "enter"
+                }
+
             ],
             rules: {
                 login: webix.rules.isNotEmpty,
@@ -38,18 +48,17 @@ export default class LoginView extends JetView {
 
     do_login() {
         const user = this.app.getService("user");
-        const form = this.$$("login:form");
+        const username = $$("username").getValue();
+        const password = $$("password").getValue();
         const ui = this.$$("login:top");
 
-        if (form.validate()) {
-            const data = form.getValues();
-            user.login(data.login, data.pass).catch(function() {
-                webix.html.removeCss(ui.$view, "invalid_login");
-                form.elements.pass.focus();
-                webix.delay(function() {
-                    webix.html.addCss(ui.$view, "invalid_login");
-                });
+        user.login(username, password).catch(function() {
+            webix.html.removeCss(ui.$view, "invalid_login");
+            form.elements.pass.focus();
+            webix.delay(function() {
+                webix.html.addCss(ui.$view, "invalid_login");
             });
-        }
+        });
+
     }
 }

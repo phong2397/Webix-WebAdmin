@@ -16,8 +16,18 @@
     width: 80px;
 }
 
+.form .webix_inp_label {
+    text-transform: capitalize;
+}
+
 .webix_cell:nth-child(2n) {
     background-color: #eff;
+}
+
+.webix_icon_button:hover:before {
+    background-color: grey;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .btn-success {
@@ -25,16 +35,12 @@
 }
 
 .my_style .webix_ss_header .webix_hcell {
-    border-right: 1px solid white;
+    border-right: 100px solid black;
     background: #D2E3EF
 }
 
-.my_style .webix_ss_header .webix_hcell.webix_last_row {
-    border-bottom: 1px solid #97d109;
-}
-
 .my_style .webix_ss_body .webix_column>div {
-    border-right: 1px solid #A9A9A9;
+    border-right: 1px solid #0e0b0b;
     border-bottom: 1px solid #A9A9A9;
 }
 
@@ -44,10 +50,9 @@
     box-shadow: none;
 }
 
-.webix_view.webix_control .webix_disabled_box input,
-.webix_disabled_box textarea {
-    color: #372f2f;
-    margin-left: 0;
+.webix_view.webix_control .webix_disabled_box label {
+    color: rgb(31, 28, 28);
+    text-transform: capitalize;
 }
 
 
@@ -95,7 +100,6 @@
     padding: 2px 6px;
     border-radius: 10px;
     background: #E0FFFF;
-    margin-left: 12%;
 }
 
 .status_markerp {
@@ -105,7 +109,6 @@
     padding: 2px 6px;
     border-radius: 10px;
     background: #90EE90;
-    margin-left: 12%;
 }
 
 
@@ -204,54 +207,8 @@
     margin-left: 5px;
 }
 
-.persons_list .webix_list_item,
-.persons_list .webix_list_item.webix_selected {
-    padding: 8px 12px;
-}
-
-.text {
-    padding: 5px 5px 5px 10px;
-}
-
-.text1 {
-    padding: 2px 2px 2px;
-}
-
-.text2 {
-    padding-left: 50%;
-    padding-top: 5%;
-}
-
-.username {
-    max-width: 150px;
-    text-align: center;
-    overflow: hidden;
-    font-weight: bold;
-    color: black;
-    margin-right: 6%;
-    font-size: 15px;
-}
-
-.name {
-    white-space: nowrap;
-    text-align: center;
-    overflow: hidden;
-    font-weight: bold;
-    color: black;
-    margin-right: 100%;
-}
-
-.name2 {
-    white-space: nowrap;
-    text-align: center;
-    overflow: hidden;
-    font-weight: bold;
-    color: black;
-    margin-right: 5%;
-}
-
 .accordion {
-    background-color: #eee;
+    background-color: #008B8B;
     color: #444;
     cursor: pointer;
     padding: 18px;

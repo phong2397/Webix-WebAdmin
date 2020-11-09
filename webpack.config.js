@@ -57,10 +57,9 @@ module.exports = function(env) {
         ],
         devServer: {
             stats: "errors-only",
-            contentBase: "./public/",
-            proxy: {
-                "/server": "http://localhost:3000"
-            }
+            host: "0.0.0.0",
+            disableHostCheck: true,
+
         }
     };
     if (!production) {
