@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "ui/uiTransaction";
+import { createUIObject, createDetailUIObject } from "ui-schema/uiTransaction";
 import { getAccessToken } from "models/storage";
 
 function getTransaction() {

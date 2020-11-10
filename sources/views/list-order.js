@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "ui/uiOrder";
+import { createUIObject, createDetailUIObject } from "ui-schema/uiOrder";
 import { getAccessToken } from "models/storage";
 
 function getOrder() {
