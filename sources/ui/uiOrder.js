@@ -1,46 +1,90 @@
 const dataListSchema = {
-  customerId: "",
+  requestTime: "",
+  orderId: "",
   customerName: "",
-  companyId: "",
-  phone: "",
+  requestAmount: "",
+  amountAvailable: "",
 };
 
 const dataDetailSchema = {
+  orderId: "",
+  productId: "",
   customerId: "",
   customerName: "",
   companyId: "",
-  id: "",
-  phone: "",
-  dob: "",
-  address: "",
-  grossSalary: "",
-  tax: "",
-  insurance: "",
-  netSalary: "",
-  credit: "",
+  companyName: "",
+  companyShortName: "",
   bankNo: "",
   bankName: "",
   accountNo: "",
-  isStaff: true,
+  amountAvailable: "",
+  requestId: "",
+  requestTime: "",
+  requestAmount: "",
+  orderStage: "",
+  orderStatus: "",
+  appraisal: {
+    status: "",
+    lastApproveAt: "",
+    lastApproveBy: "",
+    note: "",
+  },
+  disbursement: {
+    transacionId: "",
+    status: "",
+    disburseAt: "",
+    disburseBy: "",
+    paymentGatewayName: "",
+    bankNo: "",
+    bankName: "",
+    accountNo: "",
+    amountDisburse: "",
+    transactionPaymentGateway: "",
+    paymentGatewayInfo: {
+      ResponseCode: "",
+      ResponseMessage: "",
+    },
+  },
 };
+
 const objectNamed = {
-  customerId: "Mã số nhân viên",
-  customerName: "Tên công ty",
+  orderId: "Mã số đơn hàng",
+  productId: "Mã số sản phẩm",
+  customerId: "Mã số khách hàng",
+  customerName: "Tên khách hàng",
   companyId: "Mã số công ty",
-  id: "Mã số",
-  phone: "Số điện thoại",
-  dob: "Ngày sinh",
-  address: "Địa chỉ",
-  grossSalary: "Lương tổng",
-  tax: "Thuế",
-  insurance: "Bảo hiểm",
-  netSalary: "Lương thực",
-  credit: "Hạn mức",
+  companyName: "Tên công ty",
+  companyShortName: "Tên công ty rút gọn",
+  bankNo: "Mã số ngân hàng",
+  bankName: "Tên ngân hàng",
+  accountNo: "Số tài khoản",
+  amountAvailable: "Số tiền có thẻ rút",
+  requestId: "Mã số yêu cầu",
+  requestTime: "Thời gian yêu cầu",
+  requestAmount: "Số tiền yêu cầu",
+  orderStage: "Giai đoạn đăt hàng",
+  orderStatus: "Trạng thái đơn vay",
+  appraisal: "Thẩm định",
+  status: "Thành công",
+  lastApproveAt: "Thời gian thẩm định cuối cùng",
+  lastApproveBy: "Người thẩm định cuối cùng",
+  note: "Ghi chú",
+  disbursement: "Giải ngân",
+  transacionId: "Mã số giao dịch",
+  status: "Trạng thái",
+  disburseAt: "Thời gian giải ngân ",
+  disburseBy: "Người giải ngân",
+  paymentGatewayName: "Tên cổng thanh toán",
   bankNo: "Mã số ngân hàng",
   bankName: "Tên ngân hàng",
   accountNo: "Mã số nhân viên",
-  isStaff: "Là nhân viên công ty",
+  amountDisburse: "Số tiền giải ngân",
+  transactionPaymentGateway: "Thông tin giao dịch cổng thanh toán",
+  paymentGatewayInfo: "Thông tin cổng thanh toán",
+  ResponseCode: "Mã phản hồi",
+  ResponseMessage: "Tin nhắn phản hồi",
 };
+
 export function createUIObject() {
   //loop metadata into datatable grid
   let keysList = Object.keys(dataListSchema);
@@ -68,7 +112,7 @@ export function createUIObject() {
               //   view: "button",
               //   tooltip: "Delete",
               //   label:
-              //     "<span class='webix_icon wxi-plus'></span><span class='text'>Thêm nhân viên</span>",
+              //     "<span class='webix_icon wxi-plus'></span><span class='text'>Thêm đặt hàng </span>",
               //   click: () => {
               //     $$("btn2").show();
               //   },
@@ -89,11 +133,11 @@ export function createUIObject() {
                         "<span class='webix_strong'>Unchecked All Data</span>",
                     },
                     click: function () {
-                      $$("dataCustomer").eachRow(function (id) {
+                      $$("dataOrders").eachRow(function (id) {
                         if ((this.getItem(id).checked = "off")) {
                         }
                       });
-                      $$("dataCustomer").refresh();
+                      $$("dataOrders").refresh();
                     },
                   },
                   // {
@@ -113,21 +157,22 @@ export function createUIObject() {
             view: "datatable",
             pager: "pagerA",
             height: 760,
-            id: "dataCustomer",
+            id: "dataOrders",
+            css: "webix_shadow_medium",
             scroll: true,
             css: "my_style",
             resizeColumn: true,
             columnWidth: 200,
             columns: columns,
             editable: true,
-
-            on: {
-              // onAfterRender: webix.once(function() {
-              //     var arr = this.config.columns;
-              //     arr.unshift();
-              //     this.config.columns = arr;
-              //     this.refreshColumns();
-              // })
+            scheme: {
+              $init: function (obj) {
+                obj.requestTime = convertDateString(obj.requestTime);
+              },
+            },
+            ready: function () {
+              // apply sorting
+              this.data.sort([{ by: "requestTime", dir: "desc", as: "date" }]);
             },
           },
           {
@@ -148,19 +193,82 @@ export function createUIObject() {
 
 export function createDetailUIObject() {
   // loop form detail
-  let keysDetail = Object.keys(dataDetailSchema);
+  let elements = Object.keys(dataDetailSchema).map((key) => {
+    let obj = dataDetailSchema[key];
+    // console.log(obj);
+    if (typeof obj === "object") {
+      let formElements = Object.keys(obj).map((subKey) => {
+        let obj1 = obj[subKey];
+        if (typeof obj1 === "object") {
+          let formsubElements = Object.keys(obj1).map((subKey1) => {
+            return {
+              view: "text",
+              name: `${key}.${subKey}.${subKey1}`,
+              label: objectNamed[subKey1],
+              labelWidth: 150,
+              css: "no_border",
+            };
+          });
+          return {
+            rows: [
+              {
+                view: "text",
+                label: objectNamed[subKey],
+                css: "no_border",
+                labelWidth: 150,
+                readonly: true,
+              },
+              {
+                view: "form",
+                id: subKey,
+                complexData: true,
+                elements: formsubElements,
+              },
+            ],
+          };
+        }
+        return {
+          view: "text",
+          name: `${key}.${subKey}`,
+          label: objectNamed[subKey],
+          labelWidth: 150,
 
-  let element = keysDetail.map((key) => ({
+          css: "no_border",
+        };
+      });
+
+      return {
+        rows: [
+          {
+            view: "text",
+            label: objectNamed[key],
+            css: "no_border",
+            labelWidth: 150,
+            readonly: true,
+          },
+          {
+            view: "form",
+            id: key,
+            complexData: true,
+            elements: formElements,
+          },
+        ],
+      };
+    }
+    return {
+      view: "text",
+      name: key,
+      label: objectNamed[key],
+      labelWidth: 150,
+
+      css: "no_border",
+    };
+  });
+
+  let form = Object.keys(dataDetailSchema).map((key) => ({
     view: "text",
     name: key,
-    label: objectNamed[key],
-    labelWidth: 150,
-    css: "no_border",
-  }));
-  let form = keysDetail.map((key) => ({
-    view: "text",
-    name: key,
-    label: objectNamed[key],
+    label: key,
     labelWidth: 150,
   }));
   return {
@@ -174,7 +282,7 @@ export function createDetailUIObject() {
         rows: [
           {
             css: "header",
-            header: "Detail Customer",
+            header: "Detail Order",
             icon: "fas fa-envelope",
 
             body: {
@@ -183,9 +291,9 @@ export function createDetailUIObject() {
                   rows: [
                     {
                       view: "form",
-                      id: "property",
+                      id: "formDetail",
                       editable: false,
-                      elements: element,
+                      elements: elements,
                       nameWidth: 150,
                       scroll: true,
                       css: "form",
@@ -225,7 +333,7 @@ export function createDetailUIObject() {
         rows: [
           {
             css: "header",
-            header: "Add Customer",
+            header: "Add Order",
             body: {
               rows: [
                 {
@@ -268,7 +376,7 @@ export function createDetailUIObject() {
 }
 
 function exportExcel() {
-  webix.toExcel($$("dataCustomer"), {
+  webix.toExcel($$("dataOrders"), {
     ignore: { checked: true },
     filter: function (obj) {
       return obj.checked === "on";
@@ -283,12 +391,12 @@ function convertDateString(value) {
 
 function removeData() {
   let ids = [];
-  $$("dataCustomer").data.each(function (obj) {
+  $$("dataOrders").data.each(function (obj) {
     if (obj.checked === "on") ids.push(obj.id);
   });
   console.log(ids);
 
-  $$("dataCustomer").remove(ids);
+  $$("dataOrders").remove(ids);
 }
 
 function addData() {
@@ -303,11 +411,11 @@ function addData() {
 
   console.log(rowData);
 
-  $$("dataCustomer").add(rowData, 0);
+  $$("dataOrders").add(rowData, 0);
 }
 
 function update_item() {
-  var data = $$("dataCustomer");
+  var data = $$("dataOrders");
   var sel = data.getSelectedId(true);
   if (!sel) return;
 

@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiOrder";
+import { createUIObject, createDetailUIObject } from "ui/uiOrder";
 import { getAccessToken } from "models/storage";
 
 function getOrder() {
@@ -61,16 +61,11 @@ export default class orderList extends JetView {
       });
       dataOrder.refreshColumns();
     });
-    //filter grid datatable
+    
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataOrder.filter(function (obj) {
-        //filter by multiple properties
-        var filter = [obj.customerId, obj.requestTime, obj.orderStatus].join(
-          "|"
-        );
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

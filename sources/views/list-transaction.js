@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiTransaction";
+import { createUIObject, createDetailUIObject } from "ui/uiTransaction";
 import { getAccessToken } from "models/storage";
 
 function getTransaction() {
@@ -60,13 +60,11 @@ export default class trasactionList extends JetView {
       });
       dataTest.refreshColumns();
     });
-    //filter grid datatable
+    
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataTest.filter(function (obj) {
-        var filter = [obj.transId, obj.transType, obj.transAmount].join("|");
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

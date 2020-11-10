@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiCompany";
+import { createUIObject, createDetailUIObject } from "ui/uiCompany";
 import { getAccessToken } from "models/storage";
 
 function getCompany() {
@@ -55,16 +55,11 @@ export default class companyList extends JetView {
       });
       dataCompany.refreshColumns();
     });
-    //filter grid datatable
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataCompany.filter(function (obj) {
-        //filter by multiple properties
-        var filter = [obj.companyId, obj.companyName, obj.companyPhone].join(
-          "|"
-        );
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

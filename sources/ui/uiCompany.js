@@ -1,22 +1,22 @@
-const dataListSchema = {
-  companyId: "",
-  companyName: "",
-  activedDate: "",
-  activeStatus: "",
-};
+const dataListSchema = [ 
+  "companyId",
+  "companyName",
+  "activedDate",
+  "activeStatus",
+ ];
 
-const dataDetailSchema = {
-  companyId: "",
-  companyName: "",
-  companyShortName: "",
-  taxNumber: "",
-  companyAddress: "",
-  companyPhone: "",
-  Owner: "",
-  issuedDate: "",
-  activedDate: "",
-  activeStatus: "",
-};
+const dataDetailSchema = [ 
+  "companyId",
+  "companyName",
+  "companyShortName",
+  "taxNumber",
+  "companyAddress",
+  "companyPhone",
+  "Owner",
+  "issuedDate",
+  "activedDate",
+  "activeStatus",
+ ];
 
 const objectNamed = {
   companyId: "Mã công ty",
@@ -33,8 +33,8 @@ const objectNamed = {
 
 export function createUIObject() {
   //loop metadata into datatable grid
-  let keysList = Object.keys(dataListSchema);
-  let columns = keysList.map((key) => ({ id: key, header: objectNamed[key] }));
+  // let keysList = Object.keys(dataListSchema);
+  let columns = dataListSchema.map((key) => ({ id: key, header: objectNamed[key] }));
   columns.unshift({
     id: "checked",
     header: { content: "masterCheckbox" },
@@ -51,7 +51,7 @@ export function createUIObject() {
             cols: [
               {
                 view: "search",
-                placeholder: "Type something to filter transaction",
+                placeholder: "search",
                 id: "filter-table",
               },
               // {
@@ -145,17 +145,14 @@ export function createUIObject() {
 }
 
 export function createDetailUIObject() {
-  // loop form detail
-  let keysDetail = Object.keys(dataDetailSchema);
-
-  let element = keysDetail.map((key) => ({
+  let element = dataDetailSchema.map((key) => ({
     view: "text",
     name: key,
     label: objectNamed[key],
     labelWidth: 150,
     css: "no_border",
   }));
-  let form = keysDetail.map((key) => ({
+  let form = dataDetailSchema.map((key) => ({
     view: "text",
     name: key,
     label: objectNamed[key],

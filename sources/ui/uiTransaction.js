@@ -46,6 +46,7 @@ const dataDetailSchema = {
     },
   },
 };
+
 const objectNamed = {
   orderId: "Mã số đơn hàng",
   productId: "Mã số sản phẩm",

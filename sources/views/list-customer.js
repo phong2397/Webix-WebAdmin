@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiCustomer";
+import { createUIObject, createDetailUIObject } from "ui/uiCustomer";
 import { getAccessToken } from "models/storage";
 
 function getCustomer() {
@@ -98,14 +98,11 @@ export default class customerList extends JetView {
       // })
       dataCustomer.refreshColumns();
     });
-    //filter grid datatable
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataCustomer.filter(function (obj) {
-        //filter by multiple properties
-        var filter = [obj.id, obj.phone, obj.accountNo].join("|");
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });
