@@ -10,8 +10,6 @@ let store = new webix.DataCollection({
 
 export default class DataList extends JetView {
     config() {
-
-
         return {
             cols: [{
                     rows: [{
