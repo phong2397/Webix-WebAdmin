@@ -1,7 +1,7 @@
 const { host, port } = require("./config").apiServer;
 import { getAccessToken } from "../models/storage";
 
-function getOrder() {
+export function getOrder() {
   return webix
     .ajax()
     .headers({

@@ -1,10 +1,17 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "ui-schema/uiCustomer";
-import { getAccessToken } from "models/storage";
-import { getCustomer} from "../api/customer"
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiCustomer";
+import { getCustomer } from "../api/customer";
+// import { createUIObject, createDetailUIObject } from "../ui-schema/uiCustomer";
 
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+// let UIObj = createUIObject();
+// let detailUIObject = createDetailUIObject();
+let UIObj = createUIObject(dataListSchema, objectNamed, "dataCustomer");
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
 let resize = { view: "resizer" };
 export default class customerList extends JetView {
@@ -21,69 +28,11 @@ export default class customerList extends JetView {
   }
   init() {
     var dataCustomer = $$("dataCustomer");
-
     $$("property").bind(dataCustomer);
+
     getCustomer().then((data) => {
+      console.log("data customer: ", data);
       dataCustomer.define("data", data);
-      //dataCustomer.getColumnConfig("dob").format = webix.Date.dateToStr("%d-%m-%Y")
-
-      //dataCustomer.getColumnConfig("dob").sort = "date"
-
-      //dataCustomer.getColumnConfig("id").sort = "int"
-      //dataCustomer.getColumnConfig("grossSalary").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 3,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("tax").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 3,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("id").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 0,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("phone").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 0,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("bankNo").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 0,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("accountNo").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 0,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("insurance").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 3,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("netSalary").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 3,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
-      //dataCustomer.getColumnConfig("credit").format = webix.Number.numToStr({
-      //     groupDelimiter: ",",
-      //     groupSize: 3,
-      //     decimalDelimiter: ".",
-      //     decimalSize: 0
-      // })
       dataCustomer.refreshColumns();
     });
 

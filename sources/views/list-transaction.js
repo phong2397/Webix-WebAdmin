@@ -1,9 +1,12 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "ui-schema/uiTransaction";
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import { dataListSchema, dataDetailSchema, objectNamed } from "../ui-schema/uiTransaction"
+// import { createUIObject, createDetailUIObject } from "../ui-schema/uiTransaction";
 import { getTransaction } from "../api/transaction";
 
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+let UIObj = createUIObject(dataListSchema, objectNamed, "dataTransaction");
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
+// let UIObj = createUIObject(); let detailUIObject = createDetailUIObject();
 
 let resize = { view: "resizer" };
 export default class trasactionList extends JetView {
@@ -19,26 +22,25 @@ export default class trasactionList extends JetView {
     };
   }
   init() {
-    var dataTest = $$("dataTest");
-
-    $$("property").bind(dataTest);
-    $$("appraisal").bind(dataTest);
-    $$("disbursement").bind(dataTest);
-    $$("paymentGatewayInfo").bind(dataTest);
+    var dataTransaction = $$("dataTransaction");
+    $$("property").bind(dataTransaction);
+    // $$("appraisal").bind(dataTransaction);
+    // $$("disbursement").bind(dataTransaction);
+    // $$("paymentGatewayInfo").bind(dataTransaction);
 
     getTransaction().then((data) => {
-      dataTest.define("data", data);
-      dataTest.getColumnConfig("requestTime").format = webix.Date.dateToStr(
+      dataTransaction.define("data", data);
+      dataTransaction.getColumnConfig("requestTime").format = webix.Date.dateToStr(
         "%d-%m-%Y"
       );
 
-      dataTest.getColumnConfig("requestAmount").format = webix.Number.numToStr({
+      dataTransaction.getColumnConfig("requestAmount").format = webix.Number.numToStr({
         groupDelimiter: ",",
         groupSize: 3,
         decimalDelimiter: ".",
         decimalSize: 0,
       });
-      dataTest.getColumnConfig(
+      dataTransaction.getColumnConfig(
         "amountAvailable"
       ).format = webix.Number.numToStr({
         groupDelimiter: ",",
@@ -46,12 +48,12 @@ export default class trasactionList extends JetView {
         decimalDelimiter: ".",
         decimalSize: 0,
       });
-      dataTest.refreshColumns();
+      dataTransaction.refreshColumns();
     });
 
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      dataTest.filter(function (obj) {
+      dataTransaction.filter(function (obj) {
         var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });

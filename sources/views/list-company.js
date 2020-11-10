@@ -1,9 +1,18 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "ui-schema/uiCompany";
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiCompany";
 import { getCompany } from "../api/company";
 
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+// import { createUIObject, createDetailUIObject } from "../ui-schema/uiCompany";
+
+// let UIObj = createUIObject();
+// let detailUIObject = createDetailUIObject();
+let UIObj = createUIObject(dataListSchema, objectNamed, "dataCompany");
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -23,7 +32,7 @@ export default class companyList extends JetView {
     $$("property").bind(dataCompany);
 
     getCompany().then((data) => {
-      console.log(data);
+      console.log("data company: ", data);
       dataCompany.define("data", data);
       dataCompany.getColumnConfig("activedDate").format = webix.Date.dateToStr(
         "%d-%m-%Y"
