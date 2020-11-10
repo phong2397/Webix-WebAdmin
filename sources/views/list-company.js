@@ -1,17 +1,6 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "ui-schema/uiCompany";
-import { getAccessToken } from "models/storage";
-
-function getCompany() {
-  return webix
-    .ajax()
-    .headers({
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAccessToken(),
-    })
-    .get("http://150.95.110.211:3001/backend/companies")
-    .then((a) => a.json());
-}
+import { getCompany } from "../api/company";
 
 let UIObj = createUIObject();
 let detailUIObject = createDetailUIObject();

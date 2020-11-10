@@ -1,18 +1,6 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "ui-schema/uiTransaction";
-import { getAccessToken } from "models/storage";
-
-function getTransaction() {
-  return webix
-    .ajax()
-    .headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: "Bearer " + getAccessToken(),
-    })
-    .get("http://150.95.110.211:3001/backend/transactions")
-    .then((a) => a.json());
-}
+import { getTransaction } from "../api/transaction";
 
 let UIObj = createUIObject();
 let detailUIObject = createDetailUIObject();
@@ -60,7 +48,7 @@ export default class trasactionList extends JetView {
       });
       dataTest.refreshColumns();
     });
-    
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
       dataTest.filter(function (obj) {
