@@ -1,22 +1,12 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import {
-  dataListSchema,
-  dataDetailSchema,
-  objectNamed,
-} from "../ui-schema/uiCompany";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCompany";
 import { getCompany } from "../api/company";
-
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-// import { createUIObject, createDetailUIObject } from "../ui-schema/uiCompany";
-
-// let UIObj = createUIObject();
-// let detailUIObject = createDetailUIObject();
 let UIObj = createUIObject(dataListSchema, objectNamed, "dataCompany");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
-let datatyleDataList = {};
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -37,7 +27,7 @@ export default class companyList extends JetView {
 
     getCompany().then((data) => {
       dataCompany.define("data", data);
-      dataListSchema.forEach((key) => {
+      Object.keys(dataListSchema).forEach((key) => {
         dataCompany.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );

@@ -1,27 +1,29 @@
-export const dataListSchema = [ 
-  "customerId",
-  "customerName",
-  "companyId",
-  "phone",
- ];
-export const dataDetailSchema = [ 
-  "customerId",
-  "customerName",
-  "companyId",
-  "id",
-  "phone",
-  "dob",
-  "address",
-  "grossSalary",
-  "tax",
-  "insurance",
-  "netSalary",
-  "credit",
-  "bankNo",
-  "bankName",
-  "accountNo",
-  "isStaff: ",
- ];
+export const dataListSchema = {
+  customerId: "",
+  customerName: "",
+  companyId: "",
+  phone: "",
+};
+
+export const dataDetailSchema = {
+  customerId: "",
+  customerName: "",
+  companyId: "",
+  id: "",
+  phone: "",
+  dob: "",
+  address: "",
+  grossSalary: "",
+  tax: "",
+  insurance: "",
+  netSalary: "",
+  credit: "",
+  bankNo: "",
+  bankName: "",
+  accountNo: "",
+  isStaff: true,
+};
+
 export const objectNamed = {
   customerId: "Mã số nhân viên",
   customerName: "Tên công ty",

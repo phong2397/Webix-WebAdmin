@@ -1,10 +1,6 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import {
-  dataListSchema,
-  dataDetailSchema,
-  objectNamed,
-} from "../ui-schema/uiTransaction";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiTransaction";
 import { getTransaction } from "../api/transaction";
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
@@ -28,14 +24,16 @@ export default class trasactionList extends JetView {
   init() {
     var dataTransaction = $$("dataTransaction");
     $$("property").bind(dataTransaction);
-    // $$("appraisal").bind(dataTransaction);
-    // $$("disbursement").bind(dataTransaction);
-    // $$("paymentGatewayInfo").bind(dataTransaction);
+
+     // FIXME: Magic ID $$(id) what?
+    $$("paymentGatewayInfo").bind(dataTransaction);
+
 
     getTransaction().then((data) => {
+      data = data.map(e => e.disbursement);
       dataTransaction.define("data", data);
 
-      dataListSchema.forEach((key) => {
+      Object.keys(dataListSchema).forEach((key) => {
         dataTransaction.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );

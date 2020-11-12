@@ -11,7 +11,7 @@ function status() {
   // return false;
   return webix
     .ajax()
-    .post(`http://${host}:${port}/backend/login/status`)
+    .post(`http://${host}:${port}/backend/loginStatus`)
     .then((a) => {
       a.json();
     });

@@ -1,48 +1,48 @@
-export const dataListSchema = [
-  "requestTime",
-  "orderId",
-  "customerName",
-  "requestAmount",
-  "amountAvailable",
-];
+export const dataListSchema = {
+  orderId: "",
+  requestAmount: "",
+  orderStage: "",
+  orderStatus: "",
+};
 
-export const dataDetailSchema = [
-  "orderId",
-  "productId",
-  "customerId",
-  "customerName",
-  "companyId",
-  "companyName",
-  "companyShortName",
-  "bankNo",
-  "bankName",
-  "accountNo",
-  "amountAvailable",
-  "requestId",
-  "requestTime",
-  "requestAmount",
-  "orderStage",
-  "orderStatus",
-  "appraisal",
-  "status",
-  "lastApproveAt",
-  "lastApproveBy",
-  "note",
-  "disbursement",
-  "transacionId",
-  "status",
-  "disburseAt",
-  "disburseBy",
-  "paymentGatewayName",
-  "bankNo",
-  "bankName",
-  "accountNo",
-  "amountDisburse",
-  "transactionPaymentGateway",
-  "paymentGatewayInfo",
-  "ResponseCode",
-  "ResponseMessage",
-];
+export const dataDetailSchema = {
+  orderId: "",
+  productId: "",
+  customerId: "",
+  customerName: "",
+  companyId: "",
+  bankNo: "",
+  bankName: "",
+  accountNo: "",
+  amountAvailable: "",
+  requestId: "",
+  requestTime: "",
+  requestAmount: "",
+  orderStage: "",
+  orderStatus: "",
+  appraisal: {
+    status: "",
+    lastApproveAt: "",
+    lastApproveBy: "",
+    note: "",
+  },
+  disbursement: {
+    transacionId: "",
+    status: "",
+    disburseAt: "",
+    disburseBy: "",
+    paymentGatewayName: "",
+    bankNo: "",
+    bankName: "",
+    accountNo: "",
+    amountDisburse: "",
+    transactionPaymentGateway: "",
+    paymentGatewayInfo: {
+      ResponseCode: "",
+      ResponseMessage: "",
+    },
+  },
+};
 
 export const objectNamed = {
   orderId: "Mã số đơn hàng",
@@ -81,8 +81,6 @@ export const objectNamed = {
   ResponseCode: "Mã phản hồi",
   ResponseMessage: "Tin nhắn phản hồi",
 };
-
-
 
 
 

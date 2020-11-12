@@ -12,12 +12,25 @@ export default class MenuView extends JetView {
       select: true,
 
       data: [
-        // { value: "Danh sách thẩm định", id: "appraise", icon: "mdi mdi-comment" },
-        // { value: "Danh sách giải ngân", id: "disburse", icon: "mdi mdi-puzzle" },
         {
-          value: "Danh sách yêu cầu",
+          value: "Sản phẩm",
+          id: "list-product",
+          icon: "mdi mdi-qrcode",
+        },
+        {
+          value: "Danh sách công ty",
+          id: "list-company",
+          icon: "mdi mdi-qrcode",
+        },
+        {
+          value: "Danh sách khách hàng",
+          id: "list-customer",
+          icon: "wxi-user",
+        },
+        {
+          value: "Danh sách đơn",
           id: "list-order",
-          icon: "mdi mdi-widgets",
+          icon: "wxi-file",
         },
         {
           value: "Danh sách giao dịch",
@@ -25,14 +38,9 @@ export default class MenuView extends JetView {
           icon: "mdi mdi-pencil",
         },
         {
-          value: "Danh sách khách hàng",
-          id: "list-customer",
-          icon: "wxi-clock",
-        },
-        {
-          value: "Danh sách công ty",
-          id: "list-company",
-          icon: "mdi mdi-qrcode",
+          value: "Báo cáo",
+          id: "report",
+          icon: "wxi-columns",
         },
       ],
     };

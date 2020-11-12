@@ -67,8 +67,8 @@ function datetimeFormat(string = "") {
   //   date = webix.Date.strToDate("%d/%m/%Y%")(string);
 
   // console.log("---DATE---", date);
-  return webix.Date.dateToStr("%d-%m-%Y %H:%i:%s");
-  // return webix.i18n.dateFormatDate(string)
+  // return webix.Date.dateToStr("%d-%m-%Y %H:%i:%s");
+  return '';
 }
 
 function boolFormat() {
@@ -90,7 +90,6 @@ function detectDataType(data) {
 
   data.forEach((e) => {
     if (isPhoneNumber(e) || isIdentityNumber(e)) {
-      console.log(e, ' is phone or id')
       return (typeCheck["string"] += 1)
     }
     if (isDatetime(e)) return (typeCheck["datetime"] += 1);

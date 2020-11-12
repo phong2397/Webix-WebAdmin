@@ -1,48 +1,27 @@
-export const dataListSchema = [
-  "requestTime",
-  "orderId",
-  "customerName",
-  "requestAmount",
-  "amountAvailable",
-];
+export const dataListSchema = {
+  transacionId: "",
+  amountDisburse: "",
+  status: "",
+  bankName: "",
+  accountNo: "",
+};
 
-export const dataDetailSchema = [
-  "orderId",
-  "productId",
-  "customerId",
-  "customerName",
-  "companyId",
-  "companyName",
-  "companyShortName",
-  "bankNo",
-  "bankName",
-  "accountNo",
-  "amountAvailable",
-  "requestId",
-  "requestTime",
-  "requestAmount",
-  "orderStage",
-  "orderStatus",
-  "appraisal",
-  "status",
-  "lastApproveAt",
-  "lastApproveBy",
-  "note",
-  "disbursement",
-  "transacionId",
-  "status",
-  "disburseAt",
-  "disburseBy",
-  "paymentGatewayName",
-  "bankNo",
-  "bankName",
-  "accountNo",
-  "amountDisburse",
-  "transactionPaymentGateway",
-  "paymentGatewayInfo",
-  "ResponseCode",
-  "ResponseMessage",
- ];
+export const dataDetailSchema = {
+  transacionId: "",
+  paymentGatewayInfo: {
+    ResponseCode: "",
+    ResponseMessage: "",
+  },
+  status: "",
+  disburseAt: "",
+  disburseBy: "",
+  paymentGatewayName: "",
+  bankNo: "",
+  bankName: "",
+  accountNo: "",
+  amountDisburse: "",
+  transactionPaymentGateway: "",
+};
 
 export const objectNamed = {
   orderId: "Mã số đơn hàng",
@@ -72,18 +51,12 @@ export const objectNamed = {
   disburseAt: "Thời gian giải ngân ",
   disburseBy: "Người giải ngân",
   paymentGatewayName: "Tên cổng thanh toán",
-  bankNo: "Mã số ngân hàng",
-  bankName: "Tên ngân hàng",
-  accountNo: "Mã số nhân viên",
   amountDisburse: "Số tiền giải ngân",
   transactionPaymentGateway: "Thông tin giao dịch cổng thanh toán",
   paymentGatewayInfo: "Thông tin cổng thanh toán",
   ResponseCode: "Mã phản hồi",
   ResponseMessage: "Tin nhắn phản hồi",
 };
-
-
-
 
 // export function createUIObject() {
 //   //loop metadata into datatable grid

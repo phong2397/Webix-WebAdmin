@@ -1,13 +1,10 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import {
-  dataListSchema,
-  dataDetailSchema,
-  objectNamed,
-} from "../ui-schema/uiCustomer";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCustomer";
 import { getCustomer } from "../api/customer";
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
+
 let UIObj = createUIObject(dataListSchema, objectNamed, "dataCustomer");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
@@ -30,7 +27,7 @@ export default class customerList extends JetView {
 
     getCustomer().then((data) => {
       dataCustomer.define("data", data);
-      dataListSchema.forEach((key) => {
+      Object.keys(dataListSchema).forEach((key) => {
         dataCustomer.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );

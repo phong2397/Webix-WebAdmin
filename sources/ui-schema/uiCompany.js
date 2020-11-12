@@ -1,22 +1,22 @@
-export const dataListSchema = [ 
-  "companyId",
-  "companyName",
-  "activedDate",
-  "activeStatus",
- ];
+export const dataListSchema = {
+  companyId: "",
+  companyName: "",
+  activedDate: "",
+  activeStatus: "",
+};
 
-export const dataDetailSchema = [ 
-  "companyId",
-  "companyName",
-  "companyShortName",
-  "taxNumber",
-  "companyAddress",
-  "companyPhone",
-  "Owner",
-  "issuedDate",
-  "activedDate",
-  "activeStatus",
- ];
+export const dataDetailSchema = {
+  companyId: "",
+  companyName: "",
+  companyShortName: "",
+  taxNumber: "",
+  companyAddress: "",
+  companyPhone: "",
+  Owner: "",
+  issuedDate: "",
+  activedDate: "",
+  activeStatus: "",
+};
 
 export const objectNamed = {
   companyId: "Mã công ty",
@@ -30,6 +30,8 @@ export const objectNamed = {
   activedDate: "Ngày hoạt dộng",
   activeStatus: "Trạng thái",
 };
+
+
 
 
 

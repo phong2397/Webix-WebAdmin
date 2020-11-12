@@ -1,6 +1,11 @@
+export function createUIObject(dataListSchema = {}, objectNamed = {}, idData) {
+  // let columns = dataListSchema.map((key) => ({
+  //   id: key,
+  //   header: objectNamed[key],
+  // }));
+  let keysList = Object.keys(dataListSchema);
+  let columns = keysList.map((key) => ({ id: key, header: objectNamed[key] }));
 
-export function createUIObject(dataListSchema=[], objectNamed={}, idData) {
-  let columns = dataListSchema.map((key) => ({ id: key, header: objectNamed[key] }));
   columns.unshift({
     id: "checked",
     header: { content: "masterCheckbox" },
@@ -95,20 +100,94 @@ export function createUIObject(dataListSchema=[], objectNamed={}, idData) {
   };
 }
 
-export function createDetailUIObject(dataDetailSchema=[], objectNamed={}) {
-  let element = dataDetailSchema.map((key) => ({
+export function createDetailUIObject(dataDetailSchema = {}, objectNamed = {}) {
+  let element = Object.keys(dataDetailSchema).map((key) => {
+    let obj = dataDetailSchema[key];
+    if (typeof obj === "object") {
+      let formElements = Object.keys(obj).map((subKey) => {
+        let obj1 = obj[subKey];
+        if (typeof obj1 === "object") {
+          let formsubElements = Object.keys(obj1).map((subKey1) => {
+            return {
+              view: "text",
+              name: `${key}.${subKey}.${subKey1}`,
+              label: objectNamed[subKey1],
+              labelWidth: 150,
+              css: "no_border",
+            };
+          });
+          return {
+            rows: [
+              {
+                view: "text",
+                label: objectNamed[subKey],
+                css: "no_border",
+                labelWidth: 150,
+                readonly: true,
+              },
+              {
+                view: "form",
+                id: subKey,
+                complexData: true,
+                elements: formsubElements,
+              },
+            ],
+          };
+        }
+        return {
+          view: "text",
+          name: `${key}.${subKey}`,
+          label: objectNamed[subKey],
+          labelWidth: 150,
+
+          css: "no_border",
+        };
+      });
+
+      return {
+        rows: [
+          {
+            view: "text",
+            label: objectNamed[key],
+            css: "no_border",
+            labelWidth: 150,
+            readonly: true,
+          },
+          {
+            view: "form",
+            id: key,
+            complexData: true,
+            elements: formElements,
+          },
+        ],
+      };
+    }
+    return {
+      view: "text",
+      name: key,
+      label: objectNamed[key],
+      labelWidth: 150,
+
+      css: "no_border",
+    };
+  });
+
+  /////////////////////////////// RUN
+  // let element = dataDetailSchema.map((key) => ({
+  //   view: "text",
+  //   name: key,
+  //   label: objectNamed[key],
+  //   labelWidth: 150,
+  //   css: "no_border",
+  // }));
+
+  let form = Object.keys(dataDetailSchema).map((key) => ({
     view: "text",
     name: key,
     label: objectNamed[key],
     labelWidth: 150,
-    css: "no_border",
   }));
-  let form = dataDetailSchema.map((key) => ({
-    view: "text",
-    name: key,
-    label: objectNamed[key],
-    labelWidth: 150,
-  }));
+
   return {
     cells: [
       {

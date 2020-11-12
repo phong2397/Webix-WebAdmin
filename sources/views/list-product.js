@@ -1,15 +1,16 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiOrder";
-import { getOrder } from "../api/order";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCompany";
+import { getCompany } from "../api/company";
+
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-let UIObj = createUIObject(dataListSchema, objectNamed, "dataOrders");
+let UIObj = createUIObject(dataListSchema, objectNamed, "dataProduct");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
 let resize = { view: "resizer" };
-export default class orderList extends JetView {
+export default class companyList extends JetView {
   config() {
     return {
       cols: [
@@ -22,29 +23,22 @@ export default class orderList extends JetView {
     };
   }
   init() {
-    var dataOrder = $$("dataOrders");
-    $$("property").bind(dataOrder);
+    var dataProduct = $$("dataProduct");
+    $$("property").bind(dataProduct);
 
-     // FIXME: Magic ID $$(id) what?
-    $$("appraisal").bind(dataOrder);
-    $$("disbursement").bind(dataOrder);
-    $$("paymentGatewayInfo").bind(dataOrder);
-
-    getOrder().then((data) => {
-      dataOrder.define("data", data);
-
-      Object.keys(dataListSchema).forEach((key) => {
-        dataOrder.getColumnConfig(key).format = formatDatatype(
+    getCompany().then((data) => {
+      dataProduct.define("data", data);
+      dataListSchema.forEach((key) => {
+        dataProduct.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );
       });
-
-      dataOrder.refreshColumns();
+      dataProduct.refreshColumns();
     });
 
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      dataOrder.filter(function (obj) {
+      dataProduct.filter(function (obj) {
         var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
