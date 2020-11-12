@@ -7,12 +7,16 @@ import {
 } from "../ui-schema/uiCompany";
 import { getCompany } from "../api/company";
 
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
+
 // import { createUIObject, createDetailUIObject } from "../ui-schema/uiCompany";
 
 // let UIObj = createUIObject();
 // let detailUIObject = createDetailUIObject();
 let UIObj = createUIObject(dataListSchema, objectNamed, "dataCompany");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
+let datatyleDataList = {};
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -32,24 +36,11 @@ export default class companyList extends JetView {
     $$("property").bind(dataCompany);
 
     getCompany().then((data) => {
-      console.log("data company: ", data);
       dataCompany.define("data", data);
-      dataCompany.getColumnConfig("activedDate").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
-      dataCompany.getColumnConfig("issuedDate").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
-
-      dataCompany.getColumnConfig("companyId").sort = "int";
-      dataCompany.getColumnConfig("activedDate").sort = "date";
-      dataCompany.getColumnConfig("issuedDate").sort = "date";
-
-      dataCompany.getColumnConfig("taxNumber").format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 0,
-        decimalDelimiter: ".",
-        decimalSize: 0,
+      dataListSchema.forEach((key) => {
+        dataCompany.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
       });
       dataCompany.refreshColumns();
     });

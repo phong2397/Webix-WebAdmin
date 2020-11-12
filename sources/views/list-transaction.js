@@ -1,12 +1,16 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import { dataListSchema, dataDetailSchema, objectNamed } from "../ui-schema/uiTransaction"
-// import { createUIObject, createDetailUIObject } from "../ui-schema/uiTransaction";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiTransaction";
 import { getTransaction } from "../api/transaction";
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
 
 let UIObj = createUIObject(dataListSchema, objectNamed, "dataTransaction");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
-// let UIObj = createUIObject(); let detailUIObject = createDetailUIObject();
 
 let resize = { view: "resizer" };
 export default class trasactionList extends JetView {
@@ -30,23 +34,11 @@ export default class trasactionList extends JetView {
 
     getTransaction().then((data) => {
       dataTransaction.define("data", data);
-      dataTransaction.getColumnConfig("requestTime").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
 
-      dataTransaction.getColumnConfig("requestAmount").format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 3,
-        decimalDelimiter: ".",
-        decimalSize: 0,
-      });
-      dataTransaction.getColumnConfig(
-        "amountAvailable"
-      ).format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 3,
-        decimalDelimiter: ".",
-        decimalSize: 0,
+      dataListSchema.forEach((key) => {
+        dataTransaction.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
       });
       dataTransaction.refreshColumns();
     });

@@ -9,7 +9,7 @@ export default class MyApp extends JetApp {
             version: VERSION,
             router: HashRouter,
             debug: !PRODUCTION,
-            start: "/top/list-customer"
+            start: "/top/list-transaction"
 
         };
         super({...defaults, ...config });

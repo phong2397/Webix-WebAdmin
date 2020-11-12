@@ -6,10 +6,8 @@ import {
   objectNamed,
 } from "../ui-schema/uiCustomer";
 import { getCustomer } from "../api/customer";
-// import { createUIObject, createDetailUIObject } from "../ui-schema/uiCustomer";
-
-// let UIObj = createUIObject();
-// let detailUIObject = createDetailUIObject();
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
 let UIObj = createUIObject(dataListSchema, objectNamed, "dataCustomer");
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
@@ -31,8 +29,12 @@ export default class customerList extends JetView {
     $$("property").bind(dataCustomer);
 
     getCustomer().then((data) => {
-      console.log("data customer: ", data);
       dataCustomer.define("data", data);
+      dataListSchema.forEach((key) => {
+        dataCustomer.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
+      });
       dataCustomer.refreshColumns();
     });
 
