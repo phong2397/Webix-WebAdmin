@@ -100,7 +100,7 @@ export function createUIObject(dataListSchema = {}, objectNamed = {}, idData) {
   };
 }
 
-export function createDetailUIObject(dataDetailSchema = {}, objectNamed = {}) {
+export function createDetailUIObject(dataDetailSchema = {}, objectNamed = {}, idData) {
   let element = Object.keys(dataDetailSchema).map((key) => {
     let obj = dataDetailSchema[key];
     if (typeof obj === "object") {
@@ -230,7 +230,7 @@ export function createDetailUIObject(dataDetailSchema = {}, objectNamed = {}) {
                           value: "Export excel",
                           css: "webix_default",
                           align: "left",
-                          click: exportExcel,
+                          click: exportExcel(idData),
                         },
                       ],
                     },
@@ -294,8 +294,9 @@ export function createDetailUIObject(dataDetailSchema = {}, objectNamed = {}) {
   };
 }
 
-function exportExcel() {
+function exportExcel(idData) {
   var table = $$(idData);
+  console.log(table)
   // copy/modify array of columns for export
   var columns = table.config.columns.map((obj) => {
     //remove last row of header (assumming there's a filter)

@@ -3,11 +3,16 @@ import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
 
 import { formatDatatype } from "../ui-schema/customizeUI";
-import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiReport";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiReport";
 import { getOrder } from "../api/order";
 
-let UIObj = createUIObject(dataListSchema, objectNamed, "dataReport");
-let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
+const idData = "dataReport";
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -23,7 +28,7 @@ export default class companyList extends JetView {
     };
   }
   init() {
-    var dataReport = $$("dataReport");
+    var dataReport = $$(idData);
     $$("property").bind(dataReport);
 
     // FIXME: Magic ID $$(id) what?

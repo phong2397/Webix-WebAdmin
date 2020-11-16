@@ -5,7 +5,8 @@ import { getTransaction } from "../api/transaction";
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-let UIObj = createUIObject(dataListSchema, objectNamed, "dataTransaction");
+const idData = "dataTransaction";
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
 let resize = { view: "resizer" };
@@ -22,7 +23,7 @@ export default class trasactionList extends JetView {
     };
   }
   init() {
-    var dataTransaction = $$("dataTransaction");
+    var dataTransaction = $$(idData);
     $$("property").bind(dataTransaction);
 
      // FIXME: Magic ID $$(id) what?

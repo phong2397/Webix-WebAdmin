@@ -5,8 +5,9 @@ import { getOrder } from "../api/order";
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-let UIObj = createUIObject(dataListSchema, objectNamed, "dataOrders");
-let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
+const idData = "dataOrders"
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
 export default class orderList extends JetView {
@@ -22,7 +23,7 @@ export default class orderList extends JetView {
     };
   }
   init() {
-    var dataOrder = $$("dataOrders");
+    var dataOrder = $$(idData);
     $$("property").bind(dataOrder);
 
      // FIXME: Magic ID $$(id) what?

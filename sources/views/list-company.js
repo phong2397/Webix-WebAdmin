@@ -5,8 +5,9 @@ import { getCompany } from "../api/company";
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-let UIObj = createUIObject(dataListSchema, objectNamed, "dataCompany");
-let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
+const idData = "dataCompany"
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -22,7 +23,7 @@ export default class companyList extends JetView {
     };
   }
   init() {
-    var dataCompany = $$("dataCompany");
+    var dataCompany = $$(idData);
     $$("property").bind(dataCompany);
 
     getCompany().then((data) => {
