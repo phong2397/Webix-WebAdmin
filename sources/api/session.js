@@ -11,7 +11,7 @@ function status() {
   // return false;
   return webix
     .ajax()
-    .post(`http://${host}:${port}/backend/loginStatus`)
+    .post(`http://${host}:${port}/auth/loginStatus`)
     .then((a) => {
       a.json();
     });
@@ -35,7 +35,6 @@ function login(username, password) {
 }
 
 function logout() {
-  console.log("Log out is here !!");
   removeUserId();
   removeAccessToken();
   return webix
