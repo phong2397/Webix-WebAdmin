@@ -14,7 +14,7 @@ const idData = "dataCustomer";
 let btnMain = {
 	id: "btn-import",
 	view: "uploader",
-	value: "import",
+	value: "Import",
 	name: "uploadfile",
 	link: "mylist",
 	upload: `http://${apiServer.host}:${apiServer.port}/backend/customers/imports`,
@@ -55,6 +55,7 @@ export default class customerList extends JetView {
 
 		getCustomer().then((data) => {
 			dataCustomer.define("data", data);
+			console.log('customer data: ', data);
 			Object.keys(dataListSchema).forEach((key) => {
 				dataCustomer.getColumnConfig(key).format = formatDatatype(
 					_.map(data, key)

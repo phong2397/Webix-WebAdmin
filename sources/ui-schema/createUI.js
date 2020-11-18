@@ -208,24 +208,24 @@ export function createDetailUIObject(
 											css: "form",
 											complexData: true,
 										},
-										{
-											cols: [
-												{
-													view: "button",
-													value: "Update",
-													css: "webix_primary",
-													align: "left",
-													click: updateItem,
-												},
-												{
-													view: "button",
-													value: "Export excel",
-													css: "webix_default",
-													align: "left",
-													click: exportExcel,
-												},
-											],
-										},
+										// {
+										// 	cols: [
+										// 		{
+										// 			view: "button",
+										// 			value: "Update",
+										// 			css: "webix_primary",
+										// 			align: "left",
+										// 			click: updateItem,
+										// 		},
+										// 		{
+										// 			view: "button",
+										// 			value: "Export excel",
+										// 			css: "webix_default",
+										// 			align: "left",
+										// 			click: exportExcel,
+										// 		},
+										// 	],
+										// },
 									],
 								},
 							],
