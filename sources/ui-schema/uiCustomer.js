@@ -3,6 +3,7 @@ export const dataListSchema = {
   customerName: "",
   companyId: "",
   phone: "",
+  id: "",
 };
 
 export const dataDetailSchema = {
@@ -26,9 +27,9 @@ export const dataDetailSchema = {
 
 export const objectNamed = {
   customerId: "Mã số nhân viên",
-  customerName: "Tên công ty",
+  customerName: "Tên nhân viên",
   companyId: "Mã số công ty",
-  id: "Mã số",
+  id: "CMND/CCCD",
   phone: "Số điện thoại",
   dob: "Ngày sinh",
   address: "Địa chỉ",
