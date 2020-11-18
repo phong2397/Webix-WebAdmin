@@ -40,7 +40,7 @@ export const objectNamed = {
   credit: "Hạn mức",
   bankNo: "Mã số ngân hàng",
   bankName: "Tên ngân hàng",
-  accountNo: "Mã số nhân viên",
+  accountNo: "Số tài khoản",
   isStaff: "Là nhân viên công ty",
 };
 
