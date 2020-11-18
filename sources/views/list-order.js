@@ -1,21 +1,13 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiOrder";
-import { getAccessToken } from "models/storage";
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiOrder";
+import { getOrder } from "../api/order";
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
 
-function getOrder() {
-  return webix
-    .ajax()
-    .headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: "Bearer " + getAccessToken(),
-    })
-    .get("http://150.95.110.211:3001/backend/orders")
-    .then((a) => a.json());
-}
-
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+const idData = "dataOrders"
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
 export default class orderList extends JetView {
@@ -31,46 +23,30 @@ export default class orderList extends JetView {
     };
   }
   init() {
-    var dataOrder = $$("dataOrders");
-    $$("formDetail").bind(dataOrder);
+    var dataOrder = $$(idData);
+    $$("property").bind(dataOrder);
+
+     // FIXME: Magic ID $$(id) what?
     $$("appraisal").bind(dataOrder);
     $$("disbursement").bind(dataOrder);
     $$("paymentGatewayInfo").bind(dataOrder);
 
     getOrder().then((data) => {
       dataOrder.define("data", data);
-      dataOrder.getColumnConfig("requestTime").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
 
-      dataOrder.getColumnConfig("requestAmount").format = webix.Number.numToStr(
-        {
-          groupDelimiter: ",",
-          groupSize: 3,
-          decimalDelimiter: ".",
-          decimalSize: 0,
-        }
-      );
-      dataOrder.getColumnConfig(
-        "amountAvailable"
-      ).format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 3,
-        decimalDelimiter: ".",
-        decimalSize: 0,
+      Object.keys(dataListSchema).forEach((key) => {
+        dataOrder.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
       });
+
       dataOrder.refreshColumns();
     });
-    //filter grid datatable
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataOrder.filter(function (obj) {
-        //filter by multiple properties
-        var filter = [obj.customerId, obj.requestTime, obj.orderStatus].join(
-          "|"
-        );
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

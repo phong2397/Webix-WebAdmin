@@ -1,16 +1,21 @@
+var _ = require("lodash");
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCustomer";
-import { getCustomer } from "../api/customer";
-import { formatDatatype } from "../ui-schema/customizeUI";
-var _ = require("lodash");
 
-const idData = "dataCustomer"
+import { formatDatatype } from "../ui-schema/customizeUI";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiReport";
+import { getOrder } from "../api/order";
+
+const idData = "dataReport";
 let UIObj = createUIObject(dataListSchema, objectNamed, idData);
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
-export default class customerList extends JetView {
+export default class companyList extends JetView {
   config() {
     return {
       cols: [
@@ -23,22 +28,27 @@ export default class customerList extends JetView {
     };
   }
   init() {
-    var dataCustomer = $$(idData);
-    $$("property").bind(dataCustomer);
+    var dataReport = $$(idData);
+    $$("property").bind(dataReport);
 
-    getCustomer().then((data) => {
-      dataCustomer.define("data", data);
+    // FIXME: Magic ID $$(id) what?
+    // $$("appraisal").bind(dataReport);
+    $$("disbursement").bind(dataReport);
+    $$("paymentGatewayInfo").bind(dataReport);
+
+    getOrder().then((data) => {
+      dataReport.define("data", data);
       Object.keys(dataListSchema).forEach((key) => {
-        dataCustomer.getColumnConfig(key).format = formatDatatype(
+        dataReport.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );
       });
-      dataCustomer.refreshColumns();
+      dataReport.refreshColumns();
     });
 
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      dataCustomer.filter(function (obj) {
+      dataReport.filter(function (obj) {
         var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });

@@ -1,20 +1,13 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiCompany";
-import { getAccessToken } from "models/storage";
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCompany";
+import { getCompany } from "../api/company";
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
 
-function getCompany() {
-  return webix
-    .ajax()
-    .headers({
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + getAccessToken(),
-    })
-    .get("http://150.95.110.211:3001/backend/companies")
-    .then((a) => a.json());
-}
-
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+const idData = "dataCompany"
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
 export default class companyList extends JetView {
@@ -30,41 +23,23 @@ export default class companyList extends JetView {
     };
   }
   init() {
-    var dataCompany = $$("dataCompany");
+    var dataCompany = $$(idData);
     $$("property").bind(dataCompany);
 
     getCompany().then((data) => {
-      console.log(data);
       dataCompany.define("data", data);
-      dataCompany.getColumnConfig("activedDate").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
-      dataCompany.getColumnConfig("issuedDate").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
-
-      dataCompany.getColumnConfig("companyId").sort = "int";
-      dataCompany.getColumnConfig("activedDate").sort = "date";
-      dataCompany.getColumnConfig("issuedDate").sort = "date";
-
-      dataCompany.getColumnConfig("taxNumber").format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 0,
-        decimalDelimiter: ".",
-        decimalSize: 0,
+      Object.keys(dataListSchema).forEach((key) => {
+        dataCompany.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
       });
       dataCompany.refreshColumns();
     });
-    //filter grid datatable
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
       dataCompany.filter(function (obj) {
-        //filter by multiple properties
-        var filter = [obj.companyId, obj.companyName, obj.companyPhone].join(
-          "|"
-        );
-        filter = filter.toString().toLowerCase();
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

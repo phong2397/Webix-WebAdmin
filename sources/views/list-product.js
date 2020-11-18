@@ -1,16 +1,21 @@
 import { JetView } from "webix-jet";
 import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
-import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiCustomer";
-import { getCustomer } from "../api/customer";
+import {
+  dataListSchema,
+  dataDetailSchema,
+  objectNamed,
+} from "../ui-schema/uiProduct";
+import { getProduct } from "../api/product";
+
 import { formatDatatype } from "../ui-schema/customizeUI";
 var _ = require("lodash");
 
-const idData = "dataCustomer"
+const idData = "dataProduct";
 let UIObj = createUIObject(dataListSchema, objectNamed, idData);
 let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed, idData);
 
 let resize = { view: "resizer" };
-export default class customerList extends JetView {
+export default class companyList extends JetView {
   config() {
     return {
       cols: [
@@ -23,22 +28,23 @@ export default class customerList extends JetView {
     };
   }
   init() {
-    var dataCustomer = $$(idData);
-    $$("property").bind(dataCustomer);
+    var dataProduct = $$(idData);
+    $$("property").bind(dataProduct);
 
-    getCustomer().then((data) => {
-      dataCustomer.define("data", data);
-      Object.keys(dataListSchema).forEach((key) => {
-        dataCustomer.getColumnConfig(key).format = formatDatatype(
+    getProduct().then((data) => {
+      console.log('data product: ', data)
+      dataProduct.define("data", data);
+      dataListSchema.forEach((key) => {
+        dataProduct.getColumnConfig(key).format = formatDatatype(
           _.map(data, key)
         );
       });
-      dataCustomer.refreshColumns();
+      dataProduct.refreshColumns();
     });
 
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      dataCustomer.filter(function (obj) {
+      dataProduct.filter(function (obj) {
         var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });

@@ -1,21 +1,13 @@
 import { JetView } from "webix-jet";
-import { createUIObject, createDetailUIObject } from "models/uiTransaction";
-import { getAccessToken } from "models/storage";
+import { createUIObject, createDetailUIObject } from "../ui-schema/createUI";
+import { dataListSchema, dataDetailSchema, objectNamed, } from "../ui-schema/uiTransaction";
+import { getTransaction } from "../api/transaction";
+import { formatDatatype } from "../ui-schema/customizeUI";
+var _ = require("lodash");
 
-function getTransaction() {
-  return webix
-    .ajax()
-    .headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: "Bearer " + getAccessToken(),
-    })
-    .get("http://150.95.110.211:3001/backend/transactions")
-    .then((a) => a.json());
-}
-
-let UIObj = createUIObject();
-let detailUIObject = createDetailUIObject();
+const idData = "dataTransaction";
+let UIObj = createUIObject(dataListSchema, objectNamed, idData);
+let detailUIObject = createDetailUIObject(dataDetailSchema, objectNamed);
 
 let resize = { view: "resizer" };
 export default class trasactionList extends JetView {
@@ -31,42 +23,29 @@ export default class trasactionList extends JetView {
     };
   }
   init() {
-    var dataTest = $$("dataTest");
+    var dataTransaction = $$(idData);
+    $$("property").bind(dataTransaction);
 
-    $$("property").bind(dataTest);
-    $$("appraisal").bind(dataTest);
-    $$("disbursement").bind(dataTest);
-    $$("paymentGatewayInfo").bind(dataTest);
+     // FIXME: Magic ID $$(id) what?
+    $$("paymentGatewayInfo").bind(dataTransaction);
+
 
     getTransaction().then((data) => {
-      dataTest.define("data", data);
-      dataTest.getColumnConfig("requestTime").format = webix.Date.dateToStr(
-        "%d-%m-%Y"
-      );
+      data = data.map(e => e.disbursement);
+      dataTransaction.define("data", data);
 
-      dataTest.getColumnConfig("requestAmount").format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 3,
-        decimalDelimiter: ".",
-        decimalSize: 0,
+      Object.keys(dataListSchema).forEach((key) => {
+        dataTransaction.getColumnConfig(key).format = formatDatatype(
+          _.map(data, key)
+        );
       });
-      dataTest.getColumnConfig(
-        "amountAvailable"
-      ).format = webix.Number.numToStr({
-        groupDelimiter: ",",
-        groupSize: 3,
-        decimalDelimiter: ".",
-        decimalSize: 0,
-      });
-      dataTest.refreshColumns();
+      dataTransaction.refreshColumns();
     });
-    //filter grid datatable
+
     $$("filter-table").attachEvent("onTimedKeypress", function () {
       var text = this.getValue().toString().toLowerCase();
-      //after text entering - filter related grid
-      dataTest.filter(function (obj) {
-        var filter = [obj.transId, obj.transType, obj.transAmount].join("|");
-        filter = filter.toString().toLowerCase();
+      dataTransaction.filter(function (obj) {
+        var filter = JSON.stringify(obj).toString().toLowerCase();
         return filter.indexOf(text) != -1;
       });
     });

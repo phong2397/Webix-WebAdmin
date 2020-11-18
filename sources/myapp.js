@@ -1,6 +1,6 @@
 import "./styles/app.css";
 import { JetApp, EmptyRouter, HashRouter, plugins } from "webix-jet";
-import session from "models/session";
+import session from "api/session";
 
 export default class MyApp extends JetApp {
     constructor(config) {
@@ -9,7 +9,7 @@ export default class MyApp extends JetApp {
             version: VERSION,
             router: HashRouter,
             debug: !PRODUCTION,
-            start: "/top/list-transaction"
+            start: "/top/report"
 
         };
         super({...defaults, ...config });
