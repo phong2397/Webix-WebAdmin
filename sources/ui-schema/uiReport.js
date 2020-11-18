@@ -8,23 +8,40 @@ export const dataListSchema = {
 };
 
 export const dataDetailSchema = {
-  customerId: "",
   customerName: "",
+  customerId: "",
   companyId: "",
   companyName: "",
   companyShortName: "",
 
+  //order
   orderId: "",
   requestId: "",
   requestTime: "",
   requestAmount: "",
-  productId: "",
+  // productId: "",
   bankNo: "",
   bankName: "",
   accountNo: "",
   amountAvailable: "",
   orderStage: "",
   orderStatus: "",
+
+  //product
+  // NOTE: error show in detail, MUST CHECK
+  // product: {
+  //   productId: "",
+  //   productName: "",
+  //   productShortName: "",
+  //   principal: "",
+  //   interestRatePerPeriod: "",
+  //   feePerPeriod: "",
+  //   period: "",
+  //   penalty: "",
+  //   status: "",
+  // },
+
+  //disbursement
   disbursement: {
     transacionId: "",
     transactionPaymentGateway: "",
@@ -41,8 +58,8 @@ export const dataDetailSchema = {
     accountNo: "",
     status: "",
   },
-  repayment: {
-  },
+  // repayment
+  repayment: {},
 };
 
 export const objectNamed = {
@@ -81,4 +98,13 @@ export const objectNamed = {
   paymentGatewayInfo: "Thông tin cổng thanh toán",
   ResponseCode: "Mã phản hồi",
   ResponseMessage: "Tin nhắn phản hồi",
+  product: "Sản phẩm",
+  productId: "Mã sản phẩm",
+  productName: "Tên sản phẩm",
+  productShortName: "Tên sản phẩm viết tắt",
+  principal: "Tiền gốc",
+  interestRatePerPeriod: "Lãi",
+  feePerPeriod: "Phí",
+  penalty: "Phạt",
+  period: "Giai đoạn",
 };
